@@ -1750,6 +1750,10 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .tour3d__navbtn:hover { color: var(--ink); background: var(--gray); }
 .tour3d__navbtn.is-active { color: var(--blue); border-bottom-color: var(--blue); }
 
+/* Mobile hamburger bar for tour3d */
+.tour3d__mobilebar { display: none; }
+.tour3d__dropdown { display: none; }
+
 .tour3d__features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1762,8 +1766,11 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   gap: 14px;
   padding: 28px 24px;
   border-right: 1px solid var(--line);
+  cursor: pointer;
+  transition: background .2s;
 }
 
+.tour3d__feature:hover { background: var(--gray); }
 .tour3d__feature:last-child { border-right: none; }
 
 .tour3d__feature svg { color: var(--blue); flex-shrink: 0; margin-top: 2px; }
@@ -1904,8 +1911,10 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 
 .locmap__svg { width: 100%; height: auto; }
 
-.locmap__pin circle { transition: r .3s var(--ease); }
-.locmap__pin:hover circle:first-child { r: 34; }
+.locmap__pin { transition: transform .3s var(--ease); }
+.locmap__pin:hover { transform: translateY(-4px); }
+.locmap__pin rect:first-of-type { transition: filter .3s; }
+.locmap__pin:hover rect:first-of-type { filter: brightness(1.15); }
 
 .locmap__sidebar {
   padding: 32px 28px;
@@ -2038,82 +2047,6 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .archvision__playbtn:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(242,103,33,.5); }
 .archvision__playbtn svg { margin-left: 3px; }
 
-/* ── Interior Gallery ──────────────────────────────────────────── */
-
-.intergallery {
-  display: grid;
-  gap: 16px;
-}
-
-.intergallery__featured {
-  position: relative;
-  border-radius: calc(var(--r) + 6px);
-  overflow: hidden;
-  aspect-ratio: 3 / 1.3;
-}
-
-.intergallery__featured img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .8s var(--ease);
-}
-
-.intergallery__featured:hover img { transform: scale(1.03); }
-
-.intergallery__tag {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  background: rgba(4,23,66,.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #fff;
-  font-family: var(--font-d);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 10px 16px;
-  border-radius: var(--r);
-}
-
-.intergallery__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.intergallery__item {
-  position: relative;
-  border-radius: var(--r);
-  overflow: hidden;
-  aspect-ratio: 3 / 2;
-  cursor: pointer;
-}
-
-.intergallery__item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .6s var(--ease);
-}
-
-.intergallery__item:hover img { transform: scale(1.06); }
-.intergallery__item:hover .intergallery__tag { opacity: 1; transform: translateY(0); }
-
-.intergallery__item .intergallery__tag {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-  font-size: 11px;
-  padding: 8px 12px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .3s, transform .3s var(--ease);
-}
-
 /* ── WhatsApp FAB ─────────────────────────────────────────────── */
 
 .whatsapp-fab {
@@ -2207,6 +2140,74 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: .4s; }
 
 .reveal-stagger.is-visible > * { opacity: 1; transform: none; }
+
+/* ── Tour3d mobile hamburger ──────────────────────────────────── */
+
+.tour3d__mobilebar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--gray);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  font-family: var(--font-d);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+
+.tour3d__mobilebar:hover { background: var(--line); }
+
+.tour3d__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0 0 var(--r) var(--r);
+  box-shadow: 0 16px 40px -10px rgba(4,23,66,.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .25s var(--ease), visibility 0s .25s, transform .25s var(--ease);
+}
+
+.tour3d__dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .25s var(--ease), transform .25s var(--ease);
+}
+
+.tour3d__dropbtn {
+  display: block;
+  width: 100%;
+  padding: 14px 18px;
+  font-family: var(--font-d);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+.tour3d__dropbtn:last-child { border-bottom: none; }
+.tour3d__dropbtn:hover { background: var(--gray); color: var(--ink); }
+.tour3d__dropbtn.is-active { color: var(--blue); font-weight: 700; background: rgba(0,65,177,.04); }
 
 /* ── Premium section responsive ──────────────────────────────── */
 
@@ -2313,19 +2314,20 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .tour3d__features { grid-template-columns: 1fr; }
   .tour3d__feature { border-right: none; border-bottom: 1px solid var(--line); }
   .tour3d__feature:last-child { border-bottom: none; }
-  .intergallery__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
-  .tour3d__nav { flex-wrap: nowrap; }
-  .tour3d__navbtn { font-size: 11px; padding: 12px 10px; }
+  .tour3d__nav { display: none; }
+  .tour3d__mobilebar { display: flex; }
+  .tour3d { position: relative; }
+  .tour3d__features { grid-template-columns: 1fr; }
+  .tour3d__feature { border-right: none; border-bottom: 1px solid var(--line); }
+  .tour3d__feature:last-child { border-bottom: none; }
   .timeline { padding-left: 36px; }
   .timeline__marker { left: -28px; width: 12px; height: 12px; }
   .timeline__line { left: 10px; }
   .timeline__card { padding: 18px 20px; }
   .archvision { min-height: 400px; }
-  .intergallery__grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .intergallery__featured { aspect-ratio: 16 / 9; }
   .whatsapp-fab { bottom: 20px; right: 20px; width: 52px; height: 52px; }
   .whatsapp-fab svg { width: 24px; height: 24px; }
   .whatsapp-fab__tooltip { display: none; }

@@ -807,11 +807,71 @@
   });
 
   /* 3D Tour nav buttons */
+  var tourNames = ['Dnevni boravak', 'Spavaća soba', 'Kuhinja', 'Kupatilo', 'Balkon'];
+
+  function setTourRoom(idx) {
+    document.querySelectorAll('.tour3d__navbtn').forEach(function (b, i) {
+      b.classList.toggle('is-active', i === idx);
+    });
+    document.querySelectorAll('.tour3d__dropbtn').forEach(function (b, i) {
+      b.classList.toggle('is-active', i === idx);
+    });
+    var mobText = document.getElementById('tourMobiText');
+    if (mobText) mobText.textContent = tourNames[idx];
+  }
+
   document.querySelectorAll('.tour3d__navbtn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      document.querySelectorAll('.tour3d__navbtn').forEach(function (b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
+      setTourRoom(Number(btn.dataset.tour) - 1);
     });
+  });
+
+  document.querySelectorAll('.tour3d__dropbtn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setTourRoom(Number(btn.dataset.tour) - 1);
+      document.getElementById('tourDropdown').classList.remove('is-open');
+    });
+  });
+
+  var tourMobileBar = document.getElementById('tourMobileBar');
+  var tourDropdown = document.getElementById('tourDropdown');
+  if (tourMobileBar && tourDropdown) {
+    tourMobileBar.addEventListener('click', function (e) {
+      e.stopPropagation();
+      tourDropdown.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function (e) {
+      if (!tourDropdown.contains(e.target) && e.target !== tourMobileBar) {
+        tourDropdown.classList.remove('is-open');
+      }
+    });
+  }
+
+  /* 3D Tour feature cards → lightbox */
+  var tourFeatures = document.querySelectorAll('.tour3d__feature');
+  var tourFeatureContent = [
+    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>' +
+      '<p style="font-size:20px;font-weight:700;margin-top:24px;">360° Pogled</p>' +
+      '<p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Interaktivni 360° pogled kroz stan bit će dostupan nakon završetka izgradnje. Prijavite se za obavještenje.</p>' +
+    '</div>',
+    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>' +
+      '<p style="font-size:20px;font-weight:700;margin-top:24px;">3D Model</p>' +
+      '<p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Trodimenzionalni model stana bit će spreman za interaktivno razgledanje nakon završetka radova.</p>' +
+    '</div>',
+    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' +
+      '<p style="font-size:20px;font-weight:700;margin-top:24px;">Mjerne dimenzije</p>' +
+      '<p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Detaljni tlocrti sa tačnim dimenzijama svake prostorije biće dostupni uPDF formatu po završetku projektovanja.</p>' +
+    '</div>'
+  ];
+
+  tourFeatures.forEach(function (card, i) {
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.addEventListener('click', function () { openLightbox(tourFeatureContent[i]); });
+    card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(tourFeatureContent[i]); } });
   });
 
   /* Parallax on scroll for hero and archvision */
