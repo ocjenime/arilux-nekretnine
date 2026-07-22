@@ -188,6 +188,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span>Kontakt</span>
       </button>
+      <button class="sidebar__link" data-section="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Logo</span>
+      </button>
       <button class="sidebar__link" data-section="export">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span>Export</span>
@@ -364,6 +368,39 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
       </div>
     </div>
 
+    <!-- ═══ LOGO ═══ -->
+    <div class="section" id="sec-logo">
+      <div class="page-head">
+        <h1>Logo</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--primary" id="saveAllBtn8">Spremi logo</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Trenutni logo</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Podržani formati: PNG, JPG, SVG, WebP. Preporučena širina: 300–600px. Logo će zamijeniti SVG tekst na cijelom sajtu (header, dark sekcija, footer).</p>
+        <div id="logoPreviewWrap" style="display:flex;align-items:center;gap:24px;margin-bottom:20px">
+          <div id="logoPreviewBox" style="width:200px;height:80px;border:2px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--bg);overflow:hidden">
+            <span id="logoPlaceholder" style="color:var(--muted);font-size:13px">Nema loga</span>
+            <img id="logoPreviewImg" src="" alt="Logo preview" style="display:none;max-width:100%;max-height:100%;object-fit:contain">
+          </div>
+          <div>
+            <button class="btn btn--ghost btn--sm" id="logoUploadBtn" style="margin-bottom:8px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Upload sliku
+            </button>
+            <button class="btn btn--ghost btn--sm" id="logoRemoveBtn" style="color:#dc2626;display:none">
+              Ukloni logo
+            </button>
+            <input type="file" id="logoFileInput" accept="image/*" style="display:none">
+            <p style="font-size:12px;color:var(--muted);margin-top:8px">Ili unesite URL:</p>
+            <input type="url" id="logoUrlInput" placeholder="https://example.com/logo.png" style="width:100%;max-width:320px;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;margin-top:4px">
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ═══ EXPORT ═══ -->
     <div class="section" id="sec-export">
       <div class="page-head">
@@ -471,6 +508,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     renderTour3d();
     renderMap();
     renderContact();
+    renderLogo();
     renderExport();
   }
 
@@ -875,6 +913,69 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     });
   }
 
+  /* ── Logo ──────────────────────────────────────────────────── */
+  function renderLogo() {
+    if (!DATA.logo) DATA.logo = {};
+    var img = document.getElementById('logoPreviewImg');
+    var ph = document.getElementById('logoPlaceholder');
+    var removeBtn = document.getElementById('logoRemoveBtn');
+    var urlInput = document.getElementById('logoUrlInput');
+
+    function showPreview(src) {
+      if (src) {
+        img.src = src;
+        img.style.display = 'block';
+        ph.style.display = 'none';
+        removeBtn.style.display = 'inline-block';
+      } else {
+        img.style.display = 'none';
+        ph.style.display = 'block';
+        removeBtn.style.display = 'none';
+      }
+    }
+
+    showPreview(DATA.logo.url || '');
+
+    urlInput.value = DATA.logo.url || '';
+
+    /* upload */
+    document.getElementById('logoUploadBtn').onclick = function () {
+      document.getElementById('logoFileInput').click();
+    };
+
+    document.getElementById('logoFileInput').onchange = function (e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) { alert('Slika mora biti manja od 2MB.'); return; }
+      var reader = new FileReader();
+      reader.onload = function (ev) {
+        DATA.logo.url = ev.target.result;
+        DATA.logo.type = 'base64';
+        showPreview(ev.target.result);
+        urlInput.value = '';
+      };
+      reader.readAsDataURL(file);
+    };
+
+    /* url input */
+    urlInput.addEventListener('change', function () {
+      var v = urlInput.value.trim();
+      if (v) {
+        DATA.logo.url = v;
+        DATA.logo.type = 'url';
+        showPreview(v);
+      }
+    });
+
+    /* remove */
+    document.getElementById('logoRemoveBtn').onclick = function () {
+      DATA.logo = {};
+      showPreview('');
+      urlInput.value = '';
+      document.getElementById('logoFileInput').value = '';
+    };
+  }
+
   /* ── Export ─────────────────────────────────────────────────── */
   function renderExport() {
     var json = JSON.stringify(DATA, null, 2);
@@ -907,6 +1008,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   document.getElementById('saveAllBtn5').addEventListener('click', saveAll);
   document.getElementById('saveAllBtn6').addEventListener('click', saveAll);
   document.getElementById('saveAllBtn7').addEventListener('click', saveAll);
+  document.getElementById('saveAllBtn8').addEventListener('click', saveAll);
 
   /* ── Helpers ────────────────────────────────────────────────── */
   function esc(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }

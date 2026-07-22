@@ -63,6 +63,7 @@
     }
     window.__ARILUX_JSON = data;
     if (data.map && data.map.buildings) applyMapPositions(data.map.buildings);
+    if (data.logo && data.logo.url) applyLogo(data.logo.url);
   }
 
   /* reposition SVG map pins from JSON coordinates */
@@ -89,6 +90,50 @@
         txt.setAttribute('y', d.labelY - def.y + dy);
       }
     });
+  }
+
+  /* apply custom logo from JSON */
+  function applyLogo(src) {
+    if (!src) return;
+    var style = document.createElement('style');
+    style.textContent = '.header__logomark svg,.dark__logo,.footer__logo{display:none!important}';
+    document.head.appendChild(style);
+
+    /* header logo */
+    var headerLogo = document.querySelector('.header__logo');
+    if (headerLogo) {
+      var logomark = headerLogo.querySelector('.header__logomark');
+      if (logomark) {
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Arilux';
+        img.style.cssText = 'height:48px;width:auto;object-fit:contain';
+        logomark.innerHTML = '';
+        logomark.appendChild(img);
+      }
+    }
+
+    /* dark section logo */
+    var darkLogo = document.querySelector('.dark__logo');
+    if (darkLogo) {
+      var dImg = document.createElement('img');
+      dImg.src = src;
+      dImg.alt = 'Arilux';
+      dImg.className = 'dark__logo';
+      dImg.style.cssText = 'width:min(420px,80%);object-fit:contain;filter:drop-shadow(0 30px 80px rgba(242,103,33,.25))';
+      darkLogo.parentNode.replaceChild(dImg, darkLogo);
+    }
+
+    /* footer logo */
+    var footerLogo = document.querySelector('.footer__logo');
+    if (footerLogo) {
+      var fImg = document.createElement('img');
+      fImg.src = src;
+      fImg.alt = 'Arilux';
+      fImg.className = 'footer__logo';
+      fImg.style.cssText = 'width:64px;height:auto;object-fit:contain;margin-bottom:14px';
+      footerLogo.parentNode.replaceChild(fImg, footerLogo);
+    }
   }
 
   fetch('data/site.json?' + Math.floor(Date.now() / 300000))
