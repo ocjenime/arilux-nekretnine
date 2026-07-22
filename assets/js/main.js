@@ -835,6 +835,56 @@
     }, { passive: true });
   }
 
+  /* ── Lightbox (3D tour + Video) ─────────────────────────────── */
+
+  var lightbox = document.getElementById('lightbox');
+  var lightboxBackdrop = document.getElementById('lightboxBackdrop');
+  var lightboxClose = document.getElementById('lightboxClose');
+  var lightboxContent = document.getElementById('lightboxContent');
+
+  function openLightbox(html) {
+    lightboxContent.innerHTML = html;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(function () { lightboxContent.innerHTML = ''; }, 400);
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxBackdrop.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
+
+  /* 3D Tour play button */
+  var tourPlay = document.querySelector('.tour3d__play');
+  if (tourPlay) {
+    tourPlay.addEventListener('click', function () {
+      openLightbox(
+        '<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=680&fit=crop&crop=center" alt="3D vizualizacija stana Arilux">'
+      );
+    });
+  }
+
+  /* Architecture video play button */
+  var archPlay = document.querySelector('.archvision__playbtn');
+  if (archPlay) {
+    archPlay.addEventListener('click', function () {
+      openLightbox(
+        '<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;flex-direction:column;background:#041742;">' +
+          '<svg viewBox="0 0 24 24" fill="rgba(255,255,255,.3)" width="64" height="64"><polygon points="5,3 19,12 5,21"/></svg>' +
+          '<p style="color:rgba(255,255,255,.6);font-family:Inter,sans-serif;font-size:16px;margin-top:24px;text-align:center;padding:0 20px;">Video o arhitekturi biti će dostupan uskoro.</p>' +
+        '</div>'
+      );
+    });
+  }
+
   /* ── Ostalo ─────────────────────────────────────────────────── */
 
   document.getElementById('year').textContent = new Date().getFullYear();
