@@ -159,7 +159,7 @@ a.topbar__item:hover { color: #fff; }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
 
 .header__logo { display: flex; align-items: center; gap: 14px; color: var(--orange); }
-.header__logomark svg { width: 90px; height: auto; }
+.header__logomark svg { width: 102px; height: auto; }
 .header__logotext {
   font-family: var(--font-d);
   font-variation-settings: 'wdth' 110;
@@ -1107,7 +1107,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   padding-block: clamp(36px, 4vw, 50px) clamp(24px, 3vw, 36px);
 }
 
-.footer__logo { width: 64px; color: var(--orange); margin-bottom: 14px; }
+.footer__logo { width: 97px; color: var(--orange); margin-bottom: 14px; }
 .footer__brand p { font-size: 12.5px; line-height: 1.55; max-width: 280px; margin-bottom: 16px; }
 
 .footer__social { display: flex; gap: 8px; }
