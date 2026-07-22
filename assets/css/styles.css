@@ -1352,8 +1352,8 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .topbar__group { gap: 14px; }
   .topbar__item:nth-child(3) { display: none; }
   .hero { min-height: 0; }
-  .hero__inner { padding-block: 72px 100px; text-align: center; }
-  .hero__lead { margin-inline: auto; }
+  .hero__inner { padding-block: 72px 100px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .hero__lead { margin-inline: auto; text-align: center; }
   .hero__cta { justify-content: center; }
   .hero__stats { text-align: left; max-width: 100%; }
   .hero__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
