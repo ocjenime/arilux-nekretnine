@@ -1524,6 +1524,12 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .footer__grid { grid-template-columns: 1fr 1fr; }
 }
 
+@media (max-width: 1100px) and (orientation: landscape) {
+  .header__nav { display: flex; gap: 4px; }
+  .header__burger { display: none !important; }
+  .header__link { font-size: 11px; padding: 8px 10px; }
+}
+
 @media (max-width: 900px) {
   .building, .building--flip { grid-template-columns: 1fr; }
   .building--flip .building__media { order: 0; }
@@ -1567,6 +1573,45 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .btn { width: 100%; }
   .header__actions .btn { width: auto; }
   .hero__cta { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 640px) and (orientation: landscape) {
+  .hero { min-height: 0; }
+  .hero__inner { padding-block: 32px 40px; }
+  .hero__title { font-size: clamp(26px, 8vw, 40px); }
+  .hero__lead { font-size: 13px; margin-bottom: 16px; max-width: 100%; }
+  .hero__cta { margin-bottom: 20px; gap: 10px; }
+  .hero__cta .btn { padding: 10px 18px; font-size: 11px; }
+  .hero__stats { gap: 12px; padding-top: 20px; }
+  .hero__stats dd { font-size: clamp(20px, 4vw, 30px); }
+  .hero__stats dt { font-size: 10px; }
+  .proximity__grid { grid-template-columns: repeat(3, 1fr); }
+  .proximity__item { padding: 16px 10px; }
+  .proximity__icon { width: 36px; height: 36px; margin-bottom: 12px; }
+  .proximity__icon svg { width: 18px; height: 18px; }
+  .proximity__num { font-size: clamp(22px, 4vw, 34px); margin-bottom: 6px; }
+  .proximity__label { font-size: 12px; }
+  .proximity__title { font-size: clamp(26px, 5vw, 38px); margin: 12px 0 16px; }
+  .proximity__head { margin-bottom: 32px; }
+  .lifestyle { min-height: 200px; }
+  .lifestyle__inner { padding-block: 24px; }
+  .lifestyle__title { font-size: clamp(20px, 5vw, 30px); }
+  .lifestyle__lead { font-size: 13px; }
+  .section { padding-block: 40px; }
+  .building__specs { grid-template-columns: repeat(4, 1fr); }
+  .band__inner { gap: 20px; }
+  .band__item b { font-size: clamp(28px, 5vw, 40px); }
+  .steps { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .step { padding: 16px 14px 8px 0; }
+  .step h3 { font-size: 15px; }
+  .step p { font-size: 12px; }
+  .perks { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .perk { padding: 20px; }
+  .perk h3 { font-size: 16px; }
+  .perk p { font-size: 13px; }
+  .finder__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .finder__filters { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .modal__body { padding: 20px; }
 }
 
 /* ── Reduced motion ──────────────────────────────────────────── */
