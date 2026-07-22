@@ -267,6 +267,41 @@
     panorama: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Terase', 'Krovne terase (PH)', 'Panoramski pogled']
   };
 
+  var BUILDING_PROX = {
+    one: [
+      { icon: '🏫', dist: '350 m', name: 'Osnovna škola', sub: 'Velika Kladuša Centar' },
+      { icon: '🏥', dist: '500 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: '🛒', dist: '200 m', name: 'Marketi', sub: 'Konzum, Bingo, pijaca' },
+      { icon: '🌳', dist: '400 m', name: 'Gradski park', sub: 'Odmor i rekreacija' },
+      { icon: '🚌', dist: '150 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: '👶', dist: '300 m', name: 'Vrtić', sub: 'Javni i privatni' }
+    ],
+    park: [
+      { icon: '🏫', dist: '450 m', name: 'Osnovna škola', sub: 'Velika Kladuša' },
+      { icon: '🏥', dist: '700 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: '🛒', dist: '350 m', name: 'Marketi', sub: 'Konzum, Bingo' },
+      { icon: '🌳', dist: '50 m', name: 'Gradski park', sub: 'Odmah pored zgrade' },
+      { icon: '🚌', dist: '400 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: '👶', dist: '250 m', name: 'Vrtić', sub: 'Javni i privatni' }
+    ],
+    centar: [
+      { icon: '🏫', dist: '400 m', name: 'Osnovna škola', sub: 'Velika Kladuša Centar' },
+      { icon: '🏥', dist: '450 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: '🛒', dist: '100 m', name: 'Marketi', sub: 'Trg, Konzum, pijaca' },
+      { icon: '🌳', dist: '350 m', name: 'Gradski park', sub: 'Odmor i rekreacija' },
+      { icon: '🚌', dist: '100 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: '👶', dist: '350 m', name: 'Vrtić', sub: 'Javni i privatni' }
+    ],
+    panorama: [
+      { icon: '🏫', dist: '600 m', name: 'Osnovna škola', sub: 'Velika Kladuša' },
+      { icon: '🏥', dist: '800 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: '🛒', dist: '500 m', name: 'Marketi', sub: 'Konzum, Bingo' },
+      { icon: '🌳', dist: '200 m', name: 'Gradski park', sub: 'Grabik šetalište' },
+      { icon: '🚌', dist: '550 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: '👶', dist: '450 m', name: 'Vrtić', sub: 'Javni i privatni' }
+    ]
+  };
+
   function getBuildingTotalFloors(bid) { return PLANS[bid].length; }
 
   var GAL_IMAGES = {
@@ -465,6 +500,18 @@
     var inc = BUILDING_INC[apt.building] || [];
     document.getElementById('modalInc').innerHTML = inc.map(function (item) {
       return '<div class="modal__incitem">' + item + '</div>';
+    }).join('');
+
+    var prox = BUILDING_PROX[apt.building] || [];
+    document.getElementById('modalProx').innerHTML = prox.map(function (p) {
+      return '<div class="modal__proxitem">' +
+        '<span class="modal__proxicon">' + p.icon + '</span>' +
+        '<div class="modal__proxinfo">' +
+          '<span class="modal__proxname">' + p.name + '</span>' +
+          '<span class="modal__proxsub">' + p.sub + '</span>' +
+        '</div>' +
+        '<span class="modal__proxdist">' + p.dist + '</span>' +
+      '</div>';
     }).join('');
 
     var footer = document.getElementById('modalFooter');

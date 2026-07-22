@@ -1379,6 +1379,27 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .fp__chevron { color: var(--ink-3); transition: transform .3s cubic-bezier(.22,.8,.28,1); flex-shrink: 0; }
 .fp__toggle.is-open .fp__chevron { transform: rotate(180deg); }
 
+.modal__proxlist { display: flex; flex-direction: column; gap: 0; }
+.modal__proxitem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.modal__proxitem:last-child { border-bottom: 0; }
+.modal__proxicon { font-size: 22px; width: 36px; text-align: center; flex-shrink: 0; }
+.modal__proxinfo { flex: 1; min-width: 0; }
+.modal__proxname { display: block; font-weight: 600; font-size: 14px; color: var(--ink); }
+.modal__proxsub { display: block; font-size: 12px; color: var(--ink-3); }
+.modal__proxdist {
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--blue);
+  white-space: nowrap;
+}
+
 .modal__divider {
   border: none;
   border-top: 1px solid var(--line);
