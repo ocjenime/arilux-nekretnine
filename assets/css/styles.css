@@ -1556,7 +1556,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .footer__grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 1100px) and (orientation: landscape) {
+@media (max-width: 1100px) and (orientation: landscape) and (min-height: 501px) {
   .header__nav { display: flex; gap: 4px; }
   .header__burger { display: none !important; }
   .header__link { font-size: 11px; padding: 8px 10px; }
@@ -1607,40 +1607,15 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .hero__cta { flex-direction: column; align-items: stretch; }
 }
 
-@media (max-width: 640px) and (orientation: landscape) {
-  html { background: var(--navy-2); }
-  html, body { overflow-x: hidden; }
-  .topbar { display: none; }
-  .header__inner { min-height: 44px; }
-  .header__nav { display: none; }
-  .header__burger { display: flex !important; }
-  .hero { min-height: 100vh; min-height: 100dvh; }
-  .hero__inner { padding: 16px 20px; }
-  .hero__title { font-size: clamp(22px, 5vw, 32px); }
-  .hero__lead { font-size: 11px; }
-  .hero__stats { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .hero__stats dd { font-size: clamp(16px, 3vw, 22px); }
-  .hero__stats dt { font-size: 8px; }
-  .hero__skyline, .hero__scrollhint, .hero__glow { display: none; }
-  .section { padding: 28px 20px; }
-  .finder { margin: 0 20px; padding: 16px; }
-  .finder__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .buildings { padding: 0 20px; }
-  .steps { grid-template-columns: repeat(3, 1fr); padding: 0 20px; gap: 10px; }
-  .perks { grid-template-columns: repeat(3, 1fr); padding: 0 20px; gap: 10px; }
-  .contact { padding: 0 20px; }
-  .footer__grid { padding: 20px 20px 12px; }
-}
-
-/* ── Landscape phones (all widths) ─────────────────────────── */
+/* ── Landscape phones — single authoritative block ─────────── */
 @media (orientation: landscape) and (max-height: 500px) {
   html { background: var(--navy-2); }
   html, body { overflow-x: hidden; }
   .topbar { display: none; }
-  .header__inner { min-height: 44px; }
+  .header__inner { min-height: 44px; gap: 12px; padding-inline: 16px; }
   .header__logotext { display: none; }
   .header__subtext { display: block; white-space: nowrap; font-family: var(--font-d); font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); border-left: 1px solid var(--line-light); padding-left: 12px; }
-  .header__nav { display: none; }
+  .header__nav { display: none !important; }
   .header__burger { display: flex !important; }
   .header__burger span { background: #fff; }
   .header__actions .btn--sm { padding: 8px 14px; font-size: 10px; }
