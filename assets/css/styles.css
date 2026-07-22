@@ -1597,42 +1597,107 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 @media (max-width: 640px) and (orientation: landscape) {
-  .hero { min-height: 0; }
-  .hero__inner { padding-block: 32px 40px; }
-  .hero__title { font-size: clamp(26px, 8vw, 40px); }
-  .hero__lead { font-size: 13px; margin-bottom: 16px; max-width: 100%; }
-  .hero__cta { margin-bottom: 20px; gap: 10px; }
-  .hero__cta .btn { padding: 10px 18px; font-size: 11px; }
-  .hero__stats { gap: 12px; padding-top: 20px; }
-  .hero__stats dd { font-size: clamp(20px, 4vw, 30px); }
-  .hero__stats dt { font-size: 10px; }
-  .proximity__grid { grid-template-columns: repeat(3, 1fr); }
-  .proximity__item { padding: 16px 10px; }
-  .proximity__icon { width: 36px; height: 36px; margin-bottom: 12px; }
-  .proximity__icon svg { width: 18px; height: 18px; }
-  .proximity__num { font-size: clamp(22px, 4vw, 34px); margin-bottom: 6px; }
-  .proximity__label { font-size: 12px; }
-  .proximity__title { font-size: clamp(26px, 5vw, 38px); margin: 12px 0 16px; }
-  .proximity__head { margin-bottom: 32px; }
-  .lifestyle { min-height: 200px; }
-  .lifestyle__inner { padding-block: 24px; }
-  .lifestyle__title { font-size: clamp(20px, 5vw, 30px); }
-  .lifestyle__lead { font-size: 13px; }
-  .section { padding-block: 40px; }
+  .topbar { display: none; }
+  .header__inner { min-height: 48px; }
+  .header__logomark svg { width: 50px; }
+  .header__subtext { font-size: 9px; padding-left: 8px; }
+  .header__link { font-size: 10px; padding: 6px 8px; }
+  .header__actions .btn--sm { padding: 6px 12px; font-size: 9px; }
+
+  .hero { min-height: 100vh; min-height: 100dvh; }
+  .hero__inner { padding-block: 16px 20px; display: flex; flex-direction: column; justify-content: center; }
+  .hero__title { font-size: clamp(24px, 6vw, 36px); margin-bottom: 10px; }
+  .hero__lead { font-size: 12px; margin-bottom: 12px; max-width: 100%; line-height: 1.4; }
+  .hero__cta { margin-bottom: 16px; gap: 8px; flex-direction: row; flex-wrap: wrap; }
+  .hero__cta .btn { padding: 8px 16px; font-size: 10px; width: auto; flex: 0 1 auto; }
+  .hero__stats { gap: 10px; padding-top: 12px; grid-template-columns: repeat(4, 1fr); }
+  .hero__stats dd { font-size: clamp(18px, 3.5vw, 28px); }
+  .hero__stats dt { font-size: 9px; letter-spacing: .08em; }
+  .hero__skyline { display: none; }
+  .hero__scrollhint { display: none; }
+  .hero__glow { display: none; }
+
+  .marquee { padding-block: 8px; }
+  .marquee__track span { font-size: 11px; }
+
+  .section { padding-block: 28px; }
+  .section__head { margin-bottom: 24px; }
+  .section__title { font-size: clamp(22px, 4vw, 30px); margin-bottom: 10px; }
+  .section__lead { font-size: 12px; }
+
+  .buildings { gap: 24px; }
+  .building { gap: 20px; }
+  .building__media { aspect-ratio: 16/10; }
+  .building__name { font-size: clamp(18px, 3vw, 24px); }
+  .building__desc { font-size: 12px; margin-bottom: 14px; }
   .building__specs { grid-template-columns: repeat(4, 1fr); }
-  .band__inner { gap: 20px; }
-  .band__item b { font-size: clamp(28px, 5vw, 40px); }
-  .steps { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .step { padding: 16px 14px 8px 0; }
-  .step h3 { font-size: 15px; }
-  .step p { font-size: 12px; }
-  .perks { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .perk { padding: 20px; }
-  .perk h3 { font-size: 16px; }
-  .perk p { font-size: 13px; }
-  .finder__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .finder__filters { grid-template-columns: 1fr 1fr; gap: 14px; }
-  .modal__body { padding: 20px; }
+  .building__specs li { padding: 10px 8px 8px 0; font-size: 10px; }
+  .building__specs b { font-size: clamp(14px, 2vw, 18px); }
+  .building__foot { gap: 10px; }
+  .building__price { font-size: 12px; }
+  .building__price strong { font-size: 16px; }
+
+  .band { padding-block: 24px; }
+  .band__inner { gap: 16px; }
+  .band__item { padding-left: 14px; }
+  .band__item b { font-size: clamp(22px, 4vw, 32px); }
+  .band__item span { font-size: 10px; }
+
+  .finder { padding: 16px; }
+  .finder__filters { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .finder__label { font-size: 10px; margin-bottom: 6px; }
+  .chip { font-size: 11px; padding: 6px 12px; }
+  .finder__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .apt { padding: 14px; gap: 10px; }
+  .apt__id { font-size: 13px; }
+  .apt__building { font-size: 10px; }
+  .apt__specs { font-size: 12px; gap: 10px; }
+  .apt__price b { font-size: 17px; }
+
+  .lifestyle { min-height: 160px; }
+  .lifestyle__inner { padding-block: 16px; }
+  .lifestyle__title { font-size: clamp(18px, 4vw, 26px); margin-bottom: 8px; }
+  .lifestyle__lead { font-size: 11px; }
+
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .step { padding: 12px 10px 6px 0; border-top-width: 1.5px; margin-right: 10px; }
+  .step__num { font-size: 12px; margin-bottom: 6px; }
+  .step h3 { font-size: 13px; margin-bottom: 4px; }
+  .step p { font-size: 11px; line-height: 1.4; }
+
+  .perks { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .perk { padding: 14px; }
+  .perk h3 { font-size: 13px; margin-bottom: 4px; }
+  .perk p { font-size: 11px; }
+
+  .dark { padding-block: 32px; }
+  .dark__lead { font-size: 12px; margin-bottom: 16px; }
+  .dark__list li { font-size: 12px; padding: 8px 0 8px 24px; }
+  .dark__logo { width: min(200px, 60%); }
+  .dark__badge { padding: 10px 14px; }
+  .dark__badge b { font-size: 16px; }
+
+  .contact { gap: 24px; }
+  .contact__lead { font-size: 13px; margin-bottom: 20px; }
+  .contact__cards { gap: 8px; }
+  .contact__card { padding: 12px; }
+  .contact__card span { font-size: 9px; }
+  .contact__card b { font-size: 12px; }
+  .contact__form { padding: 20px; }
+  .contact__formtitle { font-size: 20px; margin-bottom: 16px; }
+  .formfield label { font-size: 10px; }
+  .formfield input, .formfield select, .formfield textarea { font-size: 13px; padding: 10px 12px; }
+
+  .footer { padding-top: 0; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 20px; padding-block: 24px 16px; }
+  .footer__logo { width: 48px; margin-bottom: 10px; }
+  .footer__brand p { font-size: 11px; margin-bottom: 10px; }
+  .footer__social a { width: 28px; height: 28px; }
+  .footer__social svg { width: 13px; height: 13px; }
+  .footer__col h4 { font-size: 10px; margin-bottom: 10px; }
+  .footer__col a { font-size: 11px; padding-block: 3px; }
+  .footer__bottom { padding-block: 10px; }
+  .footer__bottominner { font-size: 10px; }
 }
 
 /* ── Reduced motion ──────────────────────────────────────────── */
