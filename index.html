@@ -292,42 +292,36 @@
           <h2 class="section__title">Faze projekta</h2>
           <p class="section__lead">Pratite napredak izgradnje vašeg budućeg doma - od temelja do useljenja.</p>
         </header>
-        <div class="timeline__bldgs" id="timelineBldgs">
-          <button class="timeline__bldg is-active" data-bldg="one"><span class="timeline__bldgdot" style="background:#0041B1"></span>Amor</button>
-          <button class="timeline__bldg" data-bldg="park"><span class="timeline__bldgdot" style="background:#2FB57E"></span>Park</button>
-          <button class="timeline__bldg" data-bldg="centar"><span class="timeline__bldgdot" style="background:#F26721"></span>Centar</button>
-          <button class="timeline__bldg" data-bldg="panorama"><span class="timeline__bldgdot" style="background:#7B61FF"></span>Panorama</button>
-        </div>
-        <div class="timeline reveal" id="timeline">
+        <div class="timeline reveal">
           <div class="timeline__line" aria-hidden="true"><div class="timeline__progress"></div></div>
-          <div class="timeline__item" data-phase="1">
+          <div class="timeline__item timeline__item--done" data-phase="1">
             <div class="timeline__marker"></div>
             <div class="timeline__card">
               <span class="timeline__phase">Faza 01</span>
               <h3 class="timeline__title">Projektovanje i dozvole</h3>
               <p class="timeline__desc">Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.</p>
-              <div class="timeline__bar"><div class="timeline__fill"></div></div>
-              <span class="timeline__pct"></span>
+              <div class="timeline__bar"><div class="timeline__fill" style="width:100%"></div></div>
+              <span class="timeline__pct">100%</span>
             </div>
           </div>
-          <div class="timeline__item" data-phase="2">
+          <div class="timeline__item timeline__item--done" data-phase="2">
             <div class="timeline__marker"></div>
             <div class="timeline__card">
               <span class="timeline__phase">Faza 02</span>
               <h3 class="timeline__title">Temelji i konstrukcija</h3>
               <p class="timeline__desc">Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.</p>
-              <div class="timeline__bar"><div class="timeline__fill"></div></div>
-              <span class="timeline__pct"></span>
+              <div class="timeline__bar"><div class="timeline__fill" style="width:100%"></div></div>
+              <span class="timeline__pct">100%</span>
             </div>
           </div>
-          <div class="timeline__item" data-phase="3">
+          <div class="timeline__item timeline__item--active" data-phase="3">
             <div class="timeline__marker"></div>
             <div class="timeline__card">
               <span class="timeline__phase">Faza 03</span>
               <h3 class="timeline__title">Vanjski radovi</h3>
               <p class="timeline__desc">Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.</p>
-              <div class="timeline__bar"><div class="timeline__fill"></div></div>
-              <span class="timeline__pct"></span>
+              <div class="timeline__bar"><div class="timeline__fill" style="width:65%"></div></div>
+              <span class="timeline__pct">65%</span>
             </div>
           </div>
           <div class="timeline__item" data-phase="4">
@@ -336,8 +330,8 @@
               <span class="timeline__phase">Faza 04</span>
               <h3 class="timeline__title">Unutrašnji radovi</h3>
               <p class="timeline__desc">Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.</p>
-              <div class="timeline__bar"><div class="timeline__fill"></div></div>
-              <span class="timeline__pct"></span>
+              <div class="timeline__bar"><div class="timeline__fill" style="width:0%"></div></div>
+              <span class="timeline__pct">0%</span>
             </div>
           </div>
           <div class="timeline__item" data-phase="5">
@@ -346,8 +340,8 @@
               <span class="timeline__phase">Faza 05</span>
               <h3 class="timeline__title">Završna obrada</h3>
               <p class="timeline__desc">Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.</p>
-              <div class="timeline__bar"><div class="timeline__fill"></div></div>
-              <span class="timeline__pct"></span>
+              <div class="timeline__bar"><div class="timeline__fill" style="width:0%"></div></div>
+              <span class="timeline__pct">0%</span>
             </div>
           </div>
           <div class="timeline__item" data-phase="6">
@@ -356,8 +350,8 @@
               <span class="timeline__phase">Faza 06</span>
               <h3 class="timeline__title">Useljenje</h3>
               <p class="timeline__desc">Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.</p>
-              <div class="timeline__bar"><div class="timeline__fill"></div></div>
-              <span class="timeline__pct"></span>
+              <div class="timeline__bar"><div class="timeline__fill" style="width:0%"></div></div>
+              <span class="timeline__pct">0%</span>
             </div>
           </div>
         </div>
@@ -455,88 +449,10 @@
         </header>
         <div class="locmap reveal">
           <div class="locmap__map">
-            <svg class="locmap__svg" viewBox="0 0 800 500" aria-label="Mapa okoline Arilux zgrada">
-              <defs>
-                <linearGradient id="road" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E0E4EA"/><stop offset="100%" stop-color="#D0D5DD"/></linearGradient>
-                <linearGradient id="park-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4CAF50"/><stop offset="100%" stop-color="#388E3C"/></linearGradient>
-              </defs>
-              <!-- Roads -->
-              <rect x="0" y="220" width="800" height="60" fill="url(#road)" rx="4"/>
-              <rect x="350" y="0" width="60" height="500" fill="url(#road)" rx="4"/>
-              <rect x="0" y="380" width="800" height="30" fill="url(#road)" rx="4" opacity=".6"/>
-              <rect x="150" y="0" width="40" height="500" fill="url(#road)" rx="4" opacity=".6"/>
-              <!-- Park -->
-              <rect x="520" y="310" width="180" height="100" rx="12" fill="url(#park-g)" opacity=".25"/>
-              <text x="610" y="365" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#388E3C" font-weight="600">Gradski park</text>
-              <!-- Buildings -->
-              <g class="locmap__pin" data-building="one" style="cursor:pointer">
-                <ellipse cx="445" cy="206" rx="14" ry="5" fill="#0041B1" opacity=".15"/>
-                <rect x="435" y="172" width="20" height="32" rx="2" fill="#0041B1"/>
-                <rect x="438" y="175" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="444" y="175" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="438" y="182" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="444" y="182" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="438" y="189" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="444" y="189" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="441" y="197" width="8" height="7" rx="1" fill="rgba(255,255,255,.3)"/>
-                <text x="445" y="167" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#0041B1" font-weight="700">Amor</text>
-              </g>
-              <g class="locmap__pin" data-building="park" style="cursor:pointer">
-                <ellipse cx="570" cy="296" rx="14" ry="5" fill="#2FB57E" opacity=".15"/>
-                <rect x="560" y="268" width="20" height="28" rx="2" fill="#2FB57E"/>
-                <rect x="563" y="271" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="569" y="271" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="563" y="278" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="569" y="278" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="563" y="285" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="569" y="285" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="566" y="291" width="8" height="5" rx="1" fill="rgba(255,255,255,.3)"/>
-                <text x="570" y="263" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2FB57E" font-weight="700">Park</text>
-              </g>
-              <g class="locmap__pin" data-building="centar" style="cursor:pointer">
-                <ellipse cx="200" cy="208" rx="16" ry="5" fill="#F26721" opacity=".15"/>
-                <rect x="188" y="168" width="24" height="38" rx="2" fill="#F26721"/>
-                <rect x="191" y="171" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="199" y="171" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="191" y="179" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="199" y="179" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="191" y="187" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="199" y="187" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="191" y="195" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="199" y="195" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="196" y="201" width="8" height="5" rx="1" fill="rgba(255,255,255,.3)"/>
-                <text x="200" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#F26721" font-weight="700">Centar</text>
-              </g>
-              <g class="locmap__pin" data-building="panorama" style="cursor:pointer">
-                <ellipse cx="650" cy="148" rx="14" ry="5" fill="#7B61FF" opacity=".15"/>
-                <rect x="640" y="122" width="20" height="26" rx="2" fill="#7B61FF"/>
-                <rect x="643" y="125" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="649" y="125" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="643" y="132" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="649" y="132" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="643" y="139" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="649" y="139" width="4" height="4" rx=".8" fill="rgba(255,255,255,.45)"/>
-                <rect x="646" y="144" width="8" height="4" rx="1" fill="rgba(255,255,255,.3)"/>
-                <text x="650" y="116" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#7B61FF" font-weight="700">Panorama</text>
-              </g>
-              <!-- POIs -->
-              <g opacity=".7">
-                <circle cx="130" cy="140" r="10" fill="#E8A13D"/><text x="130" y="144" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">Š</text>
-                <circle cx="300" cy="340" r="10" fill="#D05A5A"/><text x="300" y="344" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">DZ</text>
-                <circle cx="480" cy="140" r="10" fill="#0041B1"/><text x="480" y="144" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">V</text>
-                <circle cx="130" cy="300" r="10" fill="#F26721"/><text x="130" y="304" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">M</text>
-              </g>
-              <text x="130" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7A869E">Škola</text>
-              <text x="300" y="360" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7A869E">Dom zdravlja</text>
-              <text x="480" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7A869E">Vrtić</text>
-              <text x="130" y="320" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#7A869E">Marketi</text>
-              <!-- Street labels -->
-              <text x="400" y="254" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#B0B8C8" letter-spacing=".1em">TRG MLADIH</text>
-              <text x="340" y="250" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#B0B8C8" transform="rotate(-90 340 250)" letter-spacing=".08em">UL. GRADSKA</text>
-            </svg>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2868.8!2d15.85!3d45.1833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4768e8a1b1a1a1a1%3A0x1234567890abcdef!2sVelika%20Kladu%C5%A1a%2C%20Bosnia%20and%20Herzegovina!5e0!3m2!1sen!2sba!4v1700000000000!5m2!1sen!2sba" width="100%" height="100%" style="border:0;border-radius:inherit;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokacija Arilux zgrada - Velika Kladuša"></iframe>
           </div>
           <div class="locmap__sidebar">
-            <h3 class="locmap__sidebar-title">Odaberite zgradu</h3>
+            <h3 class="locmap__sidebar-title">Naše zgrade</h3>
             <div class="locmap__cards" id="locCards">
               <div class="locmap__card is-active" data-building="one">
                 <span class="locmap__card-color" style="background:#0041B1"></span>
