@@ -738,44 +738,99 @@
     }, { passive: true });
   }
 
-  /* Timeline progress animation */
-  var timelineProgress = document.querySelector('.timeline__progress');
-  if (timelineProgress && 'IntersectionObserver' in window) {
-    var tlObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          timelineProgress.style.setProperty('--progress', '42%');
-          timelineProgress.classList.add('is-animating');
-          tlObs.unobserve(en.target);
-        }
+  /* ─────── Per-building Timeline ─────── */
+  var TL_COLORS = { one:'#0041B1', park:'#2FB57E', centar:'#F26721', panorama:'#7B61FF' };
+  var TL_DATA = {
+    one: [
+      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
+      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:100, state:'done' },
+      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:65, state:'active' },
+      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
+      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
+      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
+    ],
+    park: [
+      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
+      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:70, state:'active' },
+      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:0, state:'' },
+      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
+      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
+      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
+    ],
+    centar: [
+      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
+      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:50, state:'active' },
+      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:0, state:'' },
+      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
+      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
+      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
+    ],
+    panorama: [
+      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
+      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:25, state:'active' },
+      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:0, state:'' },
+      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
+      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
+      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
+    ]
+  };
+
+  function animateTimelineFills() {
+    var fills = document.querySelectorAll('#timeline .timeline__fill');
+    fills.forEach(function (fill) {
+      var target = fill.getAttribute('data-w');
+      fill.style.width = '0%';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          fill.style.width = target;
+        });
       });
-    }, { threshold: 0.3 });
-    tlObs.observe(timelineProgress.parentElement);
-  } else if (timelineProgress) {
-    timelineProgress.style.setProperty('--progress', '42%');
-    timelineProgress.classList.add('is-animating');
+    });
   }
 
-  /* Timeline fill animations */
-  var timelineFills = document.querySelectorAll('.timeline__fill');
-  if (timelineFills.length && 'IntersectionObserver' in window) {
-    var fillObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          var fill = en.target;
-          var targetW = fill.style.width;
-          fill.style.width = '0%';
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-              fill.style.width = targetW;
-            });
-          });
-          fillObs.unobserve(fill);
-        }
-      });
-    }, { threshold: 0.4 });
-    timelineFills.forEach(function (f) { fillObs.observe(f); });
+  function renderTimeline(bldg) {
+    var phases = TL_DATA[bldg];
+    var color = TL_COLORS[bldg];
+    var el = document.getElementById('timeline');
+    if (!el || !phases) return;
+    var totalPct = 0;
+    var html = '<div class="timeline__line" aria-hidden="true"><div class="timeline__progress" id="tlProgress"></div></div>';
+    phases.forEach(function (p, i) {
+      var cls = 'timeline__item';
+      if (p.state === 'done') cls += ' timeline__item--done';
+      else if (p.state === 'active') cls += ' timeline__item--active';
+      totalPct += p.pct;
+      html += '<div class="' + cls + '" data-phase="' + (i+1) + '">';
+      html += '<div class="timeline__marker"></div>';
+      html += '<div class="timeline__card">';
+      html += '<span class="timeline__phase">' + p.phase + '</span>';
+      html += '<h3 class="timeline__title">' + p.title + '</h3>';
+      html += '<p class="timeline__desc">' + p.desc + '</p>';
+      html += '<div class="timeline__bar"><div class="timeline__fill" data-w="' + p.pct + '%" style="width:' + p.pct + '%;' + (p.pct > 0 ? 'background:' + color : '') + '"></div></div>';
+      html += '<span class="timeline__pct">' + p.pct + '%</span>';
+      html += '</div></div>';
+    });
+    el.innerHTML = html;
+    /* animate progress line */
+    var avgPct = Math.round(totalPct / phases.length);
+    var prog = document.getElementById('tlProgress');
+    if (prog) {
+      prog.style.setProperty('--progress', avgPct + '%');
+      prog.classList.add('is-animating');
+    }
+    animateTimelineFills();
   }
+
+  document.querySelectorAll('.tl__tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.tl__tab').forEach(function (t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      renderTimeline(tab.dataset.bldg);
+    });
+  });
+
+  /* Initial render for Amor */
+  renderTimeline('one');
 
   /* Location map interaction */
   var LOC_DATA = {
@@ -800,6 +855,10 @@
 
   document.querySelectorAll('.locmap__card').forEach(function (card) {
     card.addEventListener('click', function () { setLocMapBuilding(card.dataset.building); });
+  });
+
+  document.querySelectorAll('.locmap__pin').forEach(function (pin) {
+    pin.addEventListener('click', function () { setLocMapBuilding(pin.dataset.building); });
   });
 
   /* 3D Tour nav buttons */
