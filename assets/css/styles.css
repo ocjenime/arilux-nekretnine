@@ -239,19 +239,8 @@ a.topbar__item:hover { color: #fff; }
   color: rgba(255,255,255,.92);
   padding: 16px 0;
   border-bottom: 1px solid rgba(255,255,255,.06);
-  transition: color .3s, padding-left .35s var(--ease), transform .45s var(--ease), opacity .4s var(--ease);
-  transform: translateX(-24px);
-  opacity: 0;
+  transition: color .3s, padding-left .35s var(--ease);
 }
-.mobilemenu.is-open .mobilemenu__link {
-  transform: none;
-  opacity: 1;
-}
-.mobilemenu.is-open .mobilemenu__link:nth-child(1) { transition-delay: .06s; }
-.mobilemenu.is-open .mobilemenu__link:nth-child(2) { transition-delay: .1s; }
-.mobilemenu.is-open .mobilemenu__link:nth-child(3) { transition-delay: .14s; }
-.mobilemenu.is-open .mobilemenu__link:nth-child(4) { transition-delay: .18s; }
-.mobilemenu.is-open .mobilemenu__link:nth-child(5) { transition-delay: .22s; }
 .mobilemenu__link em {
   font-style: normal;
   font-size: 12px;
@@ -259,7 +248,6 @@ a.topbar__item:hover { color: #fff; }
   color: var(--orange);
   letter-spacing: .18em;
   min-width: 26px;
-  transition: color .3s;
 }
 .mobilemenu__link:hover { color: #fff; padding-left: 12px; }
 .mobilemenu__link:hover em { color: #FFB08A; }
