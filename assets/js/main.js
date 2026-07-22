@@ -7,10 +7,10 @@
   /* ── Podaci: 4 zgrade, 102 stana ────────────────────────────── */
 
   var BUILDINGS = {
-    one:      { name: 'Arilux One',      loc: 'Centar',   base: 1990, letter: 'ONE' },
-    park:     { name: 'Arilux Park',     loc: 'Uz park',  base: 1850, letter: 'PRK' },
-    centar:   { name: 'Arilux Centar',   loc: 'Trg',      base: 2150, letter: 'CNT' },
-    panorama: { name: 'Arilux Panorama', loc: 'Grabik',   base: 2350, letter: 'PAN' }
+    one:      { name: 'Arilux One',      loc: 'Centar',   base: 3700, letter: 'ONE' },
+    park:     { name: 'Arilux Park',     loc: 'Uz park',  base: 3500, letter: 'PRK' },
+    centar:   { name: 'Arilux Centar',   loc: 'Trg',      base: 4000, letter: 'CNT' },
+    panorama: { name: 'Arilux Panorama', loc: 'Grabik',   base: 4500, letter: 'PAN' }
   };
 
   var ROOM_AREA = { 1: [45, 54], 2: [60, 74], 3: [85, 104], 4: [118, 148] };
@@ -100,7 +100,7 @@
   /* ── Finder ─────────────────────────────────────────────────── */
 
   var PAGE = 9;
-  var state = { building: 'all', rooms: 'all', maxPrice: 250000, onlyAvailable: false, sort: 'price-asc', shown: PAGE };
+  var state = { building: 'all', rooms: 'all', maxPrice: 500000, onlyAvailable: false, sort: 'price-asc', shown: PAGE };
 
   var grid = document.getElementById('finderGrid');
   var countEl = document.getElementById('finderCount');
