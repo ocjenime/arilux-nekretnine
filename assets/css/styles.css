@@ -807,6 +807,97 @@ input[type="range"]::-moz-range-thumb {
   .lifestyle__title { font-size: clamp(26px, 7vw, 36px); }
 }
 
+/* ── Proximity / Lokacija ──────────────────────────────────── */
+
+.proximity {
+  padding: clamp(72px, 10vw, 120px) 0;
+  background: var(--navy);
+  color: #fff;
+  overflow: hidden;
+}
+.proximity__head { text-align: center; margin-bottom: clamp(48px, 6vw, 80px); }
+.proximity__title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 16px 0 24px;
+  color: #fff;
+}
+.proximity__title--light { color: var(--orange); }
+.proximity__lead {
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(255,255,255,.72);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.proximity__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(255,255,255,.08);
+  border-radius: calc(var(--r) + 6px);
+  overflow: hidden;
+}
+.proximity__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(28px, 4vw, 48px) clamp(16px, 2vw, 32px);
+  background: rgba(255,255,255,.03);
+  transition: background .35s;
+}
+.proximity__item:hover { background: rgba(255,255,255,.08); }
+.proximity__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  margin-bottom: 20px;
+  color: var(--orange);
+}
+.proximity__icon svg { width: 22px; height: 22px; }
+.proximity__num {
+  display: block;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.proximity__label {
+  font-size: 14px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.5;
+}
+.proximity__label small {
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+}
+.proximity__note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,.35);
+  margin-top: 32px;
+  letter-spacing: .02em;
+}
+
+@media (max-width: 900px) {
+  .proximity__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .proximity__grid { grid-template-columns: 1fr 1fr; }
+  .proximity__item { padding: 24px 16px; }
+}
+
 /* ── Predgradnja ─────────────────────────────────────────────── */
 
 .steps {
