@@ -126,7 +126,7 @@ ul, ol { list-style: none; }
 .btn--ghost-blue { border-color: var(--line); color: var(--ink); }
 .btn--ghost-blue:hover { border-color: var(--blue); color: var(--blue); }
 
-.btn--sm { padding: 12px 22px; font-size: 12px; }
+.btn--sm { padding: 10px 18px; font-size: 11px; }
 .btn--full { width: 100%; }
 
 /* ── Topbar ──────────────────────────────────────────────────── */
@@ -200,11 +200,11 @@ a.topbar__item:hover { color: #fff; }
 .header__link:hover { color: #fff; }
 .header__link:hover::after { transform: scaleX(1); }
 
-.header__actions { display: flex; align-items: center; gap: 14px; }
+.header__actions { display: flex; align-items: center; gap: 10px; }
 
-.header__burger { display: none; flex-direction: column; gap: 5px; padding: 10px; border-radius: 8px; transition: background .2s; }
+.header__burger { display: none; flex-direction: column; gap: 5px; padding: 8px; border-radius: 8px; transition: background .2s; order: -1; }
 .header__burger:hover { background: rgba(255,255,255,.12); }
-.header__burger span { display: block; width: 24px; height: 2.5px; background: #fff; border-radius: 2px; transition: transform .35s var(--ease), opacity .25s; }
+.header__burger span { display: block; width: 22px; height: 3px; background: #fff; border-radius: 2px; transition: transform .35s var(--ease), opacity .25s; }
 .header__burger.is-open span:first-child { transform: translateY(4px) rotate(45deg); }
 .header__burger.is-open span:last-child { transform: translateY(-4px) rotate(-45deg); }
 
@@ -1540,6 +1540,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .header__subtext { display: block; white-space: nowrap; font-family: var(--font-d); font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); border-left: 1px solid var(--line-light); padding-left: 12px; }
   .header__actions .btn { display: none; }
   .header__burger { display: flex !important; }
+  .header__burger span { background: #fff; }
   .topbar__group { gap: 14px; }
   .topbar__item:nth-child(3) { display: none; }
   .hero { min-height: 0; }
