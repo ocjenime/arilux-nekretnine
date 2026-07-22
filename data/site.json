@@ -1,0 +1,210 @@
+{
+  "site": {
+    "name": "Arilux Nekretnine",
+    "tagline": "Budućnost stanovanja počinje danas.",
+    "founded": 2022,
+    "phone1": "+387 37 772 000",
+    "phone2": "+387 61 088 002",
+    "email": "info@arilux.ba",
+    "whatsapp": "+387 61 088 002",
+    "address": "Trg mladih bb, Velika Kladuša, 77230",
+    "facebook": "",
+    "instagram": ""
+  },
+
+  "buildings": {
+    "one": {
+      "name": "Arilux Amor",
+      "loc": "Centar",
+      "location": "Centar - Trg mladih",
+      "description": "Stambena zgrada u samom centru grada sa 28 modernih stanova.",
+      "base": 4500,
+      "letter": "ONE",
+      "floors": "P+6",
+      "totalUnits": 28,
+      "color": "#0041B1",
+      "status": "active",
+      "thumbnail": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop",
+      "plans": [
+        [1, 2, 2, 3, 2],
+        [1, 2, 2, 3, 2],
+        [1, 2, 2, 3, 2],
+        [1, 2, 2, 3, 2],
+        [1, 2, 2, 3, 2],
+        [2, 3, 4]
+      ],
+      "phases": [
+        { "phase": "Faza 01", "title": "Projektovanje i dozvole", "desc": "Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.", "pct": 100, "state": "done" },
+        { "phase": "Faza 02", "title": "Temelji i konstrukcija", "desc": "Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.", "pct": 100, "state": "done" },
+        { "phase": "Faza 03", "title": "Vanjski radovi", "desc": "Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.", "pct": 65, "state": "active" },
+        { "phase": "Faza 04", "title": "Unutrašnji radovi", "desc": "Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.", "pct": 0, "state": "" },
+        { "phase": "Faza 05", "title": "Završna obrada", "desc": "Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.", "pct": 0, "state": "" },
+        { "phase": "Faza 06", "title": "Useljenje", "desc": "Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.", "pct": 0, "state": "" }
+      ],
+      "features": ["Podno grijanje", "Toplotna pumpa", "A+ energetski razred", "Balkon", "Podzemna garaža", "Poslovni prostori u prizemlju"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=450&fit=crop"
+      ],
+      "proximity": [
+        { "icon": "school", "dist": "350 m", "name": "Osnovna škola", "sub": "Velika Kladuša Centar" },
+        { "icon": "health", "dist": "500 m", "name": "Dom zdravlja", "sub": "Velika Kladuša" },
+        { "icon": "shop", "dist": "200 m", "name": "Marketi", "sub": "Konzum, Bingo, pijaca" },
+        { "icon": "park", "dist": "400 m", "name": "Gradski park", "sub": "Odmor i rekreacija" },
+        { "icon": "bus", "dist": "150 m", "name": "Autobuska stanica", "sub": "Gradski prijevoz" },
+        { "icon": "child", "dist": "300 m", "name": "Vrtić", "sub": "Javni i privatni" }
+      ],
+      "distances": { "school": "350 m · 5 min pješke", "health": "500 m · 7 min pješke", "center": "200 m · 3 min pješke", "shop": "200 m · 3 min pješke", "park": "400 m · 5 min pješke" }
+    },
+
+    "park": {
+      "name": "Arilux Park",
+      "loc": "Uz park",
+      "location": "Uz gradski park",
+      "description": "Moderan stanovanje pored gradskog parka sa 22 stana.",
+      "base": 3500,
+      "letter": "PRK",
+      "floors": "P+5",
+      "totalUnits": 22,
+      "color": "#2FB57E",
+      "status": "active",
+      "thumbnail": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=400&fit=crop",
+      "plans": [
+        [1, 2, 2, 3, 2],
+        [1, 2, 2, 3, 2],
+        [1, 2, 2, 3, 2],
+        [1, 2, 2, 3],
+        [2, 3, 4]
+      ],
+      "phases": [
+        { "phase": "Faza 01", "title": "Projektovanje i dozvole", "desc": "Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.", "pct": 100, "state": "done" },
+        { "phase": "Faza 02", "title": "Temelji i konstrukcija", "desc": "Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.", "pct": 70, "state": "active" },
+        { "phase": "Faza 03", "title": "Vanjski radovi", "desc": "Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.", "pct": 0, "state": "" },
+        { "phase": "Faza 04", "title": "Unutrašnji radovi", "desc": "Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.", "pct": 0, "state": "" },
+        { "phase": "Faza 05", "title": "Završna obrada", "desc": "Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.", "pct": 0, "state": "" },
+        { "phase": "Faza 06", "title": "Useljenje", "desc": "Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.", "pct": 0, "state": "" }
+      ],
+      "features": ["Podno grijanje", "Toplotna pumpa", "A+ energetski razred", "Privatni parking", "Dječije igralište", "Terase sa pogledom na park"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop"
+      ],
+      "proximity": [
+        { "icon": "school", "dist": "450 m", "name": "Osnovna škola", "sub": "Velika Kladuša" },
+        { "icon": "health", "dist": "700 m", "name": "Dom zdravlja", "sub": "Velika Kladuša" },
+        { "icon": "shop", "dist": "350 m", "name": "Marketi", "sub": "Konzum, Bingo" },
+        { "icon": "park", "dist": "50 m", "name": "Gradski park", "sub": "Odmah pored zgrade" },
+        { "icon": "bus", "dist": "400 m", "name": "Autobuska stanica", "sub": "Gradski prijevoz" },
+        { "icon": "child", "dist": "250 m", "name": "Vrtić", "sub": "Javni i privatni" }
+      ],
+      "distances": { "school": "450 m · 6 min pješke", "health": "700 m · 9 min pješke", "center": "600 m · 8 min pješke", "shop": "350 m · 4 min pješke", "park": "50 m · 1 min pješke" }
+    },
+
+    "centar": {
+      "name": "Arilux Centar",
+      "loc": "Trg",
+      "location": "Poslovno-stambeni trg",
+      "description": "Poslovno-stambeni objekat sa 36 stanova i poslovnim prostorima.",
+      "base": 4000,
+      "letter": "CNT",
+      "floors": "P+8",
+      "totalUnits": 36,
+      "color": "#F26721",
+      "status": "active",
+      "thumbnail": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop",
+      "plans": [
+        [1, 1, 2, 2, 3],
+        [1, 1, 2, 2, 3],
+        [1, 1, 2, 2, 3],
+        [1, 1, 2, 2, 3],
+        [1, 2, 2, 3],
+        [1, 2, 2, 3],
+        [1, 2, 2, 3],
+        [2, 2, 3, 4]
+      ],
+      "phases": [
+        { "phase": "Faza 01", "title": "Projektovanje i dozvole", "desc": "Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.", "pct": 100, "state": "done" },
+        { "phase": "Faza 02", "title": "Temelji i konstrukcija", "desc": "Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.", "pct": 50, "state": "active" },
+        { "phase": "Faza 03", "title": "Vanjski radovi", "desc": "Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.", "pct": 0, "state": "" },
+        { "phase": "Faza 04", "title": "Unutrašnji radovi", "desc": "Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.", "pct": 0, "state": "" },
+        { "phase": "Faza 05", "title": "Završna obrada", "desc": "Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.", "pct": 0, "state": "" },
+        { "phase": "Faza 06", "title": "Useljenje", "desc": "Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.", "pct": 0, "state": "" }
+      ],
+      "features": ["Podno grijanje", "Toplotna pumpa", "A+ energetski razred", "Lift", "Poslovni prostori", "Garaža u podnožju"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=450&fit=crop"
+      ],
+      "proximity": [
+        { "icon": "school", "dist": "400 m", "name": "Osnovna škola", "sub": "Velika Kladuša Centar" },
+        { "icon": "health", "dist": "450 m", "name": "Dom zdravlja", "sub": "Velika Kladuša" },
+        { "icon": "shop", "dist": "100 m", "name": "Marketi", "sub": "Trg, Konzum, pijaca" },
+        { "icon": "park", "dist": "350 m", "name": "Gradski park", "sub": "Odmor i rekreacija" },
+        { "icon": "bus", "dist": "100 m", "name": "Autobuska stanica", "sub": "Gradski prijevoz" },
+        { "icon": "child", "dist": "350 m", "name": "Vrtić", "sub": "Javni i privatni" }
+      ],
+      "distances": { "school": "400 m · 5 min pješke", "health": "450 m · 6 min pješke", "center": "100 m · 1 min pješke", "shop": "100 m · 1 min pješke", "park": "350 m · 4 min pješke" }
+    },
+
+    "panorama": {
+      "name": "Arilux Panorama",
+      "loc": "Grabik",
+      "location": "Brdo Grabik",
+      "description": "Ekskluzivni stanovi sa panoramskim pogledom na 16 luksuznih jedinica.",
+      "base": 4500,
+      "letter": "PAN",
+      "floors": "P+4",
+      "totalUnits": 16,
+      "color": "#7B61FF",
+      "status": "active",
+      "thumbnail": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=400&fit=crop",
+      "plans": [
+        [1, 2, 2, 3],
+        [1, 2, 2, 3],
+        [1, 2, 2, 3],
+        [3, 3, 4, 4]
+      ],
+      "phases": [
+        { "phase": "Faza 01", "title": "Projektovanje i dozvole", "desc": "Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.", "pct": 100, "state": "done" },
+        { "phase": "Faza 02", "title": "Temelji i konstrukcija", "desc": "Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.", "pct": 25, "state": "active" },
+        { "phase": "Faza 03", "title": "Vanjski radovi", "desc": "Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.", "pct": 0, "state": "" },
+        { "phase": "Faza 04", "title": "Unutrašnji radovi", "desc": "Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.", "pct": 0, "state": "" },
+        { "phase": "Faza 05", "title": "Završna obrada", "desc": "Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.", "pct": 0, "state": "" },
+        { "phase": "Faza 06", "title": "Useljenje", "desc": "Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.", "pct": 0, "state": "" }
+      ],
+      "features": ["Podno grijanje", "Toplotna pumpa", "A+ energetski razred", "Terase", "Krovne terase (PH)", "Panoramski pogled"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=450&fit=crop"
+      ],
+      "proximity": [
+        { "icon": "school", "dist": "600 m", "name": "Osnovna škola", "sub": "Velika Kladuša" },
+        { "icon": "health", "dist": "800 m", "name": "Dom zdravlja", "sub": "Velika Kladuša" },
+        { "icon": "shop", "dist": "500 m", "name": "Marketi", "sub": "Konzum, Bingo" },
+        { "icon": "park", "dist": "200 m", "name": "Gradski park", "sub": "Grabik šetalište" },
+        { "icon": "bus", "dist": "550 m", "name": "Autobuska stanica", "sub": "Gradski prijevoz" },
+        { "icon": "child", "dist": "450 m", "name": "Vrtić", "sub": "Javni i privatni" }
+      ],
+      "distances": { "school": "600 m · 8 min pješke", "health": "800 m · 10 min pješke", "center": "700 m · 9 min pješke", "shop": "500 m · 6 min pješke", "park": "200 m · 3 min pješke" }
+    }
+  },
+
+  "stats": {
+    "experience": { "value": 4, "label": "godine iskustva" },
+    "buildings_done": { "value": 120, "label": "završenih objekata" },
+    "apartments_done": { "value": 1500, "label": "stanova isporučenih" },
+    "clients": { "value": 98, "label": "zadovoljnih klijenata", "suffix": "%" }
+  },
+
+  "roomArea": { "1": [45, 54], "2": [60, 74], "3": [85, 104], "4": [118, 148] },
+  "roomLabels": { "1": "Jednosoban", "2": "Dvosoban", "3": "Trosoban", "4": "Četverosoban" },
+  "floorLabels": { "1": "Prizemlje", "2": "Prvi", "3": "Drugi", "4": "Treći", "5": "Četvrti", "6": "Peti", "7": "Šesti", "8": "Sedmi", "9": "Osmi" }
+}

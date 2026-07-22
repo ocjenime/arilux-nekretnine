@@ -36,6 +36,39 @@
     ]
   };
 
+  /* ── Try loading from site.json ──────────────────────────────── */
+  var JSON_LOADED = false;
+
+  function mergeJSON(data) {
+    if (!data || !data.buildings) return;
+    JSON_LOADED = true;
+    Object.keys(data.buildings).forEach(function (k) {
+      var b = data.buildings[k];
+      if (BUILDINGS[k]) {
+        BUILDINGS[k].name = b.name || BUILDINGS[k].name;
+        BUILDINGS[k].loc = b.loc || BUILDINGS[k].loc;
+        BUILDINGS[k].base = b.base || BUILDINGS[k].base;
+        BUILDINGS[k].letter = b.letter || BUILDINGS[k].letter;
+      }
+      if (b.plans) PLANS[k] = b.plans;
+    });
+    if (data.roomArea) {
+      Object.keys(data.roomArea).forEach(function (k) { ROOM_AREA[k] = data.roomArea[k]; });
+    }
+    if (data.roomLabels) {
+      Object.keys(data.roomLabels).forEach(function (k) { ROOM_LABEL[k] = data.roomLabels[k]; });
+    }
+    if (data.floorLabels) {
+      Object.keys(data.floorLabels).forEach(function (k) { FLOOR_LABEL[k] = data.floorLabels[k]; });
+    }
+    window.__ARILUX_JSON = data;
+  }
+
+  fetch('data/site.json?' + Math.floor(Date.now() / 300000))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) { if (data) mergeJSON(data); })
+    .catch(function () {});
+
   // deterministički PRNG da svi vide isto stanje
   function mulberry32(seed) {
     return function () {
@@ -267,6 +300,13 @@
     panorama: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Terase', 'Krovne terase (PH)', 'Panoramski pogled']
   };
 
+  function getFeatures(bid) {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].features) {
+      return window.__ARILUX_JSON.buildings[bid].features;
+    }
+    return BUILDING_INC[bid] || [];
+  }
+
   var PROX_SVG = {
     school: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
     health: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
@@ -311,6 +351,13 @@
     ]
   };
 
+  function getProx(bid) {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].proximity) {
+      return window.__ARILUX_JSON.buildings[bid].proximity;
+    }
+    return BUILDING_PROX[bid] || [];
+  }
+
   function getBuildingTotalFloors(bid) { return PLANS[bid].length; }
 
   var GAL_IMAGES = {
@@ -339,6 +386,13 @@
       'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=450&fit=crop'
     ]
   };
+
+  function getGAL(bid) {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].gallery) {
+      return window.__ARILUX_JSON.buildings[bid].gallery;
+    }
+    return GAL_IMAGES[bid] || GAL_IMAGES.one;
+  }
 
   var galIdx = 0;
   var galTotal = 0;
@@ -438,7 +492,7 @@
   }
 
   function renderGallery(bid) {
-    var imgs = GAL_IMAGES[bid] || GAL_IMAGES.one;
+    var imgs = getGAL(bid);
     var view = document.getElementById('galView');
     var dots = document.getElementById('galDots');
     galTotal = imgs.length;
@@ -506,12 +560,12 @@
       '<span class="modal__priceval">' + fmt(apt.price) + ' KM</span>' +
       '<span class="modal__priceper">' + fmt(apt.m2) + ' KM/m²</span>';
 
-    var inc = BUILDING_INC[apt.building] || [];
+    var inc = getFeatures(apt.building);
     document.getElementById('modalInc').innerHTML = inc.map(function (item) {
       return '<div class="modal__incitem">' + item + '</div>';
     }).join('');
 
-    var prox = BUILDING_PROX[apt.building] || [];
+    var prox = getProx(apt.building);
     document.getElementById('modalProx').innerHTML = prox.map(function (p) {
       return '<div class="modal__proxitem">' +
         '<span class="modal__proxicon">' + (PROX_SVG[p.icon] || '') + '</span>' +
@@ -775,6 +829,13 @@
     ]
   };
 
+  function getTL(bid) {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].phases) {
+      return window.__ARILUX_JSON.buildings[bid].phases;
+    }
+    return TL_DATA[bid] || [];
+  }
+
   function animateTimelineFills() {
     var fills = document.querySelectorAll('#timeline .timeline__fill');
     fills.forEach(function (fill) {
@@ -789,7 +850,7 @@
   }
 
   function renderTimeline(bldg) {
-    var phases = TL_DATA[bldg];
+    var phases = getTL(bldg);
     var color = TL_COLORS[bldg];
     var el = document.getElementById('timeline');
     if (!el || !phases) return;
@@ -840,8 +901,15 @@
     panorama: { school: '600 m · 8 min pješke', health: '800 m · 10 min pješke', center: '700 m · 9 min pješke', shop: '500 m · 6 min pješke', park: '200 m · 3 min pješke' }
   };
 
+  function getLocData(bid) {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].distances) {
+      return window.__ARILUX_JSON.buildings[bid].distances;
+    }
+    return LOC_DATA[bid] || LOC_DATA.one;
+  }
+
   function setLocMapBuilding(bid) {
-    var data = LOC_DATA[bid] || LOC_DATA.one;
+    var data = getLocData(bid);
     document.getElementById('locSchool').textContent = data.school;
     document.getElementById('locHealth').textContent = data.health;
     document.getElementById('locCenter').textContent = data.center;

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ba">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arilux Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f4f6f9;--card:#fff;--blue:#0041B1;--orange:#F26721;--green:#2FB57E;--text:#1a1a2e;--muted:#6b7280;--border:#e5e7eb;--radius:12px;--font:'Inter',sans-serif;--font-d:'Archivo',sans-serif}
+html{font-size:15px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh}
+
+/* Login */
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.login-box{background:var(--card);padding:48px 40px;border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,.08);text-align:center;max-width:400px;width:100%}
+.login-box h1{font-family:var(--font-d);font-size:28px;margin-bottom:4px}
+.login-box p{color:var(--muted);font-size:14px;margin-bottom:28px}
+.login-box input{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:var(--font);margin-bottom:16px;outline:none;transition:border .2s}
+.login-box input:focus{border-color:var(--blue)}
+.login-box .err{color:#dc2626;font-size:13px;margin-bottom:12px;display:none}
+
+/* Admin layout */
+.admin{display:none}
+.admin.is-open .admin{display:block}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:240px;background:var(--text);color:#fff;padding:24px 0;z-index:100;display:flex;flex-direction:column}
+.sidebar__brand{padding:0 24px 28px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sidebar__brand h2{font-family:var(--font-d);font-size:20px;font-weight:800;letter-spacing:.02em}
+.sidebar__brand small{color:rgba(255,255,255,.45);font-size:11px;display:block;margin-top:2px}
+.sidebar__nav{flex:1;padding:16px 0;overflow-y:auto}
+.sidebar__link{display:flex;align-items:center;gap:12px;padding:11px 24px;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--font)}
+.sidebar__link:hover{color:#fff;background:rgba(255,255,255,.06)}
+.sidebar__link.is-active{color:#fff;background:rgba(255,255,255,.1)}
+.sidebar__link svg{width:18px;height:18px;flex-shrink:0;opacity:.7}
+.sidebar__footer{padding:16px 24px;border-top:1px solid rgba(255,255,255,.1)}
+.sidebar__footer a{color:rgba(255,255,255,.5);font-size:12px;text-decoration:none}
+.sidebar__footer a:hover{color:#fff}
+
+.main{margin-left:240px;padding:32px 40px 60px;min-height:100vh}
+
+/* Header */
+.page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.page-head h1{font-family:var(--font-d);font-size:26px;font-weight:800}
+.page-head__actions{display:flex;gap:10px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;font-family:var(--font);border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn--primary{background:var(--blue);color:#fff}
+.btn--primary:hover{background:#003399;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,65,177,.25)}
+.btn--orange{background:var(--orange);color:#fff}
+.btn--orange:hover{background:#d95a1a}
+.btn--ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn--ghost:hover{border-color:#999}
+.btn--danger{background:#dc2626;color:#fff}
+.btn--danger:hover{background:#b91c1c}
+.btn--sm{padding:7px 14px;font-size:12px}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:box-shadow .2s}
+.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card h3{font-family:var(--font-d);font-size:17px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.card h3 .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* Grid */
+.grid{display:grid;gap:20px}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+
+/* Stats */
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center}
+.stat__val{font-family:var(--font-d);font-size:32px;font-weight:800;color:var(--blue)}
+.stat__label{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* Forms */
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font);outline:none;transition:border .2s;background:#fff}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-hint{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* Phase row */
+.phase-row{display:grid;grid-template-columns:90px 1fr 1fr 80px 100px 40px;gap:10px;align-items:end;padding:12px 0;border-bottom:1px solid var(--border)}
+.phase-row:last-child{border-bottom:none}
+.phase-row input,.phase-row select{padding:8px 10px;font-size:13px}
+.phase-row .phase-num{font-family:var(--font-d);font-weight:700;font-size:13px;color:var(--blue);padding:8px 0}
+.phase-row .del-btn{background:none;border:none;color:#dc2626;cursor:pointer;font-size:18px;padding:4px;opacity:.5;transition:opacity .2s}
+.phase-row .del-btn:hover{opacity:1}
+
+/* Gallery */
+.gallery-list{display:flex;flex-wrap:wrap;gap:10px}
+.gallery-item{position:relative;width:140px;height:90px;border-radius:8px;overflow:hidden;border:2px solid transparent;transition:border .2s;cursor:pointer}
+.gallery-item.is-active{border-color:var(--blue)}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
+.gallery-item .del{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.6);color:#fff;border:none;width:20px;height:20px;border-radius:50%;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.gallery-item:hover .del{opacity:1}
+
+/* Feature tags */
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#f0f2f5;border-radius:20px;font-size:12px;font-weight:500}
+.tag .rem{background:none;border:none;color:#dc2626;cursor:pointer;font-size:14px;line-height:1;opacity:.5}
+.tag .rem:hover{opacity:1}
+.add-tag{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;background:transparent;border:1px dashed var(--border);border-radius:20px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s}
+.add-tag:hover{border-color:var(--blue);color:var(--blue)}
+
+/* Tabs */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:24px}
+.tab{padding:12px 20px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font)}
+.tab:hover{color:var(--text)}
+.tab.is-active{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* Section */
+.section{display:none}
+.section.is-active{display:block}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:#fff;padding:14px 24px;border-radius:10px;font-size:14px;font-weight:500;z-index:9999;opacity:0;transform:translateY(20px);transition:all .3s;pointer-events:none}
+.toast.is-show{opacity:1;transform:translateY(0)}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-bg.is-open{display:flex}
+.modal{background:var(--card);border-radius:var(--radius);padding:32px;max-width:500px;width:90%;max-height:80vh;overflow-y:auto}
+.modal h3{margin-bottom:16px}
+
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{width:60px;overflow:hidden}
+  .sidebar__brand h2,.sidebar__brand small,.sidebar__link span,.sidebar__footer{display:none}
+  .sidebar__link{justify-content:center;padding:12px}
+  .main{margin-left:60px;padding:20px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .phase-row{grid-template-columns:1fr 1fr;gap:8px}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ LOGIN ═══════════ -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <h1>Arilux</h1>
+    <p>Admin Panel — unesite lozinku za pristup</p>
+    <div class="err" id="loginErr">Pogrešna lozinka. Pokušajte ponovo.</div>
+    <input type="password" id="loginPass" placeholder="Lozinka..." autofocus>
+    <button class="btn btn--primary" style="width:100%" id="loginBtn">Pristupi panelu</button>
+    <p style="margin-top:20px;font-size:11px;color:var(--muted)">Podrazumijevana lozinka: <b>arilux2024</b></p>
+  </div>
+</div>
+
+<!-- ═══════════ ADMIN ═══════════ -->
+<div class="admin" id="adminPanel">
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <h2>Arilux</h2>
+      <small>Admin Panel</small>
+    </div>
+    <nav class="sidebar__nav">
+      <button class="sidebar__link is-active" data-section="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span>Pregled</span>
+      </button>
+      <button class="sidebar__link" data-section="buildings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>
+        <span>Zgrade</span>
+      </button>
+      <button class="sidebar__link" data-section="phases">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Faze gradnje</span>
+      </button>
+      <button class="sidebar__link" data-section="gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Galerija</span>
+      </button>
+      <button class="sidebar__link" data-section="contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Kontakt</span>
+      </button>
+      <button class="sidebar__link" data-section="export">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Export</span>
+      </button>
+    </nav>
+    <div class="sidebar__footer">
+      <a href="index.html" target="_blank">→ Pogledaj sajt</a>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <div class="section is-active" id="sec-dashboard">
+      <div class="page-head">
+        <h1>Pregled</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--primary" id="saveAllBtn">Spremi sve promjene</button>
+        </div>
+      </div>
+
+      <div class="grid grid-4" id="dashStats"></div>
+
+      <div style="margin-top:24px">
+        <h2 style="font-family:var(--font-d);font-size:20px;margin-bottom:16px">Brze akcije</h2>
+        <div class="grid grid-3">
+          <div class="card" style="cursor:pointer" onclick="switchSection('phases')">
+            <h3><span class="dot" style="background:var(--orange)"></span> Faze gradnje</h3>
+            <p style="font-size:13px;color:var(--muted)">Ažurirajte napredak izgradnje za svaku zgradu posebno.</p>
+          </div>
+          <div class="card" style="cursor:pointer" onclick="switchSection('gallery')">
+            <h3><span class="dot" style="background:var(--green)"></span> Galerija slika</h3>
+            <p style="font-size:13px;color:var(--muted)">Upravljajte fotografijama za svaku zgradu.</p>
+          </div>
+          <div class="card" style="cursor:pointer" onclick="switchSection('contact')">
+            <h3><span class="dot" style="background:var(--blue)"></span> Kontakt podaci</h3>
+            <p style="font-size:13px;color:var(--muted)">Mijenjajte telefone, email i adresu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BUILDINGS ═══ -->
+    <div class="section" id="sec-buildings">
+      <div class="page-head">
+        <h1>Zgrade</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--primary" id="saveAllBtn2">Spremi sve promjene</button>
+        </div>
+      </div>
+
+      <div class="tabs" id="bldgTabs"></div>
+      <div id="bldgContent"></div>
+    </div>
+
+    <!-- ═══ PHASES ═══ -->
+    <div class="section" id="sec-phases">
+      <div class="page-head">
+        <h1>Faze gradnje</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--primary" id="saveAllBtn3">Spremi sve promjene</button>
+        </div>
+      </div>
+
+      <div class="tabs" id="phaseTabs"></div>
+      <div id="phaseContent"></div>
+    </div>
+
+    <!-- ═══ GALLERY ═══ -->
+    <div class="section" id="sec-gallery">
+      <div class="page-head">
+        <h1>Galerija slika</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--primary" id="saveAllBtn4">Spremi sve promjene</button>
+        </div>
+      </div>
+
+      <div class="tabs" id="galTabs"></div>
+      <div id="galContent"></div>
+    </div>
+
+    <!-- ═══ CONTACT ═══ -->
+    <div class="section" id="sec-contact">
+      <div class="page-head">
+        <h1>Kontakt podaci</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--primary" id="saveAllBtn5">Spremi sve promjene</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Podaci firme</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefon 1</label>
+            <input type="text" id="cPhone1">
+          </div>
+          <div class="form-group">
+            <label>Telefon 2</label>
+            <input type="text" id="cPhone2">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" id="cEmail">
+          </div>
+          <div class="form-group">
+            <label>WhatsApp</label>
+            <input type="text" id="cWhatsapp">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Adresa</label>
+          <input type="text" id="cAddress">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Facebook URL</label>
+            <input type="url" id="cFacebook" placeholder="https://facebook.com/...">
+          </div>
+          <div class="form-group">
+            <label>Instagram URL</label>
+            <input type="url" id="cInstagram" placeholder="https://instagram.com/...">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Statistika na stranici</h3>
+        <div class="grid grid-4">
+          <div class="form-group">
+            <label>Godine iskustva</label>
+            <input type="number" id="sExp">
+          </div>
+          <div class="form-group">
+            <label>Završenih objekata</label>
+            <input type="number" id="sBldg">
+          </div>
+          <div class="form-group">
+            <label>Stanova isporučenih</label>
+            <input type="number" id="sApt">
+          </div>
+          <div class="form-group">
+            <label>Zadovoljnih klijenata (%)</label>
+            <input type="number" id="sClients" max="100">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ EXPORT ═══ -->
+    <div class="section" id="sec-export">
+      <div class="page-head">
+        <h1>Export podataka</h1>
+      </div>
+
+      <div class="card">
+        <h3>Preuzmi JSON fajl</h3>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:20px">Preuzmite ažurirani <code>site.json</code> fajl i zamijenite ga u <code>data/</code> folderu na GitHubu. Promjene će biti vidljive nakon push-a.</p>
+        <button class="btn btn--primary" id="downloadBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Preuzmi site.json
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Pregled JSON-a</h3>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:16px">Provjerite trenutne podatke prije preuzimanja.</p>
+        <pre id="jsonPreview" style="background:#1a1a2e;color:#a5f3c4;padding:20px;border-radius:8px;font-size:12px;max-height:400px;overflow:auto;font-family:'Courier New',monospace;white-space:pre-wrap"></pre>
+      </div>
+
+      <div class="card">
+        <h3>Upute za primjenu</h3>
+        <ol style="font-size:14px;color:var(--muted);line-height:2;padding-left:20px">
+          <li>Uredite podatke u panelu (Zgrade, Faze, Galerija, Kontakt)</li>
+          <li>Kliknite "Spremi sve promjene"</li>
+          <li>Preuzmite JSON fajl klikom na "Preuzmi site.json"</li>
+          <li>Otvorite GitHub repo: <code>ocjenime/arilux-nekretnine</code></li>
+          <li>Zamijenite fajl <code>data/site.json</code> novim</li>
+          <li>Commit & push — sajt će se automatski ažurirati</li>
+        </ol>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var PASS = 'arilux2024';
+  var DATA = null;
+
+  /* ── Login ──────────────────────────────────────────────────── */
+  document.getElementById('loginBtn').addEventListener('click', doLogin);
+  document.getElementById('loginPass').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  function doLogin() {
+    var v = document.getElementById('loginPass').value;
+    if (v === PASS) {
+      document.getElementById('loginWrap').style.display = 'none';
+      document.getElementById('adminPanel').classList.add('is-open');
+      loadJSON();
+    } else {
+      document.getElementById('loginErr').style.display = 'block';
+    }
+  }
+
+  /* ── Load JSON ──────────────────────────────────────────────── */
+  function loadJSON() {
+    fetch('data/site.json?' + Date.now())
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        DATA = data;
+        renderAll();
+        toast('Podaci učitani.');
+      })
+      .catch(function () {
+        toast('Greška pri učitavanju JSON-a.');
+      });
+  }
+
+  /* ── Toast ──────────────────────────────────────────────────── */
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('is-show');
+    setTimeout(function () { el.classList.remove('is-show'); }, 2500);
+  }
+
+  /* ── Sections ───────────────────────────────────────────────── */
+  window.switchSection = function (id) {
+    document.querySelectorAll('.section').forEach(function (s) { s.classList.remove('is-active'); });
+    document.getElementById('sec-' + id).classList.add('is-active');
+    document.querySelectorAll('.sidebar__link').forEach(function (l) {
+      l.classList.toggle('is-active', l.dataset.section === id);
+    });
+  };
+
+  document.querySelectorAll('.sidebar__link').forEach(function (link) {
+    link.addEventListener('click', function () { switchSection(link.dataset.section); });
+  });
+
+  /* ── Render all ─────────────────────────────────────────────── */
+  function renderAll() {
+    renderDashboard();
+    renderBuildings();
+    renderPhases();
+    renderGallery();
+    renderContact();
+    renderExport();
+  }
+
+  /* ── Dashboard ──────────────────────────────────────────────── */
+  function renderDashboard() {
+    var s = DATA.stats;
+    document.getElementById('dashStats').innerHTML =
+      statCard(s.experience.value, s.experience.label) +
+      statCard(s.buildings_done.value, s.buildings_done.label) +
+      statCard(s.apartments_done.value, s.apartments_done.label) +
+      statCard(s.clients.value, s.clients.label + ' (%)');
+  }
+
+  function statCard(val, label) {
+    return '<div class="stat"><div class="stat__val">' + val + '</div><div class="stat__label">' + label + '</div></div>';
+  }
+
+  /* ── Buildings ──────────────────────────────────────────────── */
+  var bldgKeys = ['one', 'park', 'centar', 'panorama'];
+  var activeBldg = 'one';
+
+  function renderBuildings() {
+    var tabs = document.getElementById('bldgTabs');
+    tabs.innerHTML = bldgKeys.map(function (k) {
+      var b = DATA.buildings[k];
+      return '<button class="tab' + (k === activeBldg ? ' is-active' : '') + '" data-k="' + k + '">' + b.name + '</button>';
+    }).join('');
+
+    tabs.querySelectorAll('.tab').forEach(function (t) {
+      t.addEventListener('click', function () {
+        activeBldg = t.dataset.k;
+        renderBuildings();
+      });
+    });
+
+    var b = DATA.buildings[activeBldg];
+    document.getElementById('bldgContent').innerHTML =
+      '<div class="card">' +
+        '<h3><span class="dot" style="background:' + b.color + '"></span>' + b.name + ' — Osnovni podaci</h3>' +
+        '<div class="form-row">' +
+          '<div class="form-group"><label>Naziv</label><input data-field="name" value="' + esc(b.name) + '"></div>' +
+          '<div class="form-group"><label>Lokacija (kratka)</label><input data-field="loc" value="' + esc(b.loc) + '"></div>' +
+        '</div>' +
+        '<div class="form-row">' +
+          '<div class="form-group"><label>Lokacija (opis)</label><input data-field="location" value="' + esc(b.location) + '"></div>' +
+          '<div class="form-group"><label>Opis</label><input data-field="description" value="' + esc(b.description) + '"></div>' +
+        '</div>' +
+        '<div class="form-row">' +
+          '<div class="form-group"><label>Cijena po m² (KM)</label><input type="number" data-field="base" value="' + b.base + '"></div>' +
+          '<div class="form-group"><label>Bukvana oznaka</label><input data-field="letter" value="' + esc(b.letter) + '"></div>' +
+        '</div>' +
+        '<div class="form-row">' +
+          '<div class="form-group"><label>Spratovi</label><input data-field="floors" value="' + esc(b.floors) + '"></div>' +
+          '<div class="form-group"><label>Ukupno stanova</label><input type="number" data-field="totalUnits" value="' + b.totalUnits + '"></div>' +
+        '</div>' +
+        '<div class="form-row">' +
+          '<div class="form-group"><label>Boja (hex)</label><input data-field="color" value="' + esc(b.color) + '"></div>' +
+          '<div class="form-group"><label>Thumbnail URL</label><input data-field="thumbnail" value="' + esc(b.thumbnail) + '"></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<h3>Uključeno u cijenu</h3>' +
+        '<div class="tags" id="featTags"></div>' +
+        '<div style="margin-top:12px"><input id="featAdd" placeholder="Dodaj novu stavku..." style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;width:250px"><button class="btn btn--ghost btn--sm" id="featAddBtn" style="margin-left:8px">+ Dodaj</button></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<h3>Planova spratova (JSON)</h3>' +
+        '<div class="form-group"><label>Unesite niz nizova — npr. [[1,2,2,3,2],[2,3,4]]</label><textarea id="plansJson" style="font-family:monospace;font-size:13px;min-height:120px">' + JSON.stringify(b.plans) + '</textarea></div>' +
+        '<p class="form-hint">Svaki unutrašnji niz = jedan sprat. Brojevi = broj soba po stanu.</p>' +
+      '</div>';
+
+    /* binding */
+    document.getElementById('bldgContent').querySelectorAll('[data-field]').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var f = inp.dataset.field;
+        var v = inp.value;
+        if (inp.type === 'number') v = Number(v);
+        DATA.buildings[activeBldg][f] = v;
+      });
+    });
+
+    /* features */
+    renderFeatures();
+
+    /* plans */
+    document.getElementById('plansJson').addEventListener('change', function () {
+      try {
+        DATA.buildings[activeBldg].plans = JSON.parse(this.value);
+        toast('Planovi ažurirani.');
+      } catch (e) {
+        toast('Greška u JSON formatu!');
+      }
+    });
+  }
+
+  function renderFeatures() {
+    var b = DATA.buildings[activeBldg];
+    var box = document.getElementById('featTags');
+    box.innerHTML = b.features.map(function (f, i) {
+      return '<span class="tag">' + esc(f) + '<button class="rem" data-i="' + i + '">&times;</button></span>';
+    }).join('') + '<button class="add-tag" id="featAddInline">+ Dodaj</button>';
+
+    box.querySelectorAll('.rem').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        b.features.splice(Number(btn.dataset.i), 1);
+        renderFeatures();
+      });
+    });
+
+    var addBtn = document.getElementById('featAddBtn');
+    var addInput = document.getElementById('featAdd');
+    addBtn.addEventListener('click', function () {
+      var v = addInput.value.trim();
+      if (v) { b.features.push(v); addInput.value = ''; renderFeatures(); }
+    });
+    addInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { addBtn.click(); }
+    });
+  }
+
+  /* ── Phases ─────────────────────────────────────────────────── */
+  var activePhaseBldg = 'one';
+
+  function renderPhases() {
+    var tabs = document.getElementById('phaseTabs');
+    tabs.innerHTML = bldgKeys.map(function (k) {
+      var b = DATA.buildings[k];
+      return '<button class="tab' + (k === activePhaseBldg ? ' is-active' : '') + '" data-k="' + k + '">' + b.name + '</button>';
+    }).join('');
+
+    tabs.querySelectorAll('.tab').forEach(function (t) {
+      t.addEventListener('click', function () {
+        activePhaseBldg = t.dataset.k;
+        renderPhases();
+      });
+    });
+
+    var b = DATA.buildings[activePhaseBldg];
+    var html = '<div class="card"><h3><span class="dot" style="background:' + b.color + '"></span>Faze — ' + b.name + '</h3>';
+
+    html += '<div style="font-size:12px;color:var(--muted);margin-bottom:12px;display:grid;grid-template-columns:90px 1fr 1fr 80px 100px 40px;gap:10px;font-weight:600"><span>Faza</span><span>Naslov</span><span>Opis</span><span>%</span><span>Status</span><span></span></div>';
+
+    b.phases.forEach(function (p, i) {
+      var stateOpts = '<option value=""' + (p.state === '' ? ' selected' : '') + '>Čeka</option><option value="active"' + (p.state === 'active' ? ' selected' : '') + '>Aktivno</option><option value="done"' + (p.state === 'done' ? ' selected' : '') + '>Gotovo</option>';
+      html += '<div class="phase-row">' +
+        '<div class="phase-num">' + p.phase + '</div>' +
+        '<input data-pi="' + i + '" data-pf="title" value="' + esc(p.title) + '">' +
+        '<input data-pi="' + i + '" data-pf="desc" value="' + esc(p.desc) + '">' +
+        '<input type="number" min="0" max="100" data-pi="' + i + '" data-pf="pct" value="' + p.pct + '">' +
+        '<select data-pi="' + i + '" data-pf="state">' + stateOpts + '</select>' +
+        '<button class="del-btn" data-pi="' + i + '" title="Obriši fazu">&times;</button>' +
+      '</div>';
+    });
+
+    html += '<button class="btn btn--ghost btn--sm" id="addPhaseBtn" style="margin-top:12px">+ Dodaj fazu</button></div>';
+
+    document.getElementById('phaseContent').innerHTML = html;
+
+    /* binding */
+    document.getElementById('phaseContent').querySelectorAll('[data-pi]').forEach(function (el) {
+      el.addEventListener('change', function () {
+        var idx = Number(el.dataset.pi);
+        var field = el.dataset.pf;
+        var v = el.value;
+        if (field === 'pct') v = Math.min(100, Math.max(0, Number(v)));
+        b.phases[idx][field] = v;
+      });
+    });
+
+    document.getElementById('phaseContent').querySelectorAll('.del-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        b.phases.splice(Number(btn.dataset.pi), 1);
+        renderPhases();
+      });
+    });
+
+    document.getElementById('addPhaseBtn').addEventListener('click', function () {
+      var n = b.phases.length + 1;
+      b.phases.push({ phase: 'Faza 0' + n, title: 'Nova faza', desc: 'Opis faze...', pct: 0, state: '' });
+      renderPhases();
+    });
+  }
+
+  /* ── Gallery ────────────────────────────────────────────────── */
+  var activeGalBldg = 'one';
+
+  function renderGallery() {
+    var tabs = document.getElementById('galTabs');
+    tabs.innerHTML = bldgKeys.map(function (k) {
+      var b = DATA.buildings[k];
+      return '<button class="tab' + (k === activeGalBldg ? ' is-active' : '') + '" data-k="' + k + '">' + b.name + '</button>';
+    }).join('');
+
+    tabs.querySelectorAll('.tab').forEach(function (t) {
+      t.addEventListener('click', function () {
+        activeGalBldg = t.dataset.k;
+        renderGallery();
+      });
+    });
+
+    var b = DATA.buildings[activeGalBldg];
+    var html = '<div class="card"><h3><span class="dot" style="background:' + b.color + '"></span>Galerija — ' + b.name + '</h3>';
+
+    html += '<div class="gallery-list">';
+    b.gallery.forEach(function (url, i) {
+      html += '<div class="gallery-item"><img src="' + url + '" alt="Slika ' + (i + 1) + '"><button class="del" data-i="' + i + '">&times;</button></div>';
+    });
+    html += '</div>';
+
+    html += '<div style="margin-top:16px;display:flex;gap:8px;align-items:end"><div class="form-group" style="flex:1;margin:0"><label>Dodaj sliku (URL)</label><input id="galAddUrl" placeholder="https://images.unsplash.com/..."></div><button class="btn btn--ghost btn--sm" id="galAddBtn" style="margin-bottom:2px">+ Dodaj</button></div>';
+
+    html += '<p class="form-hint" style="margin-top:8px">Preporuka: Unsplash URL sa parametrima ?w=800&h=450&fit=crop</p></div>';
+
+    document.getElementById('galContent').innerHTML = html;
+
+    /* delete */
+    document.querySelectorAll('.gallery-item .del').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        b.gallery.splice(Number(btn.dataset.i), 1);
+        renderGallery();
+      });
+    });
+
+    /* add */
+    document.getElementById('galAddBtn').addEventListener('click', function () {
+      var url = document.getElementById('galAddUrl').value.trim();
+      if (url) { b.gallery.push(url); renderGallery(); }
+    });
+  }
+
+  /* ── Contact ────────────────────────────────────────────────── */
+  function renderContact() {
+    var s = DATA.site;
+    document.getElementById('cPhone1').value = s.phone1 || '';
+    document.getElementById('cPhone2').value = s.phone2 || '';
+    document.getElementById('cEmail').value = s.email || '';
+    document.getElementById('cWhatsapp').value = s.whatsapp || '';
+    document.getElementById('cAddress').value = s.address || '';
+    document.getElementById('cFacebook').value = s.facebook || '';
+    document.getElementById('cInstagram').value = s.instagram || '';
+
+    var st = DATA.stats;
+    document.getElementById('sExp').value = st.experience.value;
+    document.getElementById('sBldg').value = st.buildings_done.value;
+    document.getElementById('sApt').value = st.apartments_done.value;
+    document.getElementById('sClients').value = st.clients.value;
+
+    /* binding */
+    ['cPhone1', 'cPhone2', 'cEmail', 'cWhatsapp', 'cAddress', 'cFacebook', 'cInstagram'].forEach(function (id) {
+      document.getElementById(id).addEventListener('change', function () {
+        var key = id.replace('c', '').toLowerCase();
+        if (key === 'phone1') key = 'phone1';
+        else if (key === 'phone2') key = 'phone2';
+        else if (key === 'email') key = 'email';
+        else if (key === 'whatsapp') key = 'whatsapp';
+        else if (key === 'address') key = 'address';
+        else if (key === 'facebook') key = 'facebook';
+        else if (key === 'instagram') key = 'instagram';
+        DATA.site[key] = this.value;
+      });
+    });
+
+    document.getElementById('sExp').addEventListener('change', function () { DATA.stats.experience.value = Number(this.value); });
+    document.getElementById('sBldg').addEventListener('change', function () { DATA.stats.buildings_done.value = Number(this.value); });
+    document.getElementById('sApt').addEventListener('change', function () { DATA.stats.apartments_done.value = Number(this.value); });
+    document.getElementById('sClients').addEventListener('change', function () { DATA.stats.clients.value = Number(this.value); });
+  }
+
+  /* ── Export ─────────────────────────────────────────────────── */
+  function renderExport() {
+    var json = JSON.stringify(DATA, null, 2);
+    document.getElementById('jsonPreview').textContent = json;
+  }
+
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    if (!DATA) return;
+    var blob = new Blob([JSON.stringify(DATA, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'site.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('site.json preuzet.');
+  });
+
+  /* ── Save all ───────────────────────────────────────────────── */
+  function saveAll() {
+    if (!DATA) return;
+    renderExport();
+    toast('Sve promjene spremne. Preuzmite JSON u sekciji "Export".');
+  }
+
+  document.getElementById('saveAllBtn').addEventListener('click', saveAll);
+  document.getElementById('saveAllBtn2').addEventListener('click', saveAll);
+  document.getElementById('saveAllBtn3').addEventListener('click', saveAll);
+  document.getElementById('saveAllBtn4').addEventListener('click', saveAll);
+  document.getElementById('saveAllBtn5').addEventListener('click', saveAll);
+
+  /* ── Helpers ────────────────────────────────────────────────── */
+  function esc(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+})();
+</script>
+</body>
+</html>
