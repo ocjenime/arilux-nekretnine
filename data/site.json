@@ -799,8 +799,5 @@
       }
     }
   },
-  "logo": {
-    "url": "assets/img/logo-arilux.png",
-    "type": "file"
-  }
+  "logo": {}
 }
