@@ -687,7 +687,6 @@
     "8": "Sedmi",
     "9": "Osmi"
   },
-
   "tour3d": {
     "rooms": [
       {
@@ -728,7 +727,7 @@
       },
       {
         "name": "Balkon",
-        "width": 4.0,
+        "width": 4,
         "length": 1.8,
         "height": 2.8,
         "area": 7.2,
@@ -737,12 +736,20 @@
       }
     ],
     "features": [
-      { "title": "360° Pogled", "desc": "Okrenite se oko osi i pogledajte svaki kutak stana" },
-      { "title": "3D Model", "desc": "Izgradite trodimenzionalni model prostora" },
-      { "title": "Mjerne dimenzije", "desc": "Svaka prostorija sa tačnim dimenzijama u metrima" }
+      {
+        "title": "360° Pogled",
+        "desc": "Okrenite se oko osi i pogledajte svaki kutak stana"
+      },
+      {
+        "title": "3D Model",
+        "desc": "Izgradite trodimenzionalni model prostora"
+      },
+      {
+        "title": "Mjerne dimenzije",
+        "desc": "Svaka prostorija sa tačnim dimenzijama u metrima"
+      }
     ]
   },
-
   "map": {
     "viewBox": "0 0 780 420",
     "buildings": {
@@ -752,15 +759,21 @@
         "labelX": 373,
         "labelY": 168,
         "address": "Trg mladih bb, Velika Kladuša",
-        "gps": { "lat": 45.1833, "lng": 15.8167 }
+        "gps": {
+          "lat": 45.1833,
+          "lng": 15.8167
+        }
       },
       "park": {
         "x": 162,
         "y": 246,
         "labelX": 162,
         "labelY": 218,
-        "address": "Ulica parkova bb, Velika Kladuša",
-        "gps": { "lat": 45.1810, "lng": 15.8120 }
+        "address": "Ulica Ive Marinkovica bb, Velika Kladuša",
+        "gps": {
+          "lat": 45.181,
+          "lng": 15.812
+        }
       },
       "centar": {
         "x": 454,
@@ -768,7 +781,10 @@
         "labelX": 454,
         "labelY": 238,
         "address": "Poslovni centar bb, Velika Kladuša",
-        "gps": { "lat": 45.1820, "lng": 15.8200 }
+        "gps": {
+          "lat": 45.182,
+          "lng": 15.82
+        }
       },
       "panorama": {
         "x": 581,
@@ -776,7 +792,10 @@
         "labelX": 581,
         "labelY": 108,
         "address": "Grabik bb, Velika Kladuša",
-        "gps": { "lat": 45.1850, "lng": 15.8250 }
+        "gps": {
+          "lat": 45.185,
+          "lng": 15.825
+        }
       }
     }
   }
