@@ -269,6 +269,69 @@
 
   function getBuildingTotalFloors(bid) { return PLANS[bid].length; }
 
+  var GAL_IMAGES = {
+    one: [
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=450&fit=crop'
+    ],
+    park: [
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop'
+    ],
+    centar: [
+      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=450&fit=crop'
+    ],
+    panorama: [
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600566753376-12c8ab7c5a38?w=800&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&h=450&fit=crop'
+    ]
+  };
+
+  var galIdx = 0;
+  var galTotal = 0;
+
+  function renderGallery(bid) {
+    var imgs = GAL_IMAGES[bid] || GAL_IMAGES.one;
+    var view = document.getElementById('galView');
+    var dots = document.getElementById('galDots');
+    galTotal = imgs.length;
+    galIdx = 0;
+
+    view.innerHTML = imgs.map(function (url, i) {
+      return '<div class="gal__slide' + (i === 0 ? ' is-active' : '') + '">' +
+        '<img src="' + url + '" alt="Stan - fotografija ' + (i + 1) + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">' +
+        '</div>';
+    }).join('');
+
+    dots.innerHTML = imgs.map(function (_, i) {
+      return '<button class="gal__dot' + (i === 0 ? ' is-active' : '') + '" data-gi="' + i + '" aria-label="Fotografija ' + (i + 1) + '"></button>';
+    }).join('');
+  }
+
+  function galGo(idx) {
+    galIdx = (idx + galTotal) % galTotal;
+    var slides = document.querySelectorAll('#galView .gal__slide');
+    var dots = document.querySelectorAll('#galDots .gal__dot');
+    slides.forEach(function (s, i) { s.classList.toggle('is-active', i === galIdx); });
+    dots.forEach(function (d, i) { d.classList.toggle('is-active', i === galIdx); });
+  }
+
+  document.getElementById('galPrev').addEventListener('click', function () { galGo(galIdx - 1); });
+  document.getElementById('galNext').addEventListener('click', function () { galGo(galIdx + 1); });
+  document.getElementById('galDots').addEventListener('click', function (e) {
+    var dot = e.target.closest('[data-gi]');
+    if (dot) galGo(Number(dot.dataset.gi));
+  });
+
   function openModal(apt) {
     var totalFloors = getBuildingTotalFloors(apt.building);
     var floorLabel = apt.floor === 1 ? 'Prizemlje' : (FLOOR_LABEL[apt.floor] || apt.floor + '.') + ' sprat';
@@ -282,6 +345,8 @@
     var titleLine = ROOM_LABEL[apt.rooms];
     document.getElementById('modalTitle').innerHTML = titleLine + '<br><em>' + apt.area + ' m²</em>';
     document.getElementById('modalSub').textContent = floorLabel + ' · ' + totalFloors + ' spratova ukupno' + (apt.penthouse ? ' · Penthouse stan' : '');
+
+    renderGallery(apt.building);
 
     document.getElementById('modalSpecs').innerHTML =
       '<div class="modal__spec"><dt>Sprat</dt><dd>' + apt.floor + '. <small>/ ' + totalFloors + '</small></dd></div>' +
