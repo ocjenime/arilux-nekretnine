@@ -176,6 +176,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
         <span>Galerija</span>
       </button>
+      <button class="sidebar__link" data-section="tour3d">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <span>3D Tour</span>
+      </button>
+      <button class="sidebar__link" data-section="map">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Mapa</span>
+      </button>
       <button class="sidebar__link" data-section="contact">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span>Kontakt</span>
@@ -259,6 +267,31 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
       <div class="tabs" id="galTabs"></div>
       <div id="galContent"></div>
+    </div>
+
+    <!-- ═══ 3D TOUR ═══ -->
+    <div class="section" id="sec-tour3d">
+      <div class="page-head">
+        <h1>3D Tour — Prostorije</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--ghost btn--sm" id="addRoomBtn">+ Dodaj prostoriju</button>
+          <button class="btn btn--primary" id="saveAllBtn6">Spremi sve promjene</button>
+        </div>
+      </div>
+
+      <div id="tour3dContent"></div>
+    </div>
+
+    <!-- ═══ MAP ═══ -->
+    <div class="section" id="sec-map">
+      <div class="page-head">
+        <h1>Mapa — Pozicije zgrada</h1>
+        <div class="page-head__actions">
+          <button class="btn btn--primary" id="saveAllBtn7">Spremi sve promjene</button>
+        </div>
+      </div>
+
+      <div id="mapContent"></div>
     </div>
 
     <!-- ═══ CONTACT ═══ -->
@@ -435,6 +468,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     renderBuildings();
     renderPhases();
     renderGallery();
+    renderTour3d();
+    renderMap();
     renderContact();
     renderExport();
   }
@@ -705,6 +740,141 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     document.getElementById('sClients').addEventListener('change', function () { DATA.stats.clients.value = Number(this.value); });
   }
 
+  /* ── 3D Tour ──────────────────────────────────────────────── */
+  function renderTour3d() {
+    if (!DATA.tour3d) DATA.tour3d = { rooms: [], features: [] };
+    var tour = DATA.tour3d;
+    var html = '';
+
+    /* rooms */
+    html += '<div class="card"><h3>Prostorije</h3>';
+    if (tour.rooms.length === 0) {
+      html += '<p style="color:var(--muted);font-size:14px">Nema definisanih prostorija. Kliknite "+ Dodaj prostoriju" da dodate prvu.</p>';
+    }
+    tour.rooms.forEach(function (r, i) {
+      html += '<div class="room-card" style="border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px;position:relative">';
+      html += '<button class="del-btn room-del" data-i="' + i + '" title="Obriši prostoriju" style="position:absolute;top:12px;right:12px;background:none;border:none;color:#dc2626;cursor:pointer;font-size:18px;opacity:.5">&times;</button>';
+      html += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">';
+      html += '<span style="width:36px;height:36px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px">' + (i + 1) + '</span>';
+      html += '<div class="form-group" style="flex:1;margin:0"><label>Naziv prostorije</label><input class="tour-field" data-ri="' + i + '" data-rf="name" value="' + esc(r.name) + '"></div>';
+      html += '</div>';
+      html += '<div class="form-row" style="grid-template-columns:1fr 1fr 1fr 1fr">';
+      html += '<div class="form-group"><label>Širina (m)</label><input type="number" step="0.1" class="tour-field" data-ri="' + i + '" data-rf="width" value="' + r.width + '"></div>';
+      html += '<div class="form-group"><label>Dužina (m)</label><input type="number" step="0.1" class="tour-field" data-ri="' + i + '" data-rf="length" value="' + r.length + '"></div>';
+      html += '<div class="form-group"><label>Visina (m)</label><input type="number" step="0.1" class="tour-field" data-ri="' + i + '" data-rf="height" value="' + r.height + '"></div>';
+      html += '<div class="form-group"><label>Površina (m²)</label><input type="number" step="0.1" class="tour-field" data-ri="' + i + '" data-rf="area" value="' + r.area + '"></div>';
+      html += '</div>';
+      html += '<div class="form-group"><label>Slika (URL)</label><input class="tour-field" data-ri="' + i + '" data-rf="image" value="' + esc(r.image || '') + '" placeholder="https://images.unsplash.com/..."></div>';
+      html += '<div class="form-group"><label>Opis</label><input class="tour-field" data-ri="' + i + '" data-rf="description" value="' + esc(r.description || '') + '"></div>';
+      if (r.image) {
+        html += '<div style="margin-top:8px;border-radius:8px;overflow:hidden;height:120px;background:var(--gray)"><img src="' + esc(r.image) + '" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML=\'<span style=display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:12px\">Slika se ne učitava</span>\'"></div>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+
+    /* features */
+    html += '<div class="card"><h3>3D Tour features (kartičice)</h3>';
+    tour.features.forEach(function (f, i) {
+      html += '<div style="display:grid;grid-template-columns:1fr 1fr 40px;gap:10px;align-items:end;padding:10px 0;border-bottom:1px solid var(--border)">';
+      html += '<div class="form-group" style="margin:0"><label>Naslov</label><input class="tourfeat-field" data-fi="' + i + '" data-ff="title" value="' + esc(f.title) + '"></div>';
+      html += '<div class="form-group" style="margin:0"><label>Opis</label><input class="tourfeat-field" data-fi="' + i + '" data-ff="desc" value="' + esc(f.desc) + '"></div>';
+      html += '<button class="del-btn" onclick="DATA.tour3d.features.splice(' + i + ',1);renderTour3d()" style="background:none;border:none;color:#dc2626;cursor:pointer;font-size:18px;opacity:.5;padding:8px">&times;</button>';
+      html += '</div>';
+    });
+    html += '<button class="btn btn--ghost btn--sm" style="margin-top:12px" onclick="DATA.tour3d.features.push({title:\'Nova features\',desc:\'Opis...\'});renderTour3d()">+ Dodaj feature</button>';
+    html += '</div>';
+
+    document.getElementById('tour3dContent').innerHTML = html;
+
+    /* binding room fields */
+    document.querySelectorAll('.tour-field').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var ri = Number(inp.dataset.ri);
+        var rf = inp.dataset.rf;
+        var v = inp.value;
+        if (['width','length','height','area'].indexOf(rf) !== -1) v = Number(v);
+        tour.rooms[ri][rf] = v;
+      });
+    });
+
+    /* binding feature fields */
+    document.querySelectorAll('.tourfeat-field').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var fi = Number(inp.dataset.fi);
+        var ff = inp.dataset.ff;
+        tour.features[fi][ff] = inp.value;
+      });
+    });
+
+    /* delete room */
+    document.querySelectorAll('.room-del').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        tour.rooms.splice(Number(btn.dataset.i), 1);
+        renderTour3d();
+      });
+    });
+
+    /* add room */
+    document.getElementById('addRoomBtn').onclick = function () {
+      tour.rooms.push({ name: 'Nova prostorija', width: 3, length: 3, height: 2.8, area: 9, image: '', description: '' });
+      renderTour3d();
+    };
+  }
+
+  /* ── Map ────────────────────────────────────────────────────── */
+  function renderMap() {
+    if (!DATA.map) DATA.map = { buildings: {} };
+    var map = DATA.map;
+    var bKeys = ['one', 'park', 'centar', 'panorama'];
+    var html = '<div class="card"><h3>Pozicije zgrada na mapi</h3>';
+    html += '<p style="font-size:13px;color:var(--muted);margin-bottom:20px">Postavite tačne pozicije zgrada na SVG karti. X i Y koordinate određuju gdje će se pin prikazati. GPS koordinate se koriste za buduću integraciju sa Google Maps-om.</p>';
+
+    bKeys.forEach(function (k) {
+      var b = DATA.buildings[k];
+      var mp = map.buildings[k] || { x: 400, y: 200, labelX: 400, labelY: 170, address: '', gps: { lat: 45.18, lng: 15.82 } };
+      if (!map.buildings[k]) map.buildings[k] = mp;
+
+      html += '<div style="border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px">';
+      html += '<h4 style="font-family:var(--font-d);font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:' + b.color + ';display:inline-block"></span>' + b.name + '</h4>';
+      html += '<div class="form-group"><label>Adresa</label><input class="map-field" data-mk="' + k + '" data-mf="address" value="' + esc(mp.address || '') + '" placeholder="Trg mladih bb, Velika Kladuša"></div>';
+      html += '<div class="form-row" style="grid-template-columns:1fr 1fr 1fr 1fr">';
+      html += '<div class="form-group"><label>SVG X</label><input type="number" class="map-field" data-mk="' + k + '" data-mf="x" value="' + mp.x + '"></div>';
+      html += '<div class="form-group"><label>SVG Y</label><input type="number" class="map-field" data-mk="' + k + '" data-mf="y" value="' + mp.y + '"></div>';
+      html += '<div class="form-group"><label>Label X</label><input type="number" class="map-field" data-mk="' + k + '" data-mf="labelX" value="' + mp.labelX + '"></div>';
+      html += '<div class="form-group"><label>Label Y</label><input type="number" class="map-field" data-mk="' + k + '" data-mf="labelY" value="' + mp.labelY + '"></div>';
+      html += '</div>';
+      html += '<div class="form-row" style="grid-template-columns:1fr 1fr">';
+      html += '<div class="form-group"><label>GPS Latituda</label><input type="number" step="0.0001" class="map-field" data-mk="' + k + '" data-mf="gpsLat" value="' + (mp.gps ? mp.gps.lat : '') + '"></div>';
+      html += '<div class="form-group"><label>GPS Longituda</label><input type="number" step="0.0001" class="map-field" data-mk="' + k + '" data-mf="gpsLng" value="' + (mp.gps ? mp.gps.lng : '') + '"></div>';
+      html += '</div>';
+      html += '</div>';
+    });
+
+    html += '</div>';
+
+    document.getElementById('mapContent').innerHTML = html;
+
+    /* binding */
+    document.querySelectorAll('.map-field').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        var mk = inp.dataset.mk;
+        var mf = inp.dataset.mf;
+        var v = inp.value;
+        if (mf === 'gpsLat') {
+          if (!map.buildings[mk].gps) map.buildings[mk].gps = { lat: 0, lng: 0 };
+          map.buildings[mk].gps.lat = Number(v);
+        } else if (mf === 'gpsLng') {
+          if (!map.buildings[mk].gps) map.buildings[mk].gps = { lat: 0, lng: 0 };
+          map.buildings[mk].gps.lng = Number(v);
+        } else {
+          if (['x','y','labelX','labelY'].indexOf(mf) !== -1) v = Number(v);
+          map.buildings[mk][mf] = v;
+        }
+      });
+    });
+  }
+
   /* ── Export ─────────────────────────────────────────────────── */
   function renderExport() {
     var json = JSON.stringify(DATA, null, 2);
@@ -735,6 +905,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   document.getElementById('saveAllBtn3').addEventListener('click', saveAll);
   document.getElementById('saveAllBtn4').addEventListener('click', saveAll);
   document.getElementById('saveAllBtn5').addEventListener('click', saveAll);
+  document.getElementById('saveAllBtn6').addEventListener('click', saveAll);
+  document.getElementById('saveAllBtn7').addEventListener('click', saveAll);
 
   /* ── Helpers ────────────────────────────────────────────────── */
   function esc(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }

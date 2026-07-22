@@ -62,6 +62,33 @@
       Object.keys(data.floorLabels).forEach(function (k) { FLOOR_LABEL[k] = data.floorLabels[k]; });
     }
     window.__ARILUX_JSON = data;
+    if (data.map && data.map.buildings) applyMapPositions(data.map.buildings);
+  }
+
+  /* reposition SVG map pins from JSON coordinates */
+  var PIN_DEFAULTS = {
+    one: { x: 358, y: 180, labelX: 373, labelY: 168 },
+    park: { x: 148, y: 230, labelX: 162, labelY: 218 },
+    centar: { x: 438, y: 250, labelX: 454, labelY: 238 },
+    panorama: { x: 568, y: 120, labelX: 581, labelY: 108 }
+  };
+
+  function applyMapPositions(bldMap) {
+    Object.keys(bldMap).forEach(function (k) {
+      var pin = document.querySelector('.locmap__pin[data-building="' + k + '"]');
+      if (!pin) return;
+      var d = bldMap[k];
+      var def = PIN_DEFAULTS[k];
+      if (!def) return;
+      var dx = (d.x || def.x) - def.x;
+      var dy = (d.y || def.y) - def.y;
+      pin.setAttribute('transform', 'translate(' + dx + ',' + dy + ')');
+      var txt = pin.querySelector('text');
+      if (txt && d.labelX !== undefined) {
+        txt.setAttribute('x', d.labelX - def.x + dx);
+        txt.setAttribute('y', d.labelY - def.y + dy);
+      }
+    });
   }
 
   fetch('data/site.json?' + Math.floor(Date.now() / 300000))
@@ -930,7 +957,16 @@
   });
 
   /* 3D Tour nav buttons */
-  var tourNames = ['Dnevni boravak', 'Spavaća soba', 'Kuhinja', 'Kupatilo', 'Balkon'];
+  var DEFAULT_TOUR_NAMES = ['Dnevni boravak', 'Spavaća soba', 'Kuhinja', 'Kupatilo', 'Balkon'];
+
+  function getTourNames() {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.tour3d && window.__ARILUX_JSON.tour3d.rooms) {
+      return window.__ARILUX_JSON.tour3d.rooms.map(function (r) { return r.name; });
+    }
+    return DEFAULT_TOUR_NAMES;
+  }
+
+  var tourNames = getTourNames();
 
   function setTourRoom(idx) {
     document.querySelectorAll('.tour3d__navbtn').forEach(function (b, i) {
@@ -971,24 +1007,30 @@
   }
 
   /* 3D Tour feature cards → lightbox */
-  var tourFeatures = document.querySelectorAll('.tour3d__feature');
-  var tourFeatureContent = [
-    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' +
-      '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>' +
-      '<p style="font-size:20px;font-weight:700;margin-top:24px;">360° Pogled</p>' +
-      '<p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Interaktivni 360° pogled kroz stan bit će dostupan nakon završetka izgradnje. Prijavite se za obavještenje.</p>' +
-    '</div>',
-    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' +
-      '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>' +
-      '<p style="font-size:20px;font-weight:700;margin-top:24px;">3D Model</p>' +
-      '<p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Trodimenzionalni model stana bit će spreman za interaktivno razgledanje nakon završetka radova.</p>' +
-    '</div>',
-    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' +
-      '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' +
-      '<p style="font-size:20px;font-weight:700;margin-top:24px;">Mjerne dimenzije</p>' +
-      '<p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Detaljni tlocrti sa tačnim dimenzijama svake prostorije biće dostupni uPDF formatu po završetku projektovanja.</p>' +
-    '</div>'
+  var SVG_ICONS = [
+    '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'
   ];
+
+  function getTourFeatureContent() {
+    var defaultContent = [
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[0] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">360° Pogled</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Interaktivni 360° pogled kroz stan bit će dostupan nakon završetka izgradnje.</p></div>',
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[1] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">3D Model</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Trodimenzionalni model stana bit će spreman za interaktivno razgledanje nakon završetka radova.</p></div>',
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[2] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">Mjerne dimenzije</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Detaljni tlocrti sa tačnim dimenzijama svake prostorije biće dostupni u PDF formatu.</p></div>'
+    ];
+
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.tour3d && window.__ARILUX_JSON.tour3d.features) {
+      return window.__ARILUX_JSON.tour3d.features.map(function (f, i) {
+        var icon = SVG_ICONS[i % SVG_ICONS.length];
+        return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + icon + '<p style="font-size:20px;font-weight:700;margin-top:24px;">' + f.title + '</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">' + f.desc + '</p></div>';
+      });
+    }
+    return defaultContent;
+  }
+
+  var tourFeatures = document.querySelectorAll('.tour3d__feature');
+  var tourFeatureContent = getTourFeatureContent();
 
   tourFeatures.forEach(function (card, i) {
     card.setAttribute('role', 'button');

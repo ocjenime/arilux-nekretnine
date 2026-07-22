@@ -686,5 +686,98 @@
     "7": "Šesti",
     "8": "Sedmi",
     "9": "Osmi"
+  },
+
+  "tour3d": {
+    "rooms": [
+      {
+        "name": "Dnevni boravak",
+        "width": 6.2,
+        "length": 4.8,
+        "height": 2.8,
+        "area": 29.8,
+        "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=680&fit=crop",
+        "description": "Prostran dnevni boravak sa prirodnim svjetlom i panoramskim prozorima."
+      },
+      {
+        "name": "Spavaća soba",
+        "width": 4.5,
+        "length": 3.8,
+        "height": 2.8,
+        "area": 17.1,
+        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=680&fit=crop",
+        "description": "Ugodna spavaća soba sa ugrađenim ormarima i ambient osvjetljenjem."
+      },
+      {
+        "name": "Kuhinja",
+        "width": 3.8,
+        "length": 3.2,
+        "height": 2.8,
+        "area": 12.2,
+        "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&h=680&fit=crop",
+        "description": "Moderna kuhinja sa kvalitetnim uređajima i dovoljno prostora za pripremu obroka."
+      },
+      {
+        "name": "Kupatilo",
+        "width": 2.8,
+        "length": 2.2,
+        "height": 2.8,
+        "area": 6.2,
+        "image": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1200&h=680&fit=crop",
+        "description": "Elegantno kupatilo sa tuš kabinom, keramikom visoke klase i podnim grijanjem."
+      },
+      {
+        "name": "Balkon",
+        "width": 4.0,
+        "length": 1.8,
+        "height": 2.8,
+        "area": 7.2,
+        "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=680&fit=crop",
+        "description": "Prostran balkon sa pogledom na grad — idealan za jutarnju kafu."
+      }
+    ],
+    "features": [
+      { "title": "360° Pogled", "desc": "Okrenite se oko osi i pogledajte svaki kutak stana" },
+      { "title": "3D Model", "desc": "Izgradite trodimenzionalni model prostora" },
+      { "title": "Mjerne dimenzije", "desc": "Svaka prostorija sa tačnim dimenzijama u metrima" }
+    ]
+  },
+
+  "map": {
+    "viewBox": "0 0 780 420",
+    "buildings": {
+      "one": {
+        "x": 373,
+        "y": 200,
+        "labelX": 373,
+        "labelY": 168,
+        "address": "Trg mladih bb, Velika Kladuša",
+        "gps": { "lat": 45.1833, "lng": 15.8167 }
+      },
+      "park": {
+        "x": 162,
+        "y": 246,
+        "labelX": 162,
+        "labelY": 218,
+        "address": "Ulica parkova bb, Velika Kladuša",
+        "gps": { "lat": 45.1810, "lng": 15.8120 }
+      },
+      "centar": {
+        "x": 454,
+        "y": 270,
+        "labelX": 454,
+        "labelY": 238,
+        "address": "Poslovni centar bb, Velika Kladuša",
+        "gps": { "lat": 45.1820, "lng": 15.8200 }
+      },
+      "panorama": {
+        "x": 581,
+        "y": 135,
+        "labelX": 581,
+        "labelY": 108,
+        "address": "Grabik bb, Velika Kladuša",
+        "gps": { "lat": 45.1850, "lng": 15.8250 }
+      }
+    }
   }
 }
