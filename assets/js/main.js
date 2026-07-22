@@ -267,38 +267,47 @@
     panorama: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Terase', 'Krovne terase (PH)', 'Panoramski pogled']
   };
 
+  var PROX_SVG = {
+    school: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+    health: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    shop: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
+    park: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12L10.03 16"/><path d="M15 14a7.5 7.5 0 1 0-6 0"/><path d="M8 14v8h8v-8"/></svg>',
+    bus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="7.5" cy="20" r="1.5"/><circle cx="16.5" cy="20" r="1.5"/></svg>',
+    child: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><path d="M12 8v4"/><path d="M8 22l4-10 4 10"/><path d="M9.5 15h5"/></svg>'
+  };
+
   var BUILDING_PROX = {
     one: [
-      { icon: '🏫', dist: '350 m', name: 'Osnovna škola', sub: 'Velika Kladuša Centar' },
-      { icon: '🏥', dist: '500 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
-      { icon: '🛒', dist: '200 m', name: 'Marketi', sub: 'Konzum, Bingo, pijaca' },
-      { icon: '🌳', dist: '400 m', name: 'Gradski park', sub: 'Odmor i rekreacija' },
-      { icon: '🚌', dist: '150 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
-      { icon: '👶', dist: '300 m', name: 'Vrtić', sub: 'Javni i privatni' }
+      { icon: 'school', dist: '350 m', name: 'Osnovna škola', sub: 'Velika Kladuša Centar' },
+      { icon: 'health', dist: '500 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: 'shop', dist: '200 m', name: 'Marketi', sub: 'Konzum, Bingo, pijaca' },
+      { icon: 'park', dist: '400 m', name: 'Gradski park', sub: 'Odmor i rekreacija' },
+      { icon: 'bus', dist: '150 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: 'child', dist: '300 m', name: 'Vrtić', sub: 'Javni i privatni' }
     ],
     park: [
-      { icon: '🏫', dist: '450 m', name: 'Osnovna škola', sub: 'Velika Kladuša' },
-      { icon: '🏥', dist: '700 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
-      { icon: '🛒', dist: '350 m', name: 'Marketi', sub: 'Konzum, Bingo' },
-      { icon: '🌳', dist: '50 m', name: 'Gradski park', sub: 'Odmah pored zgrade' },
-      { icon: '🚌', dist: '400 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
-      { icon: '👶', dist: '250 m', name: 'Vrtić', sub: 'Javni i privatni' }
+      { icon: 'school', dist: '450 m', name: 'Osnovna škola', sub: 'Velika Kladuša' },
+      { icon: 'health', dist: '700 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: 'shop', dist: '350 m', name: 'Marketi', sub: 'Konzum, Bingo' },
+      { icon: 'park', dist: '50 m', name: 'Gradski park', sub: 'Odmah pored zgrade' },
+      { icon: 'bus', dist: '400 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: 'child', dist: '250 m', name: 'Vrtić', sub: 'Javni i privatni' }
     ],
     centar: [
-      { icon: '🏫', dist: '400 m', name: 'Osnovna škola', sub: 'Velika Kladuša Centar' },
-      { icon: '🏥', dist: '450 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
-      { icon: '🛒', dist: '100 m', name: 'Marketi', sub: 'Trg, Konzum, pijaca' },
-      { icon: '🌳', dist: '350 m', name: 'Gradski park', sub: 'Odmor i rekreacija' },
-      { icon: '🚌', dist: '100 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
-      { icon: '👶', dist: '350 m', name: 'Vrtić', sub: 'Javni i privatni' }
+      { icon: 'school', dist: '400 m', name: 'Osnovna škola', sub: 'Velika Kladuša Centar' },
+      { icon: 'health', dist: '450 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: 'shop', dist: '100 m', name: 'Marketi', sub: 'Trg, Konzum, pijaca' },
+      { icon: 'park', dist: '350 m', name: 'Gradski park', sub: 'Odmor i rekreacija' },
+      { icon: 'bus', dist: '100 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: 'child', dist: '350 m', name: 'Vrtić', sub: 'Javni i privatni' }
     ],
     panorama: [
-      { icon: '🏫', dist: '600 m', name: 'Osnovna škola', sub: 'Velika Kladuša' },
-      { icon: '🏥', dist: '800 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
-      { icon: '🛒', dist: '500 m', name: 'Marketi', sub: 'Konzum, Bingo' },
-      { icon: '🌳', dist: '200 m', name: 'Gradski park', sub: 'Grabik šetalište' },
-      { icon: '🚌', dist: '550 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
-      { icon: '👶', dist: '450 m', name: 'Vrtić', sub: 'Javni i privatni' }
+      { icon: 'school', dist: '600 m', name: 'Osnovna škola', sub: 'Velika Kladuša' },
+      { icon: 'health', dist: '800 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
+      { icon: 'shop', dist: '500 m', name: 'Marketi', sub: 'Konzum, Bingo' },
+      { icon: 'park', dist: '200 m', name: 'Gradski park', sub: 'Grabik šetalište' },
+      { icon: 'bus', dist: '550 m', name: 'Autobuska stanica', sub: 'Gradski prijevoz' },
+      { icon: 'child', dist: '450 m', name: 'Vrtić', sub: 'Javni i privatni' }
     ]
   };
 
@@ -505,7 +514,7 @@
     var prox = BUILDING_PROX[apt.building] || [];
     document.getElementById('modalProx').innerHTML = prox.map(function (p) {
       return '<div class="modal__proxitem">' +
-        '<span class="modal__proxicon">' + p.icon + '</span>' +
+        '<span class="modal__proxicon">' + (PROX_SVG[p.icon] || '') + '</span>' +
         '<div class="modal__proxinfo">' +
           '<span class="modal__proxname">' + p.name + '</span>' +
           '<span class="modal__proxsub">' + p.sub + '</span>' +
