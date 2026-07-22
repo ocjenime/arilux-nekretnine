@@ -1256,13 +1256,36 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   margin-bottom: 24px;
 }
 
-.fp { margin-bottom: 28px; }
+.fp { margin-top: 24px; }
 .fp__svg {
   width: 100%;
   border-radius: calc(var(--r) + 2px);
   border: 1px solid var(--line);
   display: block;
 }
+.fp--hidden { display: none; }
+.fp__toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 18px;
+  margin-top: 24px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--r) + 2px);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-1);
+  transition: background .2s, border-color .2s;
+}
+.fp__toggle:hover { background: #eef1f5; border-color: var(--ink-3); }
+.fp__toggle svg:first-child { color: var(--blue); flex-shrink: 0; }
+.fp__toggle span { flex: 1; text-align: left; }
+.fp__chevron { color: var(--ink-3); transition: transform .3s cubic-bezier(.22,.8,.28,1); flex-shrink: 0; }
+.fp__toggle.is-open .fp__chevron { transform: rotate(180deg); }
 
 .modal__divider {
   border: none;

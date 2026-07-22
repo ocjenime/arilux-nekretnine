@@ -444,6 +444,9 @@
     document.getElementById('modalSub').textContent = floorLabel + ' · ' + totalFloors + ' spratova ukupno' + (apt.penthouse ? ' · Penthouse stan' : '');
 
     document.getElementById('modalFloorplan').innerHTML = generateFloorplan(apt.rooms);
+    document.getElementById('modalFloorplan').classList.add('fp--hidden');
+    document.getElementById('fpToggle').classList.remove('is-open');
+    document.getElementById('fpToggle').querySelector('span').textContent = 'Prikaži tlocrt stana';
 
     renderGallery(apt.building);
 
@@ -498,6 +501,13 @@
     modalOverlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
+
+  document.getElementById('fpToggle').addEventListener('click', function () {
+    var fp = document.getElementById('modalFloorplan');
+    var open = fp.classList.toggle('fp--hidden');
+    this.classList.toggle('is-open', !open);
+    this.querySelector('span').textContent = open ? 'Prikaži tlocrt stana' : 'Sakrij tlocrt';
+  });
 
   modalClose.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', function (e) {
