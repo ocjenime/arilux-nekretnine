@@ -1353,12 +1353,13 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .topbar__item:nth-child(3) { display: none; }
   .hero { min-height: 0; }
   .hero__inner { padding-block: 72px 80px; }
+  .hero .kicker { justify-content: center; }
   .hero__inner > * { text-align: center; }
-  .hero__title { font-size: clamp(36px, 11vw, 52px); font-variation-settings: 'wdth' 90; }
-  .hero__lead { max-width: 90%; margin-inline: auto; }
-  .hero__cta { justify-content: center; }
-  .hero__cta .btn { width: auto; }
-  .hero__stats { text-align: left; max-width: 100%; }
+  .hero__title { font-size: clamp(38px, 11.5vw, 56px); font-variation-settings: 'wdth' 100; }
+  .hero__lead { max-width: 92%; margin-inline: auto; }
+  .hero__cta { justify-content: center; flex-wrap: wrap; }
+  .hero__cta .btn { width: auto; flex: 0 1 auto; }
+  .hero__skyline { width: 100%; }
   .hero__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .building__specs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .building__specs li:nth-child(odd) { border-left: 0; padding-left: 0; }
