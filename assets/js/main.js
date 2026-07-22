@@ -723,6 +723,118 @@
     form.reset();
   });
 
+  /* ── Premium features ──────────────────────────────────────── */
+
+  /* WhatsApp FAB visibility */
+  var whatsappFab = document.getElementById('whatsappFab');
+  if (whatsappFab) {
+    var waShow = false;
+    window.addEventListener('scroll', function () {
+      var show = window.scrollY > 400;
+      if (show !== waShow) {
+        waShow = show;
+        whatsappFab.classList.toggle('is-visible', show);
+      }
+    }, { passive: true });
+  }
+
+  /* Timeline progress animation */
+  var timelineProgress = document.querySelector('.timeline__progress');
+  if (timelineProgress && 'IntersectionObserver' in window) {
+    var tlObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          timelineProgress.style.setProperty('--progress', '42%');
+          timelineProgress.classList.add('is-animating');
+          tlObs.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    tlObs.observe(timelineProgress.parentElement);
+  } else if (timelineProgress) {
+    timelineProgress.style.setProperty('--progress', '42%');
+    timelineProgress.classList.add('is-animating');
+  }
+
+  /* Timeline fill animations */
+  var timelineFills = document.querySelectorAll('.timeline__fill');
+  if (timelineFills.length && 'IntersectionObserver' in window) {
+    var fillObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var fill = en.target;
+          var targetW = fill.style.width;
+          fill.style.width = '0%';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              fill.style.width = targetW;
+            });
+          });
+          fillObs.unobserve(fill);
+        }
+      });
+    }, { threshold: 0.4 });
+    timelineFills.forEach(function (f) { fillObs.observe(f); });
+  }
+
+  /* Location map interaction */
+  var LOC_DATA = {
+    one:      { school: '350 m · 5 min pješke', health: '500 m · 7 min pješke', center: '200 m · 3 min pješke', shop: '200 m · 3 min pješke', park: '400 m · 5 min pješke' },
+    park:     { school: '450 m · 6 min pješke', health: '700 m · 9 min pješke', center: '600 m · 8 min pješke', shop: '350 m · 4 min pješke', park: '50 m · 1 min pješke' },
+    centar:   { school: '400 m · 5 min pješke', health: '450 m · 6 min pješke', center: '100 m · 1 min pješke', shop: '100 m · 1 min pješke', park: '350 m · 4 min pješke' },
+    panorama: { school: '600 m · 8 min pješke', health: '800 m · 10 min pješke', center: '700 m · 9 min pješke', shop: '500 m · 6 min pješke', park: '200 m · 3 min pješke' }
+  };
+
+  function setLocMapBuilding(bid) {
+    var data = LOC_DATA[bid] || LOC_DATA.one;
+    document.getElementById('locSchool').textContent = data.school;
+    document.getElementById('locHealth').textContent = data.health;
+    document.getElementById('locCenter').textContent = data.center;
+    document.getElementById('locShop').textContent = data.shop;
+    document.getElementById('locPark').textContent = data.park;
+
+    document.querySelectorAll('.locmap__card').forEach(function (c) {
+      c.classList.toggle('is-active', c.dataset.building === bid);
+    });
+  }
+
+  document.querySelectorAll('.locmap__card').forEach(function (card) {
+    card.addEventListener('click', function () { setLocMapBuilding(card.dataset.building); });
+  });
+
+  document.querySelectorAll('.locmap__pin').forEach(function (pin) {
+    pin.addEventListener('click', function () { setLocMapBuilding(pin.dataset.building); });
+  });
+
+  /* 3D Tour nav buttons */
+  document.querySelectorAll('.tour3d__navbtn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.tour3d__navbtn').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+    });
+  });
+
+  /* Parallax on scroll for hero and archvision */
+  var parallaxEls = document.querySelectorAll('.hero__title, .archvision__title');
+  if (parallaxEls.length) {
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          parallaxEls.forEach(function (el) {
+            var rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              var offset = (rect.top / window.innerHeight) * 30;
+              el.style.transform = 'translateY(' + offset + 'px)';
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
   /* ── Ostalo ─────────────────────────────────────────────────── */
 
   document.getElementById('year').textContent = new Date().getFullYear();
