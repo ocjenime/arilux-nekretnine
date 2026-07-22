@@ -1615,12 +1615,10 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .header__nav { display: flex; gap: 2px; }
   .header__link { font-size: 10px; padding: 6px 8px; }
   .header__burger { display: none !important; }
-  .header__actions .btn { display: none; }
   .hero { min-height: 100vh; min-height: 100dvh; }
   .hero__inner { padding: 16px 20px; }
   .hero__title { font-size: clamp(22px, 5vw, 32px); }
   .hero__lead { font-size: 11px; }
-  .hero__cta .btn { padding: 8px 14px; font-size: 10px; }
   .hero__stats { grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .hero__stats dd { font-size: clamp(16px, 3vw, 22px); }
   .hero__stats dt { font-size: 8px; }
@@ -1633,6 +1631,26 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .perks { grid-template-columns: repeat(3, 1fr); padding: 0 20px; gap: 10px; }
   .contact { padding: 0 20px; }
   .footer__grid { padding: 20px 20px 12px; }
+}
+
+/* ── Landscape phones (all widths) ─────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+  html { background: var(--navy-2); }
+  html, body { overflow-x: hidden; }
+  .topbar { display: none; }
+  .header__inner { min-height: 44px; }
+  .header__nav { display: flex; gap: 4px; }
+  .header__burger { display: none !important; }
+  .header__link { font-size: 11px; padding: 6px 10px; }
+  .hero { min-height: 100vh; min-height: 100dvh; }
+  .hero__inner { padding: 20px 24px; }
+  .hero__title { font-size: clamp(26px, 5vw, 38px); }
+  .hero__lead { font-size: 12px; }
+  .hero__skyline, .hero__scrollhint, .hero__glow { display: none; }
+  .hero__stats { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .section { padding: 28px 24px; }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .perks { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 }
 
 /* ── Reduced motion ──────────────────────────────────────────── */
