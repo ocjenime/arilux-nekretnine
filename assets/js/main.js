@@ -107,7 +107,7 @@
         var img = document.createElement('img');
         img.src = src;
         img.alt = 'Arilux';
-        img.style.cssText = 'height:48px;width:auto;object-fit:contain';
+        img.style.cssText = 'width:74px;height:auto;object-fit:contain';
         logomark.innerHTML = '';
         logomark.appendChild(img);
       }
