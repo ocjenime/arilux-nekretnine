@@ -63,7 +63,11 @@
     }
     window.__ARILUX_JSON = data;
     if (data.map && data.map.buildings) applyMapPositions(data.map.buildings);
-    if (data.logo && data.logo.url) applyLogo(data.logo.url);
+    if (data.logo && data.logo.url) {
+      applyLogo(data.logo.url);
+    } else {
+      try { localStorage.removeItem('arilux_logo_cache'); } catch(e) {}
+    }
   }
 
   /* reposition SVG map pins from JSON coordinates */
@@ -95,9 +99,9 @@
   /* apply custom logo from JSON */
   function applyLogo(src) {
     if (!src) return;
-    var style = document.createElement('style');
-    style.textContent = '.header__logomark svg{display:none!important}.dark__logo,.footer__logo{visibility:hidden!important;position:absolute!important}';
-    document.head.appendChild(style);
+
+    /* cache for instant apply on next visit */
+    try { localStorage.setItem('arilux_logo_cache', JSON.stringify({ url: src, ts: Date.now() })); } catch(e) {}
 
     /* header logo — original: 74px wide */
     var headerLogo = document.querySelector('.header__logo');
