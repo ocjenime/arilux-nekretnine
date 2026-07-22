@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   ARILUX NEKRETNINE — main.js
+   ARILUX NEKRETNINE - main.js
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -53,7 +53,7 @@
       if (floor <= totalFloors - 2) return r < 0.18 ? 'sold' : (r < 0.38 ? 'reserved' : 'available');
       return r < 0.15 ? 'reserved' : 'available';
     }
-    // "uskoro" zgrade — uglavnom slobodno
+    // "uskoro" zgrade - uglavnom slobodno
     return r < 0.12 ? 'reserved' : 'available';
   }
 
@@ -173,7 +173,7 @@
     moreWrap.hidden = all.length <= state.shown;
   }
 
-  // filteri — chips
+  // filteri - chips
   function bindChips(containerId, key) {
     var box = document.getElementById(containerId);
     box.addEventListener('click', function (e) {
@@ -255,7 +255,7 @@
 
   syncRange();
 
-  /* ── Modal — detalji stana ─────────────────────────────────── */
+  /* ── Modal - detalji stana ─────────────────────────────────── */
 
   var modalOverlay = document.getElementById('modalOverlay');
   var modalClose = document.getElementById('modalClose');
@@ -449,18 +449,18 @@
     note.hidden = false;
     if (!ok) {
       note.className = 'formnote formnote--err';
-      note.textContent = 'Molimo upišite ime i broj telefona — bez toga ne možemo stupiti u kontakt.';
+      note.textContent = 'Molimo upišite ime i broj telefona - bez toga ne možemo stupiti u kontakt.';
       return;
     }
 
-    var subject = 'Upit za stan — ' + building.value + ' (' + name.value.trim() + ')';
+    var subject = 'Upit za stan - ' + building.value + ' (' + name.value.trim() + ')';
     var body =
       'Ime i prezime: ' + name.value.trim() + '\n' +
       'Telefon: ' + phone.value.trim() + '\n' +
-      'E-mail: ' + (email.value.trim() || '—') + '\n' +
+      'E-mail: ' + (email.value.trim() || '-') + '\n' +
       'Zgrada: ' + building.value + '\n\n' +
-      'Poruka:\n' + (msg.value.trim() || '—') + '\n\n' +
-      '— Poslano sa stranice Arilux Nekretnine';
+      'Poruka:\n' + (msg.value.trim() || '-') + '\n\n' +
+      '- Poslano sa stranice Arilux Nekretnine';
 
     window.location.href = 'mailto:info@arilux.ba?subject=' +
       encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
