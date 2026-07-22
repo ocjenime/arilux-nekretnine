@@ -96,10 +96,10 @@
   function applyLogo(src) {
     if (!src) return;
     var style = document.createElement('style');
-    style.textContent = '.header__logomark svg,.dark__logo,.footer__logo{display:none!important}';
+    style.textContent = '.header__logomark svg{display:none!important}.dark__logo,.footer__logo{visibility:hidden!important;position:absolute!important}';
     document.head.appendChild(style);
 
-    /* header logo */
+    /* header logo — original: 74px wide */
     var headerLogo = document.querySelector('.header__logo');
     if (headerLogo) {
       var logomark = headerLogo.querySelector('.header__logomark');
@@ -113,26 +113,24 @@
       }
     }
 
-    /* dark section logo */
+    /* dark section logo — original: min(420px, 80%) */
     var darkLogo = document.querySelector('.dark__logo');
     if (darkLogo) {
       var dImg = document.createElement('img');
       dImg.src = src;
       dImg.alt = 'Arilux';
-      dImg.className = 'dark__logo';
-      dImg.style.cssText = 'width:min(420px,80%);object-fit:contain;filter:drop-shadow(0 30px 80px rgba(242,103,33,.25))';
-      darkLogo.parentNode.replaceChild(dImg, darkLogo);
+      dImg.style.cssText = 'width:min(420px,80%);height:auto;object-fit:contain;filter:drop-shadow(0 30px 80px rgba(242,103,33,.25))';
+      darkLogo.parentNode.insertBefore(dImg, darkLogo);
     }
 
-    /* footer logo */
+    /* footer logo — original: 64px wide */
     var footerLogo = document.querySelector('.footer__logo');
     if (footerLogo) {
       var fImg = document.createElement('img');
       fImg.src = src;
       fImg.alt = 'Arilux';
-      fImg.className = 'footer__logo';
       fImg.style.cssText = 'width:64px;height:auto;object-fit:contain;margin-bottom:14px';
-      footerLogo.parentNode.replaceChild(fImg, footerLogo);
+      footerLogo.parentNode.insertBefore(fImg, footerLogo);
     }
   }
 
