@@ -126,7 +126,7 @@ ul, ol { list-style: none; }
 .btn--ghost-blue { border-color: var(--line); color: var(--ink); }
 .btn--ghost-blue:hover { border-color: var(--blue); color: var(--blue); }
 
-.btn--sm { padding: 10px 18px; font-size: 11px; }
+.btn--sm { padding: 12px 22px; font-size: 12px; }
 .btn--full { width: 100%; }
 
 /* ── Topbar ──────────────────────────────────────────────────── */
@@ -1538,9 +1538,9 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 @media (max-width: 640px) {
   .header__logotext { display: none; }
   .header__subtext { display: block; white-space: nowrap; font-family: var(--font-d); font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); border-left: 1px solid var(--line-light); padding-left: 12px; }
-  .header__actions .btn { display: none; }
   .header__burger { display: flex !important; }
   .header__burger span { background: #fff; }
+  .header__actions .btn--sm { padding: 8px 14px; font-size: 10px; }
   .topbar__group { gap: 14px; }
   .topbar__item:nth-child(3) { display: none; }
   .hero { min-height: 0; }
