@@ -299,6 +299,100 @@
   var galIdx = 0;
   var galTotal = 0;
 
+  function generateFloorplan(rooms) {
+    var w = 420, h = 300, p = 16;
+    var wall = 'stroke="#0B1220" stroke-width="2.5" fill="none"';
+    var thin = 'stroke="#0B1220" stroke-width="1.2" fill="none"';
+    var door = 'stroke="#F26721" stroke-width="1.8" fill="none" stroke-dasharray="4,3"';
+    var label = 'font-family="Inter,sans-serif" font-size="11" fill="#7A869E" text-anchor="middle"';
+    var roomLabel = 'font-family="Archivo,sans-serif" font-weight="700" font-size="12" fill="#3E4A61" text-anchor="middle"';
+    var dim = 'font-family="Inter,sans-serif" font-size="9" fill="#B0B8C8" text-anchor="middle"';
+
+    var rooms1 =
+      '<rect x="' + p + '" y="' + p + '" width="' + (w - p * 2) + '" height="' + (h - p * 2) + '" ' + wall + '/>' +
+      '<line x1="' + (w * 0.55) + '" y1="' + p + '" x2="' + (w * 0.55) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<line x1="' + p + '" y1="' + (h * 0.52) + '" x2="' + (w * 0.55) + '" y2="' + (h * 0.52) + '" ' + thin + '/>' +
+      '<text x="' + (w * 0.28) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Dnevni boravak</text>' +
+      '<text x="' + (w * 0.28) + '" y="' + (h * 0.34) + '" ' + dim + '>' + Math.round(rooms === 1 ? 28 : 32) + ' m²</text>' +
+      '<text x="' + (w * 0.78) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća</text>' +
+      '<text x="' + (w * 0.78) + '" y="' + (h * 0.34) + '" ' + dim + '>' + Math.round(rooms === 1 ? 14 : 18) + ' m²</text>' +
+      '<text x="' + (w * 0.28) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
+      '<text x="' + (w * 0.78) + '" y="' + (h * 0.68) + '" ' + roomLabel + '>Kupatilo</text>' +
+      '<text x="' + (w * 0.78) + '" y="' + (h * 0.74) + '" ' + dim + '>4 m²</text>' +
+      '<circle cx="' + (w * 0.55) + '" cy="' + (h * 0.42) + '" r="5" fill="#F26721" opacity=".7"/>' +
+      '<line x1="' + (w * 0.53) + '" y1="' + (h * 0.38) + '" x2="' + (w * 0.60) + '" y2="' + (h * 0.46) + '"' + door + '/>';
+
+    var rooms2 =
+      '<rect x="' + p + '" y="' + p + '" width="' + (w - p * 2) + '" height="' + (h - p * 2) + '" ' + wall + '/>' +
+      '<line x1="' + (w * 0.42) + '" y1="' + p + '" x2="' + (w * 0.42) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<line x1="' + p + '" y1="' + (h * 0.52) + '" x2="' + (w * 0.42) + '" y2="' + (h * 0.52) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.42) + '" y1="' + (h * 0.55) + '" x2="' + (w - p) + '" y2="' + (h * 0.55) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.72) + '" y1="' + (h * 0.55) + '" x2="' + (w * 0.72) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<text x="' + (w * 0.21) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Dnevni</text>' +
+      '<text x="' + (w * 0.21) + '" y="' + (h * 0.34) + '" ' + dim + '>24 m²</text>' +
+      '<text x="' + (w * 0.21) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
+      '<text x="' + (w * 0.57) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća 1</text>' +
+      '<text x="' + (w * 0.57) + '" y="' + (h * 0.34) + '" ' + dim + '>14 m²</text>' +
+      '<text x="' + (w * 0.57) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 2</text>' +
+      '<text x="' + (w * 0.57) + '" y="' + (h * 0.80) + '" ' + dim + '>12 m²</text>' +
+      '<text x="' + (w * 0.87) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kupatilo</text>' +
+      '<circle cx="' + (w * 0.42) + '" cy="' + (h * 0.52) + '" r="5" fill="#F26721" opacity=".7"/>' +
+      '<line x1="' + (w * 0.40) + '" y1="' + (h * 0.48) + '" x2="' + (w * 0.47) + '" y2="' + (h * 0.56) + '"' + door + '/>';
+
+    var rooms3 =
+      '<rect x="' + p + '" y="' + p + '" width="' + (w - p * 2) + '" height="' + (h - p * 2) + '" ' + wall + '/>' +
+      '<line x1="' + (w * 0.36) + '" y1="' + p + '" x2="' + (w * 0.36) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.68) + '" y1="' + p + '" x2="' + (w * 0.68) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<line x1="' + p + '" y1="' + (h * 0.5) + '" x2="' + (w * 0.36) + '" y2="' + (h * 0.5) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.36) + '" y1="' + (h * 0.52) + '" x2="' + (w - p) + '" y2="' + (h * 0.52) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.52) + '" y1="' + (h * 0.52) + '" x2="' + (w * 0.52) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<text x="' + (w * 0.18) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Dnevni</text>' +
+      '<text x="' + (w * 0.18) + '" y="' + (h * 0.34) + '" ' + dim + '>26 m²</text>' +
+      '<text x="' + (w * 0.18) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
+      '<text x="' + (w * 0.52) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća 1</text>' +
+      '<text x="' + (w * 0.52) + '" y="' + (h * 0.34) + '" ' + dim + '>14 m²</text>' +
+      '<text x="' + (w * 0.52) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo</text>' +
+      '<text x="' + (w * 0.84) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća 2</text>' +
+      '<text x="' + (w * 0.84) + '" y="' + (h * 0.34) + '" ' + dim + '>12 m²</text>' +
+      '<text x="' + (w * 0.84) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 3</text>' +
+      '<text x="' + (w * 0.84) + '" y="' + (h * 0.80) + '" ' + dim + '>11 m²</text>' +
+      '<text x="' + (w * 0.66) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo 2</text>' +
+      '<circle cx="' + (w * 0.36) + '" cy="' + (h * 0.50) + '" r="5" fill="#F26721" opacity=".7"/>' +
+      '<line x1="' + (w * 0.34) + '" y1="' + (h * 0.46) + '" x2="' + (w * 0.41) + '" y2="' + (h * 0.54) + '"' + door + '/>';
+
+    var rooms4 =
+      '<rect x="' + p + '" y="' + p + '" width="' + (w - p * 2) + '" height="' + (h - p * 2) + '" ' + wall + '/>' +
+      '<line x1="' + (w * 0.33) + '" y1="' + p + '" x2="' + (w * 0.33) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.62) + '" y1="' + p + '" x2="' + (w * 0.62) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<line x1="' + p + '" y1="' + (h * 0.48) + '" x2="' + (w * 0.33) + '" y2="' + (h * 0.48) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.33) + '" y1="' + (h * 0.5) + '" x2="' + (w - p) + '" y2="' + (h * 0.5) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.48) + '" y1="' + (h * 0.5) + '" x2="' + (w * 0.48) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<line x1="' + (w * 0.62) + '" y1="' + (h * 0.5) + '" x2="' + (w * 0.62) + '" y2="' + (h - p) + '" ' + thin + '/>' +
+      '<text x="' + (w * 0.17) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>Dnevni</text>' +
+      '<text x="' + (w * 0.17) + '" y="' + (h * 0.32) + '" ' + dim + '>30 m²</text>' +
+      '<text x="' + (w * 0.17) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
+      '<text x="' + (w * 0.41) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>Spavaća 1</text>' +
+      '<text x="' + (w * 0.41) + '" y="' + (h * 0.32) + '" ' + dim + '>16 m²</text>' +
+      '<text x="' + (w * 0.41) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo</text>' +
+      '<text x="' + (w * 0.75) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>Spavaća 2</text>' +
+      '<text x="' + (w * 0.75) + '" y="' + (h * 0.32) + '" ' + dim + '>13 m²</text>' +
+      '<text x="' + (w * 0.55) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 3</text>' +
+      '<text x="' + (w * 0.55) + '" y="' + (h * 0.80) + '" ' + dim + '>11 m²</text>' +
+      '<text x="' + (w * 0.81) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 4</text>' +
+      '<text x="' + (w * 0.81) + '" y="' + (h * 0.80) + '" ' + dim + '>10 m²</text>' +
+      '<text x="' + (w * 0.73) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo 2</text>' +
+      '<circle cx="' + (w * 0.33) + '" cy="' + (h * 0.48) + '" r="5" fill="#F26721" opacity=".7"/>' +
+      '<line x1="' + (w * 0.31) + '" y1="' + (h * 0.44) + '" x2="' + (w * 0.38) + '" y2="' + (h * 0.52) + '"' + door + '/>';
+
+    var svg = rooms === 1 ? rooms1 : rooms === 2 ? rooms2 : rooms === 3 ? rooms3 : rooms4;
+
+    return '<svg viewBox="0 0 ' + w + ' ' + h + '" class="fp__svg">' +
+      '<rect width="' + w + '" height="' + h + '" fill="#F8F9FB" rx="6"/>' +
+      svg +
+      '<text x="' + (w / 2) + '" y="' + (h - 4) + '" ' + dim + ' font-size="8" letter-spacing=".12em">TLOCRT - NIJE MJERITVEN</text>' +
+      '</svg>';
+  }
+
   function renderGallery(bid) {
     var imgs = GAL_IMAGES[bid] || GAL_IMAGES.one;
     var view = document.getElementById('galView');
@@ -335,6 +429,9 @@
   function openModal(apt) {
     var totalFloors = getBuildingTotalFloors(apt.building);
     var floorLabel = apt.floor === 1 ? 'Prizemlje' : (FLOOR_LABEL[apt.floor] || apt.floor + '.') + ' sprat';
+    var baths = apt.rooms <= 2 ? 1 : 2;
+    var balcony = apt.rooms >= 2 ? 'Da' : 'Ne';
+    var orient = ['Jug', 'Sjever', 'Istok', 'Zapad'][(apt.floor + apt.rooms) % 4];
 
     document.getElementById('modalId').textContent = apt.id + (apt.penthouse ? ' · Penthouse' : '');
     var badge = document.getElementById('modalBadge');
@@ -346,12 +443,17 @@
     document.getElementById('modalTitle').innerHTML = titleLine + '<br><em>' + apt.area + ' m²</em>';
     document.getElementById('modalSub').textContent = floorLabel + ' · ' + totalFloors + ' spratova ukupno' + (apt.penthouse ? ' · Penthouse stan' : '');
 
+    document.getElementById('modalFloorplan').innerHTML = generateFloorplan(apt.rooms);
+
     renderGallery(apt.building);
 
     document.getElementById('modalSpecs').innerHTML =
       '<div class="modal__spec"><dt>Sprat</dt><dd>' + apt.floor + '. <small>/ ' + totalFloors + '</small></dd></div>' +
       '<div class="modal__spec"><dt>Kvadratura</dt><dd>' + apt.area + ' <small>m²</small></dd></div>' +
-      '<div class="modal__spec"><dt>Sobe</dt><dd>' + apt.rooms + ' <small>' + (apt.rooms === 1 ? 'soba' : 'sobe') + '</small></dd></div>';
+      '<div class="modal__spec"><dt>Sobe</dt><dd>' + apt.rooms + ' <small>' + (apt.rooms === 1 ? 'soba' : 'sobe') + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>Kupatila</dt><dd>' + baths + ' <small>' + (baths === 1 ? 'kupatilo' : 'kupatila') + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>Balkon</dt><dd>' + balcony + '</dd></div>' +
+      '<div class="modal__spec"><dt>Orijentacija</dt><dd style="font-size:clamp(18px,2vw,24px)">' + orient + '</dd></div>';
 
     document.getElementById('modalPrice').innerHTML =
       '<span class="modal__priceval">' + fmt(apt.price) + ' KM</span>' +

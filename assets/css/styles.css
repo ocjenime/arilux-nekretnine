@@ -1253,7 +1253,15 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .modal__sub {
   font-size: 16px;
   color: var(--ink-3);
-  margin-bottom: 40px;
+  margin-bottom: 24px;
+}
+
+.fp { margin-bottom: 28px; }
+.fp__svg {
+  width: 100%;
+  border-radius: calc(var(--r) + 2px);
+  border: 1px solid var(--line);
+  display: block;
 }
 
 .modal__divider {
