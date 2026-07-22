@@ -1609,121 +1609,30 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 
 @media (max-width: 640px) and (orientation: landscape) {
   html { background: var(--navy-2); }
-  html, body { overflow-x: hidden; width: 100%; }
+  html, body { overflow-x: hidden; }
   .topbar { display: none; }
   .header__inner { min-height: 44px; }
-  .header__logomark svg { width: 46px; }
-  .header__logotext { display: none; }
-  .header__subtext { display: block; font-size: 9px; padding-left: 8px; }
+  .header__nav { display: flex; gap: 2px; }
   .header__link { font-size: 10px; padding: 6px 8px; }
-  .header__actions .btn--sm { padding: 6px 12px; font-size: 9px; }
   .header__burger { display: none !important; }
-
+  .header__actions .btn { display: none; }
   .hero { min-height: 100vh; min-height: 100dvh; }
-  .hero__inner { padding: 20px 20px; display: flex; flex-direction: column; justify-content: center; }
-  .hero__title { font-size: clamp(22px, 5.5vw, 34px); margin-bottom: 8px; }
-  .hero__lead { font-size: 11px; margin-bottom: 10px; max-width: 100%; line-height: 1.4; }
-  .hero__cta { margin-bottom: 12px; gap: 8px; flex-direction: row; flex-wrap: wrap; }
-  .hero__cta .btn { padding: 8px 14px; font-size: 9px; width: auto; flex: 0 1 auto; }
-  .hero__stats { gap: 8px; padding-top: 10px; grid-template-columns: repeat(4, 1fr); border-top-width: 1px; }
-  .hero__stats dd { font-size: clamp(16px, 3vw, 24px); }
-  .hero__stats dt { font-size: 8px; letter-spacing: .06em; }
-  .hero__skyline, .hero__scrollhint, .hero__glow, .hero__grid { display: none; }
-
-  .marquee { padding-block: 6px; }
-  .marquee__track span { font-size: 10px; letter-spacing: .1em; }
-
-  .section { padding: 24px 20px; }
-  .section__head { margin-bottom: 16px; }
-  .section__title { font-size: clamp(18px, 3.5vw, 26px); margin-bottom: 6px; }
-  .section__lead { font-size: 11px; line-height: 1.5; }
-
-  .buildings { gap: 20px; padding: 0 20px; }
-  .building { gap: 16px; grid-template-columns: 1fr 1fr; }
-  .building__media { aspect-ratio: 4/3; }
-  .building__name { font-size: clamp(16px, 2.5vw, 22px); margin-bottom: 2px; }
-  .building__loc { font-size: 10px; margin-bottom: 8px; }
-  .building__desc { font-size: 11px; margin-bottom: 10px; line-height: 1.5; }
-  .building__specs { grid-template-columns: repeat(4, 1fr); margin-bottom: 12px; }
-  .building__specs li { padding: 8px 6px 6px 0; font-size: 9px; }
-  .building__specs b { font-size: 13px; margin-bottom: 1px; }
-  .building__foot { gap: 8px; }
-  .building__price { font-size: 11px; }
-  .building__price strong { font-size: 15px; }
-
-  .band { padding: 16px 20px; }
-  .band__inner { gap: 12px; }
-  .band__item { padding-left: 10px; border-left-width: 1.5px; }
-  .band__item b { font-size: clamp(18px, 3.5vw, 28px); }
-  .band__item span { font-size: 9px; }
-
-  .finder { padding: 12px; margin: 0 20px; }
-  .finder__filters { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .finder__label { font-size: 9px; margin-bottom: 4px; }
-  .chip { font-size: 10px; padding: 5px 10px; }
-  .finder__grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .apt { padding: 12px; gap: 8px; }
-  .apt__id { font-size: 12px; }
-  .apt__building { font-size: 9px; }
-  .apt__specs { font-size: 11px; gap: 8px; }
-  .apt__price b { font-size: 15px; }
-  .apt__price small { font-size: 10px; }
-  .apt__cta { font-size: 10px; }
-
-  .lifestyle { min-height: 120px; }
-  .lifestyle__inner { padding: 12px 20px; }
-  .lifestyle__title { font-size: clamp(16px, 3.5vw, 22px); margin-bottom: 4px; }
-  .lifestyle__lead { font-size: 10px; }
-
-  .steps { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 20px; }
-  .step { padding: 10px 8px 4px 0; border-top-width: 1.5px; margin-right: 8px; }
-  .step__num { font-size: 10px; margin-bottom: 4px; }
-  .step h3 { font-size: 12px; margin-bottom: 2px; }
-  .step p { font-size: 10px; line-height: 1.35; }
-
-  .perks { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 20px; }
-  .perk { padding: 12px; border-left-width: 2px; }
-  .perk h3 { font-size: 12px; margin-bottom: 2px; }
-  .perk p { font-size: 10px; }
-
-  .dark { padding: 24px 20px; }
-  .dark__lead { font-size: 11px; margin-bottom: 12px; }
-  .dark__list li { font-size: 11px; padding: 6px 0 6px 20px; }
-  .dark__list li::before { width: 10px; height: 6px; }
-  .dark__logo { width: min(160px, 50%); }
-  .dark__badge { padding: 8px 12px; transform: rotate(-2deg); }
-  .dark__badge b { font-size: 14px; }
-  .dark__badge span { font-size: 9px; }
-
-  .contact { gap: 16px; padding: 0 20px; }
-  .contact__lead { font-size: 12px; margin-bottom: 12px; }
-  .contact__cards { gap: 6px; }
-  .contact__card { padding: 10px; }
-  .contact__card span { font-size: 8px; }
-  .contact__card b { font-size: 11px; }
-  .contact__form { padding: 16px; }
-  .contact__formtitle { font-size: 18px; margin-bottom: 12px; }
-  .formfield label { font-size: 9px; margin-bottom: 4px; }
-  .formfield input, .formfield select, .formfield textarea { font-size: 12px; padding: 8px 10px; }
-  .formfield textarea { min-height: 60px; }
-  .formrow { gap: 8px; }
-
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px 20px 12px; }
-  .footer__logo { width: 40px; margin-bottom: 8px; }
-  .footer__brand p { font-size: 10px; margin-bottom: 8px; line-height: 1.45; }
-  .footer__social a { width: 26px; height: 26px; }
-  .footer__social svg { width: 12px; height: 12px; }
-  .footer__col h4 { font-size: 9px; margin-bottom: 8px; }
-  .footer__col a { font-size: 10px; padding-block: 2px; }
-  .footer__addr { font-size: 10px; padding-top: 4px; }
-  .footer__bottom { padding-block: 8px; }
-  .footer__bottominner { font-size: 9px; }
-
-  .modal-overlay { padding: 0; align-items: flex-end; }
-  .modal { max-height: 92vh; border-radius: 8px 8px 0 0; }
-  .modal__header { padding: 14px 16px; }
-  .modal__body { padding: 16px; }
-  .modal__footer { padding: 12px 16px; }
+  .hero__inner { padding: 16px 20px; }
+  .hero__title { font-size: clamp(22px, 5vw, 32px); }
+  .hero__lead { font-size: 11px; }
+  .hero__cta .btn { padding: 8px 14px; font-size: 10px; }
+  .hero__stats { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .hero__stats dd { font-size: clamp(16px, 3vw, 22px); }
+  .hero__stats dt { font-size: 8px; }
+  .hero__skyline, .hero__scrollhint, .hero__glow { display: none; }
+  .section { padding: 28px 20px; }
+  .finder { margin: 0 20px; padding: 16px; }
+  .finder__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .buildings { padding: 0 20px; }
+  .steps { grid-template-columns: repeat(3, 1fr); padding: 0 20px; gap: 10px; }
+  .perks { grid-template-columns: repeat(3, 1fr); padding: 0 20px; gap: 10px; }
+  .contact { padding: 0 20px; }
+  .footer__grid { padding: 20px 20px 12px; }
 }
 
 /* ── Reduced motion ──────────────────────────────────────────── */
