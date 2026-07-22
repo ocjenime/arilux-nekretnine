@@ -15,6 +15,7 @@
 
   var ROOM_AREA = { 1: [45, 54], 2: [60, 74], 3: [85, 104], 4: [118, 148] };
   var ROOM_LABEL = { 1: 'Jednosoban', 2: 'Dvosoban', 3: 'Trosoban', 4: 'Četverosoban' };
+  var FLOOR_LABEL = { 1: 'Prizemlje', 2: 'Prvi', 3: 'Drugi', 4: 'Treći', 5: 'Četvrti', 6: 'Peti', 7: 'Šesti', 8: 'Sedmi', 9: 'Osmi' };
 
   // plan spratova: niz soba po stanu za svaki sprat
   var PLANS = {
@@ -236,20 +237,108 @@
     });
   });
 
-  // "Rezerviši" na kartici stana → predefiniši formu
+  // klik na karticu stana → otvori modal
   grid.addEventListener('click', function (e) {
-    var link = e.target.closest('[data-apt]');
-    if (!link) return;
-    var sel = document.getElementById('fBuilding');
-    var bName = BUILDINGS[link.dataset.building].name;
-    for (var i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].value === bName) { sel.selectedIndex = i; break; }
+    var cta = e.target.closest('[data-apt]');
+    if (cta) {
+      e.preventDefault();
+      e.stopPropagation();
     }
-    var msg = document.getElementById('fMsg');
-    msg.value = 'Zanima me stan ' + link.dataset.apt + ' (' + bName + '). Molim vas za više informacija i termin razgovora.';
+    var card = e.target.closest('.apt');
+    if (!card) return;
+    var id = card.querySelector('.apt__id');
+    if (!id) return;
+    var rawId = id.textContent.replace(/\s*·\s*PH$/, '').trim();
+    var apt = APARTMENTS.find(function (a) { return a.id === rawId; });
+    if (apt) openModal(apt);
   });
 
   syncRange();
+
+  /* ── Modal — detalji stana ─────────────────────────────────── */
+
+  var modalOverlay = document.getElementById('modalOverlay');
+  var modalClose = document.getElementById('modalClose');
+
+  var BUILDING_INC = {
+    one: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Balkon', 'Podzemna garaža', 'Poslovni prostori u prizemlju'],
+    park: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Privatni parking', 'Dječije igralište', 'Terase sa pogledom na park'],
+    centar: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Lift', 'Poslovni prostori', 'Garaža u podnožju'],
+    panorama: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Terase', 'Krovne terase (PH)', 'Panoramski pogled']
+  };
+
+  function getBuildingTotalFloors(bid) { return PLANS[bid].length; }
+
+  function openModal(apt) {
+    var totalFloors = getBuildingTotalFloors(apt.building);
+    var floorLabel = apt.floor === 1 ? 'Prizemlje' : (FLOOR_LABEL[apt.floor] || apt.floor + '.') + ' sprat';
+
+    document.getElementById('modalId').textContent = apt.id + (apt.penthouse ? ' · Penthouse' : '');
+    var badge = document.getElementById('modalBadge');
+    badge.textContent = STATUS_LABEL[apt.status];
+    badge.className = 'modal__badge modal__badge--' + apt.status;
+    document.getElementById('modalBldg').textContent = apt.buildingName;
+
+    var titleLine = ROOM_LABEL[apt.rooms];
+    document.getElementById('modalTitle').innerHTML = titleLine + '<br><em>' + apt.area + ' m²</em>';
+    document.getElementById('modalSub').textContent = floorLabel + ' · ' + totalFloors + ' spratova ukupno' + (apt.penthouse ? ' · Penthouse stan' : '');
+
+    document.getElementById('modalSpecs').innerHTML =
+      '<div class="modal__spec"><dt>Sprat</dt><dd>' + apt.floor + '. <small>/ ' + totalFloors + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>Kvadratura</dt><dd>' + apt.area + ' <small>m²</small></dd></div>' +
+      '<div class="modal__spec"><dt>Sobe</dt><dd>' + apt.rooms + ' <small>' + (apt.rooms === 1 ? 'soba' : 'sobe') + '</small></dd></div>';
+
+    document.getElementById('modalPrice').innerHTML =
+      '<span class="modal__priceval">' + fmt(apt.price) + ' KM</span>' +
+      '<span class="modal__priceper">' + fmt(apt.m2) + ' KM/m²</span>';
+
+    var inc = BUILDING_INC[apt.building] || [];
+    document.getElementById('modalInc').innerHTML = inc.map(function (item) {
+      return '<div class="modal__incitem">' + item + '</div>';
+    }).join('');
+
+    var footer = document.getElementById('modalFooter');
+    if (apt.status === 'available') {
+      footer.innerHTML =
+        '<a href="#kontakt" class="btn btn--orange" id="modalReserve">Rezerviši stan <span aria-hidden="true">→</span></a>' +
+        '<a href="tel:+38737772000" class="btn btn--blue">Pozovi: +387 37 772 000</a>';
+      document.getElementById('modalReserve').addEventListener('click', function () {
+        closeModal();
+        var sel = document.getElementById('fBuilding');
+        var bName = BUILDINGS[apt.building].name;
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === bName) { sel.selectedIndex = i; break; }
+        }
+        document.getElementById('fMsg').value = 'Zanima me stan ' + apt.id + ' (' + bName + '), ' + apt.area + ' m². Molim vas za više informacija i termin razgovora.';
+        document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+      });
+    } else if (apt.status === 'reserved') {
+      footer.innerHTML =
+        '<a href="tel:+38737772000" class="btn btn--blue">Pozovi: +387 37 772 000</a>' +
+        '<a href="mailto:info@arilux.ba" class="btn btn--ghost-blue">Pošalji upit za listu čekanja</a>';
+    } else {
+      footer.innerHTML =
+        '<a href="tel:+38737772000" class="btn btn--ghost-blue">Pozovi za slične stanove</a>';
+    }
+
+    modalOverlay.classList.add('is-open');
+    modalOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('is-open');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', function (e) {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('is-open')) closeModal();
+  });
 
   /* ── Reveal animacije ───────────────────────────────────────── */
 
