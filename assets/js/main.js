@@ -7,7 +7,7 @@
   /* ── Podaci: 4 zgrade, 102 stana ────────────────────────────── */
 
   var BUILDINGS = {
-    one:      { name: 'Arilux One',      loc: 'Centar',   base: 3700, letter: 'ONE' },
+    one:      { name: 'Arilux One',      loc: 'Centar',   base: 4500, letter: 'ONE' },
     park:     { name: 'Arilux Park',     loc: 'Uz park',  base: 3500, letter: 'PRK' },
     centar:   { name: 'Arilux Centar',   loc: 'Trg',      base: 4000, letter: 'CNT' },
     panorama: { name: 'Arilux Panorama', loc: 'Grabik',   base: 4500, letter: 'PAN' }
