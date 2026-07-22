@@ -1597,6 +1597,8 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 @media (max-width: 640px) and (orientation: landscape) {
+  html { background: var(--blue); }
+  html, body { overflow-x: hidden; width: 100%; }
   .topbar { display: none; }
   .header__inner { min-height: 48px; }
   .header__logomark svg { width: 50px; }
@@ -1605,7 +1607,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .header__actions .btn--sm { padding: 6px 12px; font-size: 9px; }
 
   .hero { min-height: 100vh; min-height: 100dvh; }
-  .hero__inner { padding-block: 16px 20px; display: flex; flex-direction: column; justify-content: center; }
+  .hero__inner { padding: 16px 16px 20px; display: flex; flex-direction: column; justify-content: center; }
   .hero__title { font-size: clamp(24px, 6vw, 36px); margin-bottom: 10px; }
   .hero__lead { font-size: 12px; margin-bottom: 12px; max-width: 100%; line-height: 1.4; }
   .hero__cta { margin-bottom: 16px; gap: 8px; flex-direction: row; flex-wrap: wrap; }
@@ -1620,12 +1622,12 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .marquee { padding-block: 8px; }
   .marquee__track span { font-size: 11px; }
 
-  .section { padding-block: 28px; }
+  .section { padding: 28px 16px; }
   .section__head { margin-bottom: 24px; }
   .section__title { font-size: clamp(22px, 4vw, 30px); margin-bottom: 10px; }
   .section__lead { font-size: 12px; }
 
-  .buildings { gap: 24px; }
+  .buildings { gap: 24px; padding: 0 16px; }
   .building { gap: 20px; }
   .building__media { aspect-ratio: 16/10; }
   .building__name { font-size: clamp(18px, 3vw, 24px); }
@@ -1637,13 +1639,13 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .building__price { font-size: 12px; }
   .building__price strong { font-size: 16px; }
 
-  .band { padding-block: 24px; }
+  .band { padding: 24px 16px; }
   .band__inner { gap: 16px; }
   .band__item { padding-left: 14px; }
   .band__item b { font-size: clamp(22px, 4vw, 32px); }
   .band__item span { font-size: 10px; }
 
-  .finder { padding: 16px; }
+  .finder { padding: 16px; margin: 0 16px; }
   .finder__filters { grid-template-columns: 1fr 1fr; gap: 10px; }
   .finder__label { font-size: 10px; margin-bottom: 6px; }
   .chip { font-size: 11px; padding: 6px 12px; }
@@ -1655,29 +1657,29 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .apt__price b { font-size: 17px; }
 
   .lifestyle { min-height: 160px; }
-  .lifestyle__inner { padding-block: 16px; }
+  .lifestyle__inner { padding: 16px 16px; }
   .lifestyle__title { font-size: clamp(18px, 4vw, 26px); margin-bottom: 8px; }
   .lifestyle__lead { font-size: 11px; }
 
-  .steps { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; }
   .step { padding: 12px 10px 6px 0; border-top-width: 1.5px; margin-right: 10px; }
   .step__num { font-size: 12px; margin-bottom: 6px; }
   .step h3 { font-size: 13px; margin-bottom: 4px; }
   .step p { font-size: 11px; line-height: 1.4; }
 
-  .perks { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .perks { grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; }
   .perk { padding: 14px; }
   .perk h3 { font-size: 13px; margin-bottom: 4px; }
   .perk p { font-size: 11px; }
 
-  .dark { padding-block: 32px; }
+  .dark { padding: 32px 16px; }
   .dark__lead { font-size: 12px; margin-bottom: 16px; }
   .dark__list li { font-size: 12px; padding: 8px 0 8px 24px; }
   .dark__logo { width: min(200px, 60%); }
   .dark__badge { padding: 10px 14px; }
   .dark__badge b { font-size: 16px; }
 
-  .contact { gap: 24px; }
+  .contact { gap: 24px; padding: 0 16px; }
   .contact__lead { font-size: 13px; margin-bottom: 20px; }
   .contact__cards { gap: 8px; }
   .contact__card { padding: 12px; }
@@ -1688,8 +1690,8 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .formfield label { font-size: 10px; }
   .formfield input, .formfield select, .formfield textarea { font-size: 13px; padding: 10px 12px; }
 
-  .footer { padding-top: 0; }
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: 20px; padding-block: 24px 16px; }
+  .footer { padding: 0; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px 16px 16px; }
   .footer__logo { width: 48px; margin-bottom: 10px; }
   .footer__brand p { font-size: 11px; margin-bottom: 10px; }
   .footer__social a { width: 28px; height: 28px; }
