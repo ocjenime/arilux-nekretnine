@@ -111,7 +111,7 @@
         var img = document.createElement('img');
         img.src = src;
         img.alt = 'Arilux';
-        img.style.cssText = 'width:74px;height:auto;object-fit:contain';
+        img.style.cssText = 'width:90px;height:auto;object-fit:contain';
         logomark.innerHTML = '';
         logomark.appendChild(img);
       }
@@ -133,7 +133,7 @@
       var fImg = document.createElement('img');
       fImg.src = src;
       fImg.alt = 'Arilux';
-      fImg.style.cssText = 'width:64px;height:auto;object-fit:contain;margin-bottom:14px';
+      fImg.style.cssText = 'width:85px;height:auto;object-fit:contain;margin-bottom:14px';
       footerLogo.parentNode.insertBefore(fImg, footerLogo);
     }
   }
