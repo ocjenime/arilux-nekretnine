@@ -1829,6 +1829,50 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 
 @keyframes pulse-marker { 0%, 100% { box-shadow: 0 0 0 2px var(--blue), 0 0 0 6px rgba(0,65,177,.2); } 50% { box-shadow: 0 0 0 2px var(--blue), 0 0 0 10px rgba(0,65,177,.08); } }
 
+/* Timeline building selector */
+.timeline__bldgs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.timeline__bldg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 100px;
+  background: #fff;
+  font-family: var(--font-d);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s, box-shadow .2s;
+}
+
+.timeline__bldg:hover { border-color: var(--ink-3); color: var(--ink); }
+
+.timeline__bldg.is-active {
+  border-color: var(--blue);
+  background: rgba(0,65,177,.06);
+  color: var(--blue);
+  box-shadow: 0 2px 12px rgba(0,65,177,.12);
+}
+
+.timeline__bldgdot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.timeline__bldg.is-active .timeline__bldgdot { box-shadow: 0 0 0 3px rgba(0,65,177,.15); }
+
 .timeline__card {
   background: #fff;
   border: 1px solid var(--line);

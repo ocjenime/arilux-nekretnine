@@ -738,44 +738,70 @@
     }, { passive: true });
   }
 
-  /* Timeline progress animation */
-  var timelineProgress = document.querySelector('.timeline__progress');
-  if (timelineProgress && 'IntersectionObserver' in window) {
-    var tlObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          timelineProgress.style.setProperty('--progress', '42%');
-          timelineProgress.classList.add('is-animating');
-          tlObs.unobserve(en.target);
-        }
+  /* ── Timeline per-building ──────────────────────────────────── */
+
+  var TL_PHASES = [
+    { id: 1, name: 'Projektovanje i dozvole', desc: 'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.' },
+    { id: 2, name: 'Temelji i konstrukcija', desc: 'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.' },
+    { id: 3, name: 'Vanjski radovi', desc: 'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.' },
+    { id: 4, name: 'Unutrašnji radovi', desc: 'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.' },
+    { id: 5, name: 'Završna obrada', desc: 'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.' },
+    { id: 6, name: 'Useljenje', desc: 'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.' }
+  ];
+
+  var TL_BUILDING = {
+    one:      [100, 100, 65, 0, 0, 0],
+    park:     [100, 100, 25, 0, 0, 0],
+    centar:   [100, 40,  0, 0, 0, 0],
+    panorama: [100, 0,   0, 0, 0, 0]
+  };
+
+  var timelineEl = document.getElementById('timeline');
+  var currentBldg = 'one';
+
+  function renderTimeline(bid) {
+    var data = TL_BUILDING[bid] || TL_BUILDING.one;
+    var html = '<div class="timeline__line" aria-hidden="true"><div class="timeline__progress"></div></div>';
+
+    data.forEach(function (pct, i) {
+      var phase = TL_PHASES[i];
+      var cls = pct === 100 ? ' timeline__item--done' : (pct > 0 ? ' timeline__item--active' : '');
+      html +=
+        '<div class="timeline__item' + cls + '" data-phase="' + phase.id + '">' +
+          '<div class="timeline__marker"></div>' +
+          '<div class="timeline__card">' +
+            '<span class="timeline__phase">Faza 0' + phase.id + '</span>' +
+            '<h3 class="timeline__title">' + phase.name + '</h3>' +
+            '<p class="timeline__desc">' + phase.desc + '</p>' +
+            '<div class="timeline__bar"><div class="timeline__fill" data-w="' + pct + '" style="width:0%"></div></div>' +
+            '<span class="timeline__pct">' + pct + '%</span>' +
+          '</div>' +
+        '</div>';
+    });
+
+    timelineEl.innerHTML = html;
+
+    /* animate fills in */
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        timelineEl.querySelectorAll('.timeline__fill').forEach(function (fill) {
+          fill.style.width = fill.dataset.w + '%';
+        });
       });
-    }, { threshold: 0.3 });
-    tlObs.observe(timelineProgress.parentElement);
-  } else if (timelineProgress) {
-    timelineProgress.style.setProperty('--progress', '42%');
-    timelineProgress.classList.add('is-animating');
+    });
   }
 
-  /* Timeline fill animations */
-  var timelineFills = document.querySelectorAll('.timeline__fill');
-  if (timelineFills.length && 'IntersectionObserver' in window) {
-    var fillObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          var fill = en.target;
-          var targetW = fill.style.width;
-          fill.style.width = '0%';
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-              fill.style.width = targetW;
-            });
-          });
-          fillObs.unobserve(fill);
-        }
-      });
-    }, { threshold: 0.4 });
-    timelineFills.forEach(function (f) { fillObs.observe(f); });
-  }
+  renderTimeline(currentBldg);
+
+  /* building selector clicks */
+  document.querySelectorAll('.timeline__bldg').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.timeline__bldg').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      currentBldg = btn.dataset.bldg;
+      renderTimeline(currentBldg);
+    });
+  });
 
   /* Location map interaction */
   var LOC_DATA = {

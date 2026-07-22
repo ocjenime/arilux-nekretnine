@@ -292,39 +292,42 @@
           <h2 class="section__title">Faze projekta</h2>
           <p class="section__lead">Pratite napredak izgradnje vašeg budućeg doma - od temelja do useljenja.</p>
         </header>
-        <div class="timeline reveal">
+        <div class="timeline__bldgs" id="timelineBldgs">
+          <button class="timeline__bldg is-active" data-bldg="one"><span class="timeline__bldgdot" style="background:#0041B1"></span>Amor</button>
+          <button class="timeline__bldg" data-bldg="park"><span class="timeline__bldgdot" style="background:#2FB57E"></span>Park</button>
+          <button class="timeline__bldg" data-bldg="centar"><span class="timeline__bldgdot" style="background:#F26721"></span>Centar</button>
+          <button class="timeline__bldg" data-bldg="panorama"><span class="timeline__bldgdot" style="background:#7B61FF"></span>Panorama</button>
+        </div>
+        <div class="timeline reveal" id="timeline">
           <div class="timeline__line" aria-hidden="true"><div class="timeline__progress"></div></div>
-          <div class="timeline__item timeline__item--done" data-phase="1">
+          <div class="timeline__item" data-phase="1">
             <div class="timeline__marker"></div>
             <div class="timeline__card">
               <span class="timeline__phase">Faza 01</span>
               <h3 class="timeline__title">Projektovanje i dozvole</h3>
               <p class="timeline__desc">Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.</p>
-              <div class="timeline__tags"><span class="timeline__tag timeline__tag--done">Amor</span><span class="timeline__tag timeline__tag--done">Park</span><span class="timeline__tag timeline__tag--done">Centar</span><span class="timeline__tag timeline__tag--done">Panorama</span></div>
-              <div class="timeline__bar"><div class="timeline__fill" style="width:100%"></div></div>
-              <span class="timeline__pct">100%</span>
+              <div class="timeline__bar"><div class="timeline__fill"></div></div>
+              <span class="timeline__pct"></span>
             </div>
           </div>
-          <div class="timeline__item timeline__item--done" data-phase="2">
+          <div class="timeline__item" data-phase="2">
             <div class="timeline__marker"></div>
             <div class="timeline__card">
               <span class="timeline__phase">Faza 02</span>
               <h3 class="timeline__title">Temelji i konstrukcija</h3>
               <p class="timeline__desc">Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.</p>
-              <div class="timeline__tags"><span class="timeline__tag timeline__tag--done">Amor</span><span class="timeline__tag timeline__tag--done">Park</span></div>
-              <div class="timeline__bar"><div class="timeline__fill" style="width:100%"></div></div>
-              <span class="timeline__pct">100%</span>
+              <div class="timeline__bar"><div class="timeline__fill"></div></div>
+              <span class="timeline__pct"></span>
             </div>
           </div>
-          <div class="timeline__item timeline__item--active" data-phase="3">
+          <div class="timeline__item" data-phase="3">
             <div class="timeline__marker"></div>
             <div class="timeline__card">
               <span class="timeline__phase">Faza 03</span>
               <h3 class="timeline__title">Vanjski radovi</h3>
               <p class="timeline__desc">Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.</p>
-              <div class="timeline__tags"><span class="timeline__tag timeline__tag--active">Amor</span><span class="timeline__tag">Park</span></div>
-              <div class="timeline__bar"><div class="timeline__fill" style="width:65%"></div></div>
-              <span class="timeline__pct">65%</span>
+              <div class="timeline__bar"><div class="timeline__fill"></div></div>
+              <span class="timeline__pct"></span>
             </div>
           </div>
           <div class="timeline__item" data-phase="4">
@@ -333,9 +336,8 @@
               <span class="timeline__phase">Faza 04</span>
               <h3 class="timeline__title">Unutrašnji radovi</h3>
               <p class="timeline__desc">Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.</p>
-              <div class="timeline__tags"><span class="timeline__tag">Amor</span><span class="timeline__tag">Park</span><span class="timeline__tag">Centar</span><span class="timeline__tag">Panorama</span></div>
-              <div class="timeline__bar"><div class="timeline__fill" style="width:0%"></div></div>
-              <span class="timeline__pct">0%</span>
+              <div class="timeline__bar"><div class="timeline__fill"></div></div>
+              <span class="timeline__pct"></span>
             </div>
           </div>
           <div class="timeline__item" data-phase="5">
@@ -344,9 +346,8 @@
               <span class="timeline__phase">Faza 05</span>
               <h3 class="timeline__title">Završna obrada</h3>
               <p class="timeline__desc">Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.</p>
-              <div class="timeline__tags"><span class="timeline__tag">Amor</span><span class="timeline__tag">Park</span><span class="timeline__tag">Centar</span><span class="timeline__tag">Panorama</span></div>
-              <div class="timeline__bar"><div class="timeline__fill" style="width:0%"></div></div>
-              <span class="timeline__pct">0%</span>
+              <div class="timeline__bar"><div class="timeline__fill"></div></div>
+              <span class="timeline__pct"></span>
             </div>
           </div>
           <div class="timeline__item" data-phase="6">
@@ -355,9 +356,8 @@
               <span class="timeline__phase">Faza 06</span>
               <h3 class="timeline__title">Useljenje</h3>
               <p class="timeline__desc">Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.</p>
-              <div class="timeline__tags"><span class="timeline__tag">Amor</span><span class="timeline__tag">Park</span><span class="timeline__tag">Centar</span><span class="timeline__tag">Panorama</span></div>
-              <div class="timeline__bar"><div class="timeline__fill" style="width:0%"></div></div>
-              <span class="timeline__pct">0%</span>
+              <div class="timeline__bar"><div class="timeline__fill"></div></div>
+              <span class="timeline__pct"></span>
             </div>
           </div>
         </div>
