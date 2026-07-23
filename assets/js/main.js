@@ -1022,32 +1022,66 @@
     return {};
   }
 
+  function getTourGallery() {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.tour3d && window.__ARILUX_JSON.tour3d.gallery) {
+      return window.__ARILUX_JSON.tour3d.gallery;
+    }
+    return {};
+  }
+
   var tourNames = getTourNames();
   var tourImages = getTourImages();
+  var tourGallery = getTourGallery();
   var defaultTourSrc = '';
   var tourImg = document.querySelector('.tour3d__img');
+  var currentGalleryIdx = 0;
+  var currentBuilding = 'one';
 
   if (tourImg) {
     defaultTourSrc = tourImg.src;
     var buildingKeys = ['one', 'park', 'centar', 'panorama'];
+
+    function showBuildingGallery(bk) {
+      currentBuilding = bk;
+      currentGalleryIdx = 0;
+      var imgs = tourGallery[bk] || tourImages[bk] ? [tourImages[bk]] : [];
+      if (tourGallery[bk] && tourGallery[bk].length > 0) imgs = tourGallery[bk];
+      if (imgs.length === 0) return;
+      tourImg.style.opacity = '0';
+      setTimeout(function () {
+        tourImg.src = imgs[0];
+        tourImg.style.opacity = '1';
+      }, 200);
+    }
+
     document.querySelectorAll('.tour3d__bldbtn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         document.querySelectorAll('.tour3d__bldbtn').forEach(function (b) { b.classList.remove('is-active'); });
         btn.classList.add('is-active');
-        var bk = btn.dataset.building;
-        if (tourImg && tourImages[bk]) {
-          tourImg.style.opacity = '0';
-          setTimeout(function () {
-            tourImg.src = tourImages[bk];
-            tourImg.style.opacity = '1';
-          }, 200);
-        }
+        showBuildingGallery(btn.dataset.building);
       });
     });
+
+    /* viewer click cycles through gallery images */
+    var tourViewer = document.querySelector('.tour3d__viewer');
+    if (tourViewer) {
+      tourViewer.addEventListener('click', function (e) {
+        if (e.target.closest('.tour3d__play')) return;
+        var imgs = tourGallery[currentBuilding] || [];
+        if (imgs.length <= 1) return;
+        currentGalleryIdx = (currentGalleryIdx + 1) % imgs.length;
+        tourImg.style.opacity = '0';
+        setTimeout(function () {
+          tourImg.src = imgs[currentGalleryIdx];
+          tourImg.style.opacity = '1';
+        }, 200);
+      });
+    }
+
     /* set initial active building */
-    if (buildingKeys.length > 0 && tourImages[buildingKeys[0]]) {
+    if (buildingKeys.length > 0) {
       var firstBtn = document.querySelector('.tour3d__bldbtn');
-      if (firstBtn) firstBtn.classList.add('is-active');
+      if (firstBtn) { firstBtn.classList.add('is-active'); currentBuilding = buildingKeys[0]; }
     }
   }
 
@@ -1091,21 +1125,24 @@
 
   /* 3D Tour feature cards → lightbox */
   var SVG_ICONS = [
-    '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/></svg>',
     '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
-    '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'
+    '<svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="56" height="56"><path d="M21 3H3v7h18V3zM21 14H3v7h18v-7z"/><line x1="12" y1="3" x2="12" y2="21"/></svg>'
   ];
 
   function getTourFeatureContent() {
     var defaultContent = [
-      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[0] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">360° Pogled</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Interaktivni 360° pogled kroz stan bit će dostupan nakon završetka izgradnje.</p></div>',
-      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[1] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">3D Model</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Trodimenzionalni model stana bit će spreman za interaktivno razgledanje nakon završetka radova.</p></div>',
-      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[2] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">Mjerne dimenzije</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Detaljni tlocrti sa tačnim dimenzijama svake prostorije biće dostupni u PDF formatu.</p></div>'
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[0] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">360° Pogled</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Okrenite se oko osi i pogledajte svaki kutak stana</p></div>',
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[1] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">3D Model</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Izgradite trodimenzionalni model prostora</p></div>',
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[2] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">Mjerne dimenzije</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Svaka prostorija sa tačnim dimenzijama u metrima</p></div>'
     ];
 
     if (window.__ARILUX_JSON && window.__ARILUX_JSON.tour3d && window.__ARILUX_JSON.tour3d.features) {
-      return window.__ARILUX_JSON.tour3d.features.map(function (f, i) {
-        var icon = SVG_ICONS[i % SVG_ICONS.length];
+      var feats = window.__ARILUX_JSON.tour3d.features;
+      var iconMap = { '360': 0, '3dmodel': 1, 'dimensions': 2 };
+      return feats.map(function (f, i) {
+        var iconIdx = iconMap[f.id] !== undefined ? iconMap[f.id] : i;
+        var icon = SVG_ICONS[iconIdx % SVG_ICONS.length];
         return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + icon + '<p style="font-size:20px;font-weight:700;margin-top:24px;">' + f.title + '</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">' + f.desc + '</p></div>';
       });
     }
