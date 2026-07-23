@@ -71,21 +71,64 @@
 
   /* ── Leaflet satellite map ─────────────────────────────── */
   var MAP_COLORS = { one: '#0041B1', park: '#2FB57E', centar: '#F26721', panorama: '#7B61FF' };
-  var MAP_LABELS = { one: 'A', park: 'P', centar: 'C', panorama: 'Pa' };
+  var MAP_LABELS = { one: 'Amor', park: 'Park', centar: 'Centar', panorama: 'Panorama' };
   var MAP_COORDS = {
-    one:      [45.1735, 15.8045],
-    park:     [45.1720, 15.8010],
-    centar:   [45.1735, 15.8080],
-    panorama: [45.1770, 15.8110]
+    one:      [45.183776, 15.807419],
+    park:     [45.184194, 15.801271],
+    centar:   [45.184554, 15.807756],
+    panorama: [45.183531, 15.792195]
   };
+  var MAP_FLOORS = { one: 6, park: 5, centar: 8, panorama: 4 };
   var lmap = null;
   var lmarkers = {};
+
+  function buildingIcon(bid) {
+    var color = MAP_COLORS[bid];
+    var label = MAP_LABELS[bid];
+    var floors = MAP_FLOORS[bid] || 4;
+    var h = 12 + floors * 6;
+    var w = 22;
+    var totalH = h + 18;
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + (w + 12) + '" height="' + (totalH + 8) + '" viewBox="0 0 ' + (w + 12) + ' ' + (totalH + 8) + '">';
+    /* shadow */
+    svg += '<ellipse cx="' + ((w + 12) / 2) + '" cy="' + (totalH + 4) + '" rx="10" ry="3" fill="rgba(0,0,0,.25)"/>';
+    /* pin stick */
+    svg += '<line x1="' + ((w + 12) / 2) + '" y1="' + (h + 2) + '" x2="' + ((w + 12) / 2) + '" y2="' + (totalH + 2) + '" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round"/>';
+    /* building body */
+    var bx = 6;
+    svg += '<rect x="' + bx + '" y="2" width="' + w + '" height="' + h + '" rx="3" fill="' + color + '"/>';
+    /* windows */
+    var cols = 3;
+    var rows = Math.min(floors, 6);
+    var ww = 4, wh = 4, gapX = (w - cols * ww) / (cols + 1), gapY = (h - 8) / (rows + 1);
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var wx = bx + gapX + c * (ww + gapX);
+        var wy = 6 + gapY + r * (wh + gapY);
+        svg += '<rect x="' + wx + '" y="' + wy + '" width="' + ww + '" height="' + wh + '" rx="1" fill="#fff" opacity=".85"/>';
+      }
+    }
+    /* door */
+    svg += '<rect x="' + (bx + w / 2 - 3) + '" y="' + (h - 7) + '" width="6" height="7" rx="1.5" fill="rgba(255,255,255,.6)"/>';
+    /* roof accent */
+    svg += '<rect x="' + bx + '" y="0" width="' + w + '" height="4" rx="2" fill="' + color + '" opacity=".6"/>';
+    /* label */
+    svg += '<text x="' + ((w + 12) / 2) + '" y="' + (totalH - 2) + '" text-anchor="middle" font-size="9" font-weight="700" font-family="Inter,sans-serif" fill="' + color + '">' + label + '</text>';
+    svg += '</svg>';
+    return L.divIcon({
+      className: '',
+      html: svg,
+      iconSize: [w + 12, totalH + 8],
+      iconAnchor: [(w + 12) / 2, totalH + 6],
+      popupAnchor: [0, -(totalH - 8)]
+    });
+  }
 
   function initLeafletMap() {
     if (lmap || !document.getElementById('leafletMap') || typeof L === 'undefined') return;
     lmap = L.map('leafletMap', {
-      center: [45.1740, 15.8055],
-      zoom: 16,
+      center: [45.1840, 15.8020],
+      zoom: 15,
       zoomControl: true,
       scrollWheelZoom: false
     });
@@ -103,27 +146,17 @@
     }).addTo(lmap);
 
     /* add building markers */
+    var names = { one: 'Arilux Amor', park: 'Arilux Park', centar: 'Arilux Centar', panorama: 'Arilux Panorama' };
     Object.keys(MAP_COORDS).forEach(function (bid) {
-      var color = MAP_COLORS[bid];
-      var label = MAP_LABELS[bid];
-      var icon = L.divIcon({
-        className: '',
-        html: '<div class="locmap__marker" style="background:' + color + '"><span>' + label + '</span></div>',
-        iconSize: [28, 28],
-        iconAnchor: [14, 28],
-        popupAnchor: [0, -30]
-      });
-
-      var names = { one: 'Arilux Amor', park: 'Arilux Park', centar: 'Arilux Centar', panorama: 'Arilux Panorama' };
-      var marker = L.marker(MAP_COORDS[bid], { icon: icon }).addTo(lmap);
-      marker.bindPopup('<b style="color:' + color + '">' + names[bid] + '</b>');
+      var marker = L.marker(MAP_COORDS[bid], { icon: buildingIcon(bid) }).addTo(lmap);
+      marker.bindPopup('<b style="color:' + MAP_COLORS[bid] + '">' + names[bid] + '</b><br><small>' + MAP_LABELS[bid] + ' · ' + MAP_FLOORS[bid] + ' spratova</small>');
       marker.on('click', function () { setLocMapBuilding(bid); });
       lmarkers[bid] = marker;
     });
 
     /* fit all markers */
     var group = L.featureGroup(Object.values(lmarkers));
-    lmap.fitBounds(group.getBounds().pad(0.2));
+    lmap.fitBounds(group.getBounds().pad(0.15));
   }
 
   function panToBuilding(bid) {
