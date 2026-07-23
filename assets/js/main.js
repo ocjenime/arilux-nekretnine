@@ -237,12 +237,20 @@
 
   function initLeafletMap() {
     if (lmap || !document.getElementById('leafletMap') || typeof L === 'undefined') return;
+    var isMobile = window.innerWidth <= 900;
     lmap = L.map('leafletMap', {
       center: [45.1840, 15.8020],
-      zoom: 15,
-      zoomControl: true,
-      scrollWheelZoom: false
+      zoom: isMobile ? 14 : 15,
+      zoomControl: !isMobile,
+      scrollWheelZoom: false,
+      touchZoom: true,
+      dragging: true,
+      tap: true
     });
+
+    if (isMobile) {
+      L.control.zoom({ position: 'bottomright' }).addTo(lmap);
+    }
 
     /* satellite layer (ESRI WorldImagery — free, no key) */
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
