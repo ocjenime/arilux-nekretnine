@@ -2029,8 +2029,10 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .locmap__map {
   background: var(--gray);
   padding: 0;
-  min-height: 400px;
+  height: 450px;
   position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--r) + 8px) 0 0 calc(var(--r) + 8px);
 }
 
 .locmap__svg { width: 100%; height: auto; }
@@ -2506,7 +2508,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 
 @media (max-width: 900px) {
   .locmap { grid-template-columns: 1fr; }
-  .locmap__map { min-height: 300px; border-radius: calc(var(--r) + 8px) calc(var(--r) + 8px) 0 0; }
+  .locmap__map { height: 300px; border-radius: calc(var(--r) + 8px) calc(var(--r) + 8px) 0 0; }
   .tour3d__features { grid-template-columns: 1fr; }
   .tour3d__feature { border-right: none; border-bottom: 1px solid var(--line); }
   .tour3d__feature:last-child { border-bottom: none; }
@@ -2575,3 +2577,6 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .locmap__map .leaflet-popup-content { margin: 0 !important; padding: 12px 16px !important; }
 .locmap__map .leaflet-popup-tip { box-shadow: 0 4px 12px rgba(4,23,66,.12) !important; }
 .locmap__map .leaflet-popup-close-button { color: var(--ink-3) !important; font-size: 18px !important; }
+
+/* ── Reset Leaflet global leaks (applied AFTER leaflet.css loads) ── */
+.locmap__map { font-family: var(--font-b); }

@@ -132,9 +132,15 @@
     if (lmarkers[bid]) lmarkers[bid].openPopup();
   }
 
-  /* init on DOMContentLoaded + after Leaflet loads */
-  if (typeof L !== 'undefined') initLeafletMap();
-  document.addEventListener('DOMContentLoaded', function () { setTimeout(initLeafletMap, 100); });
+  /* init after DOM ready */
+  function tryInitMap() {
+    if (typeof L !== 'undefined') initLeafletMap();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(tryInitMap, 200); });
+  } else {
+    setTimeout(tryInitMap, 200);
+  }
 
   /* apply custom logo from JSON or cache */
   function applyLogo(src) {
