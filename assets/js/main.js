@@ -86,41 +86,152 @@
     var color = MAP_COLORS[bid];
     var label = MAP_LABELS[bid];
     var floors = MAP_FLOORS[bid] || 4;
-    var h = 12 + floors * 6;
-    var w = 22;
-    var totalH = h + 18;
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + (w + 12) + '" height="' + (totalH + 8) + '" viewBox="0 0 ' + (w + 12) + ' ' + (totalH + 8) + '">';
-    /* shadow */
-    svg += '<ellipse cx="' + ((w + 12) / 2) + '" cy="' + (totalH + 4) + '" rx="10" ry="3" fill="rgba(0,0,0,.25)"/>';
-    /* pin stick */
-    svg += '<line x1="' + ((w + 12) / 2) + '" y1="' + (h + 2) + '" x2="' + ((w + 12) / 2) + '" y2="' + (totalH + 2) + '" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round"/>';
-    /* building body */
-    var bx = 6;
-    svg += '<rect x="' + bx + '" y="2" width="' + w + '" height="' + h + '" rx="3" fill="' + color + '"/>';
-    /* windows */
-    var cols = 3;
-    var rows = Math.min(floors, 6);
-    var ww = 4, wh = 4, gapX = (w - cols * ww) / (cols + 1), gapY = (h - 8) / (rows + 1);
+    var S = 54, TOTAL = 110;
+    var bH = 16 + floors * 7;
+    var bW = 26;
+    var bX = (S - bW) / 2;
+    var bY = 6;
+
+    /* darker / lighter variants */
+    function darken(hex, pct) {
+      var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      r = Math.round(r * (1 - pct)); g = Math.round(g * (1 - pct)); b = Math.round(b * (1 - pct));
+      return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+    function lighten(hex, pct) {
+      var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      r = Math.min(255, Math.round(r + (255 - r) * pct));
+      g = Math.min(255, Math.round(g + (255 - g) * pct));
+      b = Math.min(255, Math.round(b + (255 - b) * pct));
+      return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+    var dark = darken(color, 0.35);
+    var mid = darken(color, 0.15);
+    var lite = lighten(color, 0.25);
+    var glass = lighten(color, 0.55);
+
+    var uid = 'b' + bid;
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + S + '" height="' + TOTAL + '" viewBox="0 0 ' + S + ' ' + TOTAL + '">';
+    /* ── defs: gradients, filters ── */
+    svg += '<defs>';
+    /* building body gradient */
+    svg += '<linearGradient id="' + uid + 'bg" x1="0" y1="0" x2="1" y2="1">';
+    svg += '<stop offset="0%" stop-color="' + lite + '"/>';
+    svg += '<stop offset="45%" stop-color="' + color + '"/>';
+    svg += '<stop offset="100%" stop-color="' + dark + '"/>';
+    svg += '</linearGradient>';
+    /* glass reflection gradient */
+    svg += '<linearGradient id="' + uid + 'gl" x1="0" y1="0" x2="0" y2="1">';
+    svg += '<stop offset="0%" stop-color="#fff" stop-opacity=".45"/>';
+    svg += '<stop offset="40%" stop-color="#fff" stop-opacity=".08"/>';
+    svg += '<stop offset="100%" stop-color="#fff" stop-opacity="0"/>';
+    svg += '</linearGradient>';
+    /* window glow */
+    svg += '<linearGradient id="' + uid + 'wg" x1="0" y1="0" x2="0" y2="1">';
+    svg += '<stop offset="0%" stop-color="' + glass + '" stop-opacity=".9"/>';
+    svg += '<stop offset="100%" stop-color="#fff" stop-opacity=".35"/>';
+    svg += '</linearGradient>';
+    /* roof sheen */
+    svg += '<linearGradient id="' + uid + 'rf" x1="0" y1="0" x2="0" y2="1">';
+    svg += '<stop offset="0%" stop-color="#fff" stop-opacity=".5"/>';
+    svg += '<stop offset="100%" stop-color="' + color + '" stop-opacity=".9"/>';
+    svg += '</linearGradient>';
+    /* drop shadow */
+    svg += '<filter id="' + uid + 'ds" x="-50%" y="-20%" width="200%" height="200%">';
+    svg += '<feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="' + dark + '" flood-opacity=".35"/>';
+    svg += '</filter>';
+    /* glow */
+    svg += '<filter id="' + uid + 'gw" x="-80%" y="-80%" width="260%" height="260%">';
+    svg += '<feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>';
+    svg += '<feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .35 0" result="glow"/>';
+    svg += '<feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>';
+    svg += '</filter>';
+    /* ground shadow */
+    svg += '<radialGradient id="' + uid + 'gs" cx="50%" cy="50%" r="50%">';
+    svg += '<stop offset="0%" stop-color="#000" stop-opacity=".22"/>';
+    svg += '<stop offset="100%" stop-color="#000" stop-opacity="0"/>';
+    svg += '</radialGradient>';
+    svg += '</defs>';
+
+    /* ── ground shadow ellipse ── */
+    svg += '<ellipse cx="' + (S / 2) + '" cy="' + (bY + bH + 10) + '" rx="14" ry="4" fill="url(#' + uid + 'gs)"/>';
+
+    /* ── building group with glow + shadow ── */
+    svg += '<g filter="url(#' + uid + 'gw)">';
+
+    /* main body */
+    svg += '<rect x="' + bX + '" y="' + bY + '" width="' + bW + '" height="' + bH + '" rx="4" fill="url(#' + uid + 'bg)" filter="url(#' + uid + 'ds)"/>';
+
+    /* glass curtain wall overlay */
+    svg += '<rect x="' + bX + '" y="' + bY + '" width="' + bW + '" height="' + bH + '" rx="4" fill="url(#' + uid + 'gl)"/>';
+
+    /* left edge highlight (beveled glass feel) */
+    svg += '<rect x="' + bX + '" y="' + bY + '" width="2.5" height="' + bH + '" rx="1.2" fill="#fff" opacity=".2"/>';
+
+    /* right edge shadow (depth) */
+    svg += '<rect x="' + (bX + bW - 2) + '" y="' + bY + '" width="2" height="' + bH + '" rx="1" fill="#000" opacity=".12"/>';
+
+    /* ── windows grid ── */
+    var cols = 4;
+    var rows = Math.min(floors, 8);
+    var padX = 3, padY = 5;
+    var ww = (bW - padX * 2 - (cols - 1) * 1.8) / cols;
+    var wh = ((bH - padY * 2 - (rows - 1) * 1.5) / rows) * 0.65;
+    var gapX = (bW - padX * 2 - cols * ww) / Math.max(1, cols - 1);
+    var gapY = (bH - padY * 2 - rows * wh) / Math.max(1, rows);
+
     for (var r = 0; r < rows; r++) {
       for (var c = 0; c < cols; c++) {
-        var wx = bx + gapX + c * (ww + gapX);
-        var wy = 6 + gapY + r * (wh + gapY);
-        svg += '<rect x="' + wx + '" y="' + wy + '" width="' + ww + '" height="' + wh + '" rx="1" fill="#fff" opacity=".85"/>';
+        var wx = bX + padX + c * (ww + gapX);
+        var wy = bY + padY + r * (wh + gapY);
+        /* window glass */
+        svg += '<rect x="' + wx + '" y="' + wy + '" width="' + ww + '" height="' + wh + '" rx="1.2" fill="url(#' + uid + 'wg)"/>';
+        /* top highlight on each window */
+        svg += '<rect x="' + wx + '" y="' + wy + '" width="' + ww + '" height="1" rx=".5" fill="#fff" opacity=".5"/>';
       }
     }
-    /* door */
-    svg += '<rect x="' + (bx + w / 2 - 3) + '" y="' + (h - 7) + '" width="6" height="7" rx="1.5" fill="rgba(255,255,255,.6)"/>';
-    /* roof accent */
-    svg += '<rect x="' + bx + '" y="0" width="' + w + '" height="4" rx="2" fill="' + color + '" opacity=".6"/>';
-    /* label */
-    svg += '<text x="' + ((w + 12) / 2) + '" y="' + (totalH - 2) + '" text-anchor="middle" font-size="9" font-weight="700" font-family="Inter,sans-serif" fill="' + color + '">' + label + '</text>';
+
+    /* ── entrance ── */
+    var doorW = 7, doorH = 9;
+    var doorX = bX + (bW - doorW) / 2;
+    var doorY = bY + bH - doorH - 1;
+    svg += '<rect x="' + doorX + '" y="' + doorY + '" width="' + doorW + '" height="' + doorH + '" rx="2" fill="' + dark + '" opacity=".7"/>';
+    svg += '<rect x="' + (doorX + 1) + '" y="' + (doorY + 1) + '" width="' + (doorW - 2) + '" height="' + (doorH - 1) + '" rx="1.5" fill="#fff" opacity=".15"/>';
+    /* door glass line */
+    svg += '<line x1="' + (doorX + doorW / 2) + '" y1="' + (doorY + 2) + '" x2="' + (doorX + doorW / 2) + '" y2="' + (doorY + doorH - 1) + '" stroke="#fff" stroke-width=".5" opacity=".3"/>';
+
+    /* ── roof accent ── */
+    svg += '<rect x="' + (bX - 1) + '" y="' + (bY - 1) + '" width="' + (bW + 2) + '" height="5" rx="2.5" fill="url(#' + uid + 'rf)"/>';
+    /* roof highlight line */
+    svg += '<line x1="' + (bX + 2) + '" y1="' + (bY + 1) + '" x2="' + (bX + bW - 2) + '" y2="' + (bY + 1) + '" stroke="#fff" stroke-width=".8" opacity=".6"/>';
+
+    svg += '</g>'; /* end glow group */
+
+    /* ── pin connector (elegant teardrop stem) ── */
+    var cx = S / 2;
+    var stemTop = bY + bH + 2;
+    var stemBot = TOTAL - 26;
+    svg += '<path d="M' + (cx - 1.2) + ' ' + stemTop + ' Q' + cx + ' ' + ((stemTop + stemBot) / 2 + 4) + ' ' + cx + ' ' + stemBot + ' Q' + cx + ' ' + ((stemTop + stemBot) / 2 + 4) + ' ' + (cx + 1.2) + ' ' + stemTop + 'Z" fill="' + dark + '" opacity=".6"/>';
+
+    /* ── premium label pill ── */
+    var pillY = TOTAL - 22;
+    var pillW = 48, pillH = 16;
+    var pillX = (S - pillW) / 2;
+    svg += '<rect x="' + pillX + '" y="' + pillY + '" width="' + pillW + '" height="' + pillH + '" rx="8" fill="#fff" opacity=".92"/>';
+    svg += '<rect x="' + pillX + '" y="' + pillY + '" width="' + pillW + '" height="' + pillH + '" rx="8" fill="none" stroke="' + color + '" stroke-width="1.2" opacity=".6"/>';
+    /* colored dot inside pill */
+    svg += '<circle cx="' + (pillX + 7) + '" cy="' + (pillY + pillH / 2) + '" r="3" fill="' + color + '"/>';
+    /* label text */
+    svg += '<text x="' + (pillX + 13) + '" y="' + (pillY + pillH / 2 + 3.2) + '" font-size="7.5" font-weight="700" font-family="Inter,sans-serif" fill="#1a1a2e" letter-spacing=".3">' + label + '</text>';
+
     svg += '</svg>';
+
     return L.divIcon({
       className: '',
       html: svg,
-      iconSize: [w + 12, totalH + 8],
-      iconAnchor: [(w + 12) / 2, totalH + 6],
-      popupAnchor: [0, -(totalH - 8)]
+      iconSize: [S, TOTAL],
+      iconAnchor: [S / 2, TOTAL - 10],
+      popupAnchor: [0, -TOTAL + 28]
     });
   }
 
