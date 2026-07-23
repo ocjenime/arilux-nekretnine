@@ -289,14 +289,20 @@
     if (lmarkers[bid]) lmarkers[bid].openPopup();
   }
 
-  /* init after DOM ready */
+  /* init after DOM ready + Leaflet loaded */
   function tryInitMap() {
-    if (typeof L !== 'undefined') initLeafletMap();
+    if (typeof L !== 'undefined') { initLeafletMap(); return; }
+    /* retry until Leaflet loads (deferred) */
+    var tries = 0;
+    var iv = setInterval(function () {
+      tries++;
+      if (typeof L !== 'undefined' || tries > 50) { clearInterval(iv); initLeafletMap(); }
+    }, 100);
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { setTimeout(tryInitMap, 200); });
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(tryInitMap, 100); });
   } else {
-    setTimeout(tryInitMap, 200);
+    setTimeout(tryInitMap, 100);
   }
 
   /* apply custom logo from JSON or cache */

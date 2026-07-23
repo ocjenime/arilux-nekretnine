@@ -1,0 +1,12 @@
+{
+  "name": "Arilux Nekretnine",
+  "short_name": "Arilux",
+  "description": "4 nove stambene zgrade. 102 stana. Cijene predgradnje od 3.500 KM/m².",
+  "start_url": "/arilux-nekretnine/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0041B1",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

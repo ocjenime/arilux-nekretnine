@@ -5,18 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Arilux Nekretnine - Stanovi u predgradnji | Velika Kladuša</title>
   <meta name="description" content="Arilux Nekretnine: 4 nove stambene zgrade u Velikoj Kladuši u prodaji u predgradnji. 102 stana, cijene od 3.500 KM/m², plaćanje u ratama, sve dozvole riješene. Rezervišite svoj stan danas.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ocjenime.github.io/arilux-nekretnine/">
+
+  <!-- Favicons -->
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <meta property="og:locale" content="bs_BA">
+  <link rel="apple-touch-icon" href="assets/img/favicon.svg">
+  <meta name="theme-color" content="#0041B1">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Arilux Nekretnine - Stanovi u predgradnji">
-  <meta property="og:description" content="4 nove zgrade. 102 stana. Cijene predgradnje od 3.500 KM/m². Rezervišite stan danas.">
+  <meta property="og:url" content="https://ocjenime.github.io/arilux-nekretnine/">
+  <meta property="og:title" content="Arilux Nekretnine - Stanovi u predgradnji | Velika Kladuša">
+  <meta property="og:description" content="4 nove zgrade. 102 stana. Cijene predgradnje od 3.500 KM/m². Plaćanje u ratama, sve dozvole riješene. Rezervišite stan danas.">
   <meta property="og:site_name" content="Arilux Nekretnine">
+  <meta property="og:locale" content="bs_BA">
+  <meta property="og:image" content="https://ocjenime.github.io/arilux-nekretnine/assets/img/favicon.svg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arilux Nekretnine - Stanovi u predgradnji">
+  <meta name="twitter:description" content="4 nove zgrade. 102 stana. Cijene predgradnje od 3.500 KM/m². Rezervišite stan danas.">
+  <meta name="twitter:image" content="https://ocjenime.github.io/arilux-nekretnine/assets/img/favicon.svg">
+
+  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://server.arcgisonline.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+  <!-- Fonts (font-display: swap already in URL) -->
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS (before our styles so we can override) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Leaflet JS deferred -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+  <!-- Logo cache (inline, blocking for instant apply) -->
   <script>
     try {
       var c = JSON.parse(localStorage.getItem('arilux_logo_cache') || 'null');
@@ -25,21 +55,170 @@
       }
     } catch(e) {}
   </script>
+
+  <!-- Structured Data: RealEstateAgent -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "name": "Arilux Nekretnine",
+    "alternateName": "Arilux d.o.o.",
     "url": "https://arilux.ba/",
+    "logo": "https://ocjenime.github.io/arilux-nekretnine/assets/img/favicon.svg",
     "telephone": "+38737772000",
     "email": "info@arilux.ba",
+    "foundingDate": "2022",
+    "description": "Arilux d.o.o. - investitor i izvođač radova. 4 nove stambene zgrade u Velikoj Kladuši: 102 stana u predgradnji.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Trg mladih bb",
       "addressLocality": "Velika Kladuša",
       "postalCode": "77230",
       "addressCountry": "BA"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "45.18497",
+      "longitude": "15.80579"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Velika Kladuša",
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "Bosnia and Herzegovina"
+      }
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Stanovi u predgradnji",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Arilux Amor",
+            "description": "Poslovno-stambeni objekat P+6, 28 stanova, Centar - Trg mladih",
+            "offers": {
+              "@type": "Offer",
+              "price": "4500",
+              "priceCurrency": "BAM",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "4500",
+                "priceCurrency": "BAM",
+                "unitText": "KM/m²"
+              }
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Arilux Park",
+            "description": "Stambeni objekat P+5, 22 stana, Uz gradski park",
+            "offers": {
+              "@type": "Offer",
+              "price": "3500",
+              "priceCurrency": "BAM",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "3500",
+                "priceCurrency": "BAM",
+                "unitText": "KM/m²"
+              }
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Arilux Centar",
+            "description": "Poslovno-stambeni objekat P+8, 36 stanova, Poslovno-stambeni trg",
+            "offers": {
+              "@type": "Offer",
+              "price": "4000",
+              "priceCurrency": "BAM",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "4000",
+                "priceCurrency": "BAM",
+                "unitText": "KM/m²"
+              }
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Arilux Panorama",
+            "description": "Stambeni objekat P+4, 16 stanova, Brdo Grabik",
+            "offers": {
+              "@type": "Offer",
+              "price": "4500",
+              "priceCurrency": "BAM",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "4500",
+                "priceCurrency": "BAM",
+                "unitText": "KM/m²"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "sameAs": [
+      "https://www.facebook.com/p/Arilux-Graevinarstvo-100092538432549/",
+      "https://www.instagram.com/arilux.gradjevinarstvo/",
+      "https://www.youtube.com/@Arilux_doo",
+      "https://www.tiktok.com/@arilux.gradjevinarstvo"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Koliko košta stan u predgradnji u Velikoj Kladuši?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cijene stanova u predgradnji kreću se od 3.500 KM/m² (Arilux Park) do 4.500 KM/m² (Arilux Amor i Panorama). Plaćanje je moguće u ratama koje prate faze gradnje."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kada je useljenje za stanove u Arilux zgradama?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Useljenje za Arilux Amor i Park predviđeno je za 2026/2027, Arilux Centar za 2027, a Arilux Panorama za 2028. godinu."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kako funkcioniše plaćanje u predgradnji?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rezervišete stan kaparom od 2.000 KM, potpisujete predugovor kod notara sa fiksnom cijenom, a ostatak plaćate u ratama koje prate faze gradnje - bez banke i bez kamata."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Da li Arilux ima sve dozvole za gradnju?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Da, sve građevinske i upotrebne dozvole su riješene prije početka prodaje. Arilux je i investitor i izvođač radova."
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -489,6 +668,7 @@
         <div class="locmap reveal">
           <div class="locmap__map">
             <div id="leafletMap" style="width:100%;height:100%"></div>
+            <noscript><p style="text-align:center;padding:40px;color:var(--ink-3)">Za pregled interaktivne karte potreban je JavaScript.</p></noscript>
           </div>
           <div class="locmap__sidebar">
             <h3 class="locmap__sidebar-title">Naše zgrade</h3>
@@ -525,7 +705,7 @@
     <!-- ═══════════ LIFESTYLE - ključevi ═══════════ -->
     <section class="lifestyle">
       <div class="lifestyle__bg">
-        <img src="https://images.unsplash.com/photo-1591167830691-48b13fcc6dbd?w=1400&h=700&fit=crop&crop=center" alt="" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1591167830691-48b13fcc6dbd?w=1400&h=700&fit=crop&crop=center" alt="Sretni vlasnici ključeva svog novog stana" width="1400" height="700" loading="lazy">
       </div>
       <div class="lifestyle__overlay"></div>
       <div class="wrap lifestyle__inner reveal">
@@ -545,7 +725,7 @@
         </header>
         <div class="tour3d reveal">
           <div class="tour3d__viewer">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=680&fit=crop&crop=center" alt="3D vizualizacija stana Arilux" class="tour3d__img" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=680&fit=crop&crop=center" alt="3D vizualizacija modernog stana Arilux - dnevni boravak" width="1200" height="680" class="tour3d__img" loading="lazy">
             <div class="tour3d__overlay">
               <button class="tour3d__play" aria-label="Pokreni 3D obilazak">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><polygon points="5,3 19,12 5,21"/></svg>
@@ -653,7 +833,7 @@
     <!-- ═══════════ VIZIJA ARHITEKTE ═══════════ -->
     <section class="archvision" id="vizija">
       <div class="archvision__bg">
-        <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1600&h=900&fit=crop&crop=center" alt="" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1600&h=900&fit=crop&crop=center" alt="Moderna arhitektura stambenog objekta - vizija Arilux" width="1600" height="900" loading="lazy">
       </div>
       <div class="wrap archvision__inner reveal">
         <p class="kicker kicker--light">Arhitektonska vizija</p>
@@ -875,6 +1055,6 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
