@@ -276,6 +276,11 @@
     /* fit all markers */
     var group = L.featureGroup(Object.values(lmarkers));
     lmap.fitBounds(group.getBounds().pad(0.15));
+
+    /* fix for mobile: invalidate size after tiles load */
+    lmap.whenReady(function () {
+      setTimeout(function () { lmap.invalidateSize(); }, 300);
+    });
   }
 
   function panToBuilding(bid) {
