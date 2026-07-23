@@ -782,8 +782,1927 @@
       "label": "Kliknite za 3D obilazak"
     },
     "dimensions": {
-      "badge": "TAČNE DIMENZIJE",
-      "label": "Detaljni tlocrti svake prostorije"
+      "one": {
+        "1-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "1-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "1-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "2-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "2-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "3-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "3-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "4-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "4-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "5-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "5-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "5-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "5-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "5-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "6-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "6-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "6-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            },
+            {
+              "name": "Kupatilo",
+              "width": 2.4,
+              "length": 2,
+              "height": 2.8,
+              "area": 4.8
+            }
+          ]
+        }
+      },
+      "park": {
+        "1-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "1-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "1-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "2-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "2-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "3-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "3-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "4-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "5-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "5-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "5-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            },
+            {
+              "name": "Kupatilo",
+              "width": 2.4,
+              "length": 2,
+              "height": 2.8,
+              "area": 4.8
+            }
+          ]
+        }
+      },
+      "centar": {
+        "1-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "1-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "1-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "2-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "2-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "2-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "3-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "3-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "3-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "4-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "4-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "4-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "4-05": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "5-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "5-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "5-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "5-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "6-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "6-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "6-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "6-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "7-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "7-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "7-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "7-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "8-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "8-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "8-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "8-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            },
+            {
+              "name": "Kupatilo",
+              "width": 2.4,
+              "length": 2,
+              "height": 2.8,
+              "area": 4.8
+            }
+          ]
+        }
+      },
+      "panorama": {
+        "1-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "1-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "1-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "2-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "2-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "2-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "3-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            }
+          ]
+        },
+        "3-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            }
+          ]
+        },
+        "3-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "4-01": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "4-02": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            }
+          ]
+        },
+        "4-03": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            },
+            {
+              "name": "Kupatilo",
+              "width": 2.4,
+              "length": 2,
+              "height": 2.8,
+              "area": 4.8
+            }
+          ]
+        },
+        "4-04": {
+          "rooms": [
+            {
+              "name": "Dnevni boravak",
+              "width": 5.2,
+              "length": 4.8,
+              "height": 2.8,
+              "area": 25
+            },
+            {
+              "name": "Spavaća soba",
+              "width": 3.6,
+              "length": 4,
+              "height": 2.8,
+              "area": 14.4
+            },
+            {
+              "name": "Kuhinja",
+              "width": 3.2,
+              "length": 3,
+              "height": 2.8,
+              "area": 9.6
+            },
+            {
+              "name": "Kupatilo",
+              "width": 2.4,
+              "length": 2,
+              "height": 2.8,
+              "area": 4.8
+            }
+          ]
+        }
+      }
     }
   },
   "map": {
