@@ -119,22 +119,22 @@
 
     /* dark section logo — original: min(420px, 80%) */
     var darkLogo = document.querySelector('.dark__logo');
-    if (darkLogo) {
+    if (darkLogo && darkLogo.tagName === 'SVG') {
       var dImg = document.createElement('img');
       dImg.src = src;
       dImg.alt = 'Arilux';
       dImg.style.cssText = 'width:min(420px,80%);height:auto;object-fit:contain;filter:drop-shadow(0 30px 80px rgba(242,103,33,.25))';
-      darkLogo.parentNode.insertBefore(dImg, darkLogo);
+      darkLogo.parentNode.replaceChild(dImg, darkLogo);
     }
 
-    /* footer logo — original: 64px wide */
+    /* footer logo — original: 97px wide */
     var footerLogo = document.querySelector('.footer__logo');
-    if (footerLogo) {
+    if (footerLogo && footerLogo.tagName === 'SVG') {
       var fImg = document.createElement('img');
       fImg.src = src;
       fImg.alt = 'Arilux';
       fImg.style.cssText = 'width:97px;height:auto;object-fit:contain;margin-bottom:14px';
-      footerLogo.parentNode.insertBefore(fImg, footerLogo);
+      footerLogo.parentNode.replaceChild(fImg, footerLogo);
     }
   }
 

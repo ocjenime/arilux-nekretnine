@@ -19,7 +19,7 @@
     try {
       var c = JSON.parse(localStorage.getItem('arilux_logo_cache') || 'null');
       if (c && c.url && Date.now() - c.ts < 86400000) {
-        document.write('<style>.header__logomark svg{display:none!important}.dark__logo,.footer__logo{visibility:hidden!important;position:absolute!important}</style>');
+        document.write('<style>.header__logomark svg{display:none!important}</style>');
       }
     } catch(e) {}
   </script>
