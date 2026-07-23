@@ -62,7 +62,6 @@
       Object.keys(data.floorLabels).forEach(function (k) { FLOOR_LABEL[k] = data.floorLabels[k]; });
     }
     window.__ARILUX_JSON = data;
-    if (data.map && data.map.buildings) applyMapPositions(data.map.buildings);
     if (data.logo && data.logo.url) {
       applyLogo(data.logo.url);
     } else {
@@ -70,31 +69,72 @@
     }
   }
 
-  /* reposition SVG map pins from JSON coordinates */
-  var PIN_DEFAULTS = {
-    one: { x: 358, y: 180, labelX: 373, labelY: 168 },
-    park: { x: 148, y: 230, labelX: 162, labelY: 218 },
-    centar: { x: 438, y: 250, labelX: 454, labelY: 238 },
-    panorama: { x: 568, y: 120, labelX: 581, labelY: 108 }
+  /* ── Leaflet satellite map ─────────────────────────────── */
+  var MAP_COLORS = { one: '#0041B1', park: '#2FB57E', centar: '#F26721', panorama: '#7B61FF' };
+  var MAP_LABELS = { one: 'A', park: 'P', centar: 'C', panorama: 'Pa' };
+  var MAP_COORDS = {
+    one:      [45.1735, 15.8045],
+    park:     [45.1720, 15.8010],
+    centar:   [45.1735, 15.8080],
+    panorama: [45.1770, 15.8110]
   };
+  var lmap = null;
+  var lmarkers = {};
 
-  function applyMapPositions(bldMap) {
-    Object.keys(bldMap).forEach(function (k) {
-      var pin = document.querySelector('.locmap__pin[data-building="' + k + '"]');
-      if (!pin) return;
-      var d = bldMap[k];
-      var def = PIN_DEFAULTS[k];
-      if (!def) return;
-      var dx = (d.x || def.x) - def.x;
-      var dy = (d.y || def.y) - def.y;
-      pin.setAttribute('transform', 'translate(' + dx + ',' + dy + ')');
-      var txt = pin.querySelector('text');
-      if (txt && d.labelX !== undefined) {
-        txt.setAttribute('x', d.labelX - def.x + dx);
-        txt.setAttribute('y', d.labelY - def.y + dy);
-      }
+  function initLeafletMap() {
+    if (lmap || !document.getElementById('leafletMap') || typeof L === 'undefined') return;
+    lmap = L.map('leafletMap', {
+      center: [45.1740, 15.8055],
+      zoom: 16,
+      zoomControl: true,
+      scrollWheelZoom: false
     });
+
+    /* satellite layer (ESRI WorldImagery — free, no key) */
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri',
+      maxZoom: 19
+    }).addTo(lmap);
+
+    /* labels layer on top */
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      pane: 'overlayPane'
+    }).addTo(lmap);
+
+    /* add building markers */
+    Object.keys(MAP_COORDS).forEach(function (bid) {
+      var color = MAP_COLORS[bid];
+      var label = MAP_LABELS[bid];
+      var icon = L.divIcon({
+        className: '',
+        html: '<div class="locmap__marker" style="background:' + color + '"><span>' + label + '</span></div>',
+        iconSize: [28, 28],
+        iconAnchor: [14, 28],
+        popupAnchor: [0, -30]
+      });
+
+      var names = { one: 'Arilux Amor', park: 'Arilux Park', centar: 'Arilux Centar', panorama: 'Arilux Panorama' };
+      var marker = L.marker(MAP_COORDS[bid], { icon: icon }).addTo(lmap);
+      marker.bindPopup('<b style="color:' + color + '">' + names[bid] + '</b>');
+      marker.on('click', function () { setLocMapBuilding(bid); });
+      lmarkers[bid] = marker;
+    });
+
+    /* fit all markers */
+    var group = L.featureGroup(Object.values(lmarkers));
+    lmap.fitBounds(group.getBounds().pad(0.2));
   }
+
+  function panToBuilding(bid) {
+    if (!lmap || !MAP_COORDS[bid]) return;
+    lmap.setView(MAP_COORDS[bid], 17, { animate: true });
+    if (lmarkers[bid]) lmarkers[bid].openPopup();
+  }
+
+  /* init on DOMContentLoaded + after Leaflet loads */
+  if (typeof L !== 'undefined') initLeafletMap();
+  document.addEventListener('DOMContentLoaded', function () { setTimeout(initLeafletMap, 100); });
 
   /* apply custom logo from JSON or cache */
   function applyLogo(src) {
@@ -1007,14 +1047,12 @@
     document.querySelectorAll('.locmap__card').forEach(function (c) {
       c.classList.toggle('is-active', c.dataset.building === bid);
     });
+
+    panToBuilding(bid);
   }
 
   document.querySelectorAll('.locmap__card').forEach(function (card) {
     card.addEventListener('click', function () { setLocMapBuilding(card.dataset.building); });
-  });
-
-  document.querySelectorAll('.locmap__pin').forEach(function (pin) {
-    pin.addEventListener('click', function () { setLocMapBuilding(pin.dataset.building); });
   });
 
   /* 3D Tour nav buttons */
