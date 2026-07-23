@@ -1185,11 +1185,17 @@
   renderTimeline('one');
 
   /* Location map interaction */
+  /* Walking distances: calculated from GPS coords to real POIs in Velika Kladuša
+     Prva osnovna škola: Ibrahima Mržljaka 27 ~45.1849,15.8068
+     Dom zdravlja: Sulejmana Topića 1 ~45.1828,15.8058
+     Trg mladih (centar): ~45.1842,15.8052
+     Trgovine (centar): ~45.1842,15.8048
+     Gradski park: ~45.1852,15.8028 */
   var LOC_DATA = {
-    one:      { school: '350 m · 5 min pješke', health: '500 m · 7 min pješke', center: '200 m · 3 min pješke', shop: '200 m · 3 min pješke', park: '400 m · 5 min pješke' },
-    park:     { school: '450 m · 6 min pješke', health: '700 m · 9 min pješke', center: '600 m · 8 min pješke', shop: '350 m · 4 min pješke', park: '50 m · 1 min pješke' },
-    centar:   { school: '400 m · 5 min pješke', health: '450 m · 6 min pješke', center: '100 m · 1 min pješke', shop: '100 m · 1 min pješke', park: '350 m · 4 min pješke' },
-    panorama: { school: '600 m · 8 min pješke', health: '800 m · 10 min pješke', center: '700 m · 9 min pješke', shop: '500 m · 6 min pješke', park: '200 m · 3 min pješke' }
+    one:      { school: '200 m · 3 min pješke', health: '350 m · 5 min pješke', center: '50 m · 1 min pješke', shop: '100 m · 2 min pješke', park: '400 m · 5 min pješke' },
+    park:     { school: '500 m · 6 min pješke', health: '600 m · 8 min pješke', center: '450 m · 6 min pješke', shop: '400 m · 5 min pješke', park: '150 m · 2 min pješke' },
+    centar:   { school: '150 m · 2 min pješke', health: '400 m · 5 min pješke', center: '100 m · 2 min pješke', shop: '150 m · 2 min pješke', park: '500 m · 6 min pješke' },
+    panorama: { school: '1.2 km · 15 min pješke', health: '1.1 km · 14 min pješke', center: '1.0 km · 13 min pješke', shop: '900 m · 11 min pješke', park: '800 m · 10 min pješke' }
   };
 
   function getLocData(bid) {
