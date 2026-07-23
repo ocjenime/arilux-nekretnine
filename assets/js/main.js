@@ -855,13 +855,15 @@
 
   /* WhatsApp FAB visibility */
   var whatsappFab = document.getElementById('whatsappFab');
-  if (whatsappFab) {
+  var viberFab = document.getElementById('viberFab');
+  if (whatsappFab || viberFab) {
     var waShow = false;
     window.addEventListener('scroll', function () {
       var show = window.scrollY > 400;
       if (show !== waShow) {
         waShow = show;
-        whatsappFab.classList.toggle('is-visible', show);
+        if (whatsappFab) whatsappFab.classList.toggle('is-visible', show);
+        if (viberFab) viberFab.classList.toggle('is-visible', show);
       }
     }, { passive: true });
   }
@@ -1013,7 +1015,41 @@
     return DEFAULT_TOUR_NAMES;
   }
 
+  function getTourImages() {
+    if (window.__ARILUX_JSON && window.__ARILUX_JSON.tour3d && window.__ARILUX_JSON.tour3d.images) {
+      return window.__ARILUX_JSON.tour3d.images;
+    }
+    return {};
+  }
+
   var tourNames = getTourNames();
+  var tourImages = getTourImages();
+  var defaultTourSrc = '';
+  var tourImg = document.querySelector('.tour3d__img');
+
+  if (tourImg) {
+    defaultTourSrc = tourImg.src;
+    var buildingKeys = ['one', 'park', 'centar', 'panorama'];
+    document.querySelectorAll('.tour3d__bldbtn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.tour3d__bldbtn').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        var bk = btn.dataset.building;
+        if (tourImg && tourImages[bk]) {
+          tourImg.style.opacity = '0';
+          setTimeout(function () {
+            tourImg.src = tourImages[bk];
+            tourImg.style.opacity = '1';
+          }, 200);
+        }
+      });
+    });
+    /* set initial active building */
+    if (buildingKeys.length > 0 && tourImages[buildingKeys[0]]) {
+      var firstBtn = document.querySelector('.tour3d__bldbtn');
+      if (firstBtn) firstBtn.classList.add('is-active');
+    }
+  }
 
   function setTourRoom(idx) {
     document.querySelectorAll('.tour3d__navbtn').forEach(function (b, i) {

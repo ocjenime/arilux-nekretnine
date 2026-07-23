@@ -1667,7 +1667,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 8s ease;
+  transition: transform 8s ease, opacity .3s ease;
 }
 
 .tour3d__viewer:hover .tour3d__img { transform: scale(1.03); }
@@ -1722,6 +1722,35 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   padding: 8px 16px;
   border-radius: var(--r);
 }
+
+.tour3d__buildings {
+  display: flex;
+  gap: 8px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+}
+
+.tour3d__bldbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--card);
+  color: var(--ink-2);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+.tour3d__bldbtn:hover { border-color: var(--blue); color: var(--blue); }
+.tour3d__bldbtn.is-active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.tour3d__bldbtn.is-active span { background: #fff !important; }
 
 .tour3d__nav {
   display: flex;
@@ -2217,6 +2246,66 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   background: var(--navy-2);
 }
 
+.viber-fab {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  z-index: 90;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #7360F2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(115,96,242,.45);
+  transition: transform .35s var(--ease), box-shadow .35s;
+  opacity: 0;
+  transform: scale(.6) translateY(20px);
+}
+
+.viber-fab.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity .5s var(--ease), transform .5s var(--ease), box-shadow .35s;
+}
+
+.viber-fab:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 10px 36px rgba(115,96,242,.55); }
+
+.viber-fab__tooltip {
+  position: absolute;
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--navy-2);
+  color: #fff;
+  font-family: var(--font-d);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 10px 16px;
+  border-radius: var(--r);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, transform .3s var(--ease);
+  transform: translateY(-50%) translateX(8px);
+}
+
+.viber-fab:hover .viber-fab__tooltip { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+.viber-fab__tooltip::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: var(--navy-2);
+}
+
 /* ── Scroll Parallax Enhancement ───────────────────────────────── */
 
 .parallax-text {
@@ -2442,6 +2531,9 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .whatsapp-fab { bottom: 20px; right: 20px; width: 52px; height: 52px; }
   .whatsapp-fab svg { width: 24px; height: 24px; }
   .whatsapp-fab__tooltip { display: none; }
+  .viber-fab { bottom: 80px; right: 20px; width: 52px; height: 52px; }
+  .viber-fab svg { width: 24px; height: 24px; }
+  .viber-fab__tooltip { display: none; }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {

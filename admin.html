@@ -328,6 +328,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
             <label>WhatsApp</label>
             <input type="text" id="cWhatsapp">
           </div>
+          <div class="form-group">
+            <label>Viber</label>
+            <input type="text" id="cViber">
+          </div>
         </div>
         <div class="form-group">
           <label>Adresa</label>
@@ -747,6 +751,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     document.getElementById('cPhone2').value = s.phone2 || '';
     document.getElementById('cEmail').value = s.email || '';
     document.getElementById('cWhatsapp').value = s.whatsapp || '';
+    document.getElementById('cViber').value = s.viber || '';
     document.getElementById('cAddress').value = s.address || '';
     document.getElementById('cFacebook').value = s.facebook || '';
     document.getElementById('cInstagram').value = s.instagram || '';
@@ -758,13 +763,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     document.getElementById('sClients').value = st.clients.value;
 
     /* binding */
-    ['cPhone1', 'cPhone2', 'cEmail', 'cWhatsapp', 'cAddress', 'cFacebook', 'cInstagram'].forEach(function (id) {
+    ['cPhone1', 'cPhone2', 'cEmail', 'cWhatsapp', 'cViber', 'cAddress', 'cFacebook', 'cInstagram'].forEach(function (id) {
       document.getElementById(id).addEventListener('change', function () {
         var key = id.replace('c', '').toLowerCase();
         if (key === 'phone1') key = 'phone1';
         else if (key === 'phone2') key = 'phone2';
         else if (key === 'email') key = 'email';
         else if (key === 'whatsapp') key = 'whatsapp';
+        else if (key === 'viber') key = 'viber';
         else if (key === 'address') key = 'address';
         else if (key === 'facebook') key = 'facebook';
         else if (key === 'instagram') key = 'instagram';
@@ -780,9 +786,30 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
   /* ── 3D Tour ──────────────────────────────────────────────── */
   function renderTour3d() {
-    if (!DATA.tour3d) DATA.tour3d = { rooms: [], features: [] };
+    if (!DATA.tour3d) DATA.tour3d = { rooms: [], features: [], images: {} };
     var tour = DATA.tour3d;
+    if (!tour.images) tour.images = {};
     var html = '';
+
+    /* building images */
+    var bKeys = ['one', 'park', 'centar', 'panorama'];
+    html += '<div class="card"><h3>Slike po zgradama (glavna slika 3D Tour-a)</h3>';
+    html += '<p style="font-size:13px;color:var(--muted);margin-bottom:20px">Za svaku zgradu postavite glavnu sliku koja se prikazuje u 3D Tour sekciji. Klik na karticu zgrade prikazuje njenu sliku.</p>';
+    bKeys.forEach(function (k) {
+      var b = DATA.buildings[k];
+      var src = tour.images[k] || '';
+      html += '<div style="border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px">';
+      html += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">';
+      html += '<span style="width:10px;height:10px;border-radius:50%;background:' + b.color + ';display:inline-block"></span>';
+      html += '<b style="font-size:14px">' + b.name + '</b>';
+      html += '</div>';
+      html += '<div class="form-group" style="margin-bottom:10px"><label>Slika (URL)</label><input class="tourimg-field" data-bk="' + k + '" value="' + esc(src) + '" placeholder="https://images.unsplash.com/..."></div>';
+      if (src) {
+        html += '<div style="border-radius:8px;overflow:hidden;height:140px;background:var(--gray)"><img src="' + esc(src) + '" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML=\'<span style=display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:12px\">Slika se ne učitava</span>\'"></div>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
 
     /* rooms */
     html += '<div class="card"><h3>Prostorije</h3>';
@@ -824,6 +851,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     html += '</div>';
 
     document.getElementById('tour3dContent').innerHTML = html;
+
+    /* binding building image fields */
+    document.querySelectorAll('.tourimg-field').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        tour.images[inp.dataset.bk] = inp.value;
+        renderTour3d();
+      });
+    });
 
     /* binding room fields */
     document.querySelectorAll('.tour-field').forEach(function (inp) {
