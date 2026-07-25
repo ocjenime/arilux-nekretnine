@@ -2876,13 +2876,9 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 @media (max-width: 768px) {
   .sticky-cta { display: block; }
   body { padding-bottom: 64px; }
-  .whatsapp-fab { bottom: 76px; right: 16px; width: 50px; height: 50px; }
-  .whatsapp-fab svg { width: 22px; height: 22px; }
-  .whatsapp-fab__tooltip { display: none; }
-  .viber-fab { bottom: 134px; right: 16px; width: 50px; height: 50px; }
-  .viber-fab svg { width: 22px; height: 22px; }
-  .viber-fab__tooltip { display: none; }
-  .backtotop { bottom: 134px; right: 16px; width: 38px; height: 38px; }
+  .whatsapp-fab { display: none !important; }
+  .viber-fab { display: none !important; }
+  .backtotop { bottom: 74px; right: 16px; width: 38px; height: 38px; }
 }
 @media (min-width: 769px) {
   .sticky-cta { display: none !important; }
