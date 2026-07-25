@@ -2842,46 +2842,10 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   color: var(--ink-3);
 }
 
-/* ── Sticky mobile CTA bar ────────────────────────────────────── */
-.sticky-cta {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 900;
-  background: #fff;
-  border-top: 1px solid var(--line);
-  padding: 10px 16px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,.1);
-}
-.sticky-cta__inner {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.sticky-cta__info { flex: 1; min-width: 0; }
-.sticky-cta__price {
-  font-family: var(--font-d);
-  font-weight: 800;
-  font-size: 15px;
-  color: var(--blue);
-}
-.sticky-cta__sub {
-  font-size: 11px;
-  color: var(--ink-3);
-}
-.sticky-cta .btn { flex-shrink: 0; padding: 8px 18px; font-size: 13px; }
-
 @media (max-width: 768px) {
-  .sticky-cta { display: block; }
-  body { padding-bottom: 64px; }
   .whatsapp-fab { display: none !important; }
   .viber-fab { display: none !important; }
-  .backtotop { bottom: 74px; right: 16px; width: 38px; height: 38px; }
-}
-@media (min-width: 769px) {
-  .sticky-cta { display: none !important; }
+  .backtotop { bottom: 24px; right: 16px; width: 38px; height: 38px; }
 }
 
 @media (max-width: 900px) {
