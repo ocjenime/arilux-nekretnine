@@ -2843,10 +2843,10 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 @media (max-width: 768px) {
-  .whatsapp-fab { bottom: 80px; right: 16px; width: 46px; height: 46px; opacity: 1; transform: none; }
+  .whatsapp-fab { bottom: 80px; right: 16px; width: 46px; height: 46px; }
   .whatsapp-fab svg { width: 20px; height: 20px; }
   .whatsapp-fab__tooltip { display: none; }
-  .viber-fab { bottom: 134px; right: 16px; width: 46px; height: 46px; opacity: 1; transform: none; }
+  .viber-fab { bottom: 134px; right: 16px; width: 46px; height: 46px; }
   .viber-fab svg { width: 20px; height: 20px; }
   .viber-fab__tooltip { display: none; }
   .backtotop { bottom: 24px; right: 16px; width: 38px; height: 38px; }
