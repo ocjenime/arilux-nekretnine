@@ -994,8 +994,9 @@
   function onScroll() {
     var sy = window.scrollY;
     header.classList.toggle('is-scrolled', sy > 10);
-    /* WhatsApp / Viber FAB visibility */
-    var show = sy > 400;
+    /* WhatsApp / Viber FAB visibility — always visible on mobile */
+    var isMobile = window.innerWidth <= 768;
+    var show = isMobile || sy > 400;
     if (show !== waShow) {
       waShow = show;
       if (whatsappFab) whatsappFab.classList.toggle('is-visible', show);
