@@ -2291,8 +2291,8 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 .whatsapp-fab.is-visible {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
   transition: opacity .5s var(--ease), transform .5s var(--ease), box-shadow .35s;
 }
 
@@ -2351,8 +2351,8 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 .viber-fab.is-visible {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
   transition: opacity .5s var(--ease), transform .5s var(--ease), box-shadow .35s;
 }
 
