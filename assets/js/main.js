@@ -934,7 +934,19 @@
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(function (el) { io.observe(el); });
+    /* Batch observe to avoid long task on large DOM */
+    var ioBatch = 12;
+    var ioIdx = 0;
+    function observeNext() {
+      var end = Math.min(ioIdx + ioBatch, revealEls.length);
+      for (var i = ioIdx; i < end; i++) { io.observe(revealEls[i]); }
+      ioIdx = end;
+      if (ioIdx < revealEls.length) {
+        if (window.requestIdleCallback) window.requestIdleCallback(observeNext);
+        else setTimeout(observeNext, 0);
+      }
+    }
+    observeNext();
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
@@ -976,10 +988,21 @@
   var header = document.getElementById('header');
   var burger = document.getElementById('burger');
   var mobileMenu = document.getElementById('mobileMenu');
+  var whatsappFab = document.getElementById('whatsappFab');
+  var viberFab = document.getElementById('viberFab');
 
   function onScroll() {
-    header.classList.toggle('is-scrolled', window.scrollY > 10);
+    var sy = window.scrollY;
+    header.classList.toggle('is-scrolled', sy > 10);
+    /* WhatsApp / Viber FAB visibility */
+    var show = sy > 400;
+    if (show !== waShow) {
+      waShow = show;
+      if (whatsappFab) whatsappFab.classList.toggle('is-visible', show);
+      if (viberFab) viberFab.classList.toggle('is-visible', show);
+    }
   }
+  var waShow = false;
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
@@ -1032,9 +1055,20 @@
 
   var form = document.getElementById('contactForm');
   var note = document.getElementById('formNote');
+  var lastSubmit = 0;
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    /* Rate limit: max 1 submit per 5 seconds */
+    var now = Date.now();
+    if (now - lastSubmit < 5000) {
+      note.hidden = false;
+      note.className = 'formnote formnote--err';
+      note.textContent = 'Molimo sačekajte prije slanja sljedećeg upita.';
+      return;
+    }
+    lastSubmit = now;
+
     var name = document.getElementById('fName');
     var phone = document.getElementById('fPhone');
     var email = document.getElementById('fEmail');
@@ -1045,6 +1079,9 @@
     [name, phone].forEach(function (f) {
       var valid = f.value.trim().length >= (f === phone ? 6 : 3);
       f.classList.toggle('is-error', !valid);
+      f.setAttribute('aria-invalid', String(!valid));
+      var errEl = document.getElementById(f.id + 'Error');
+      if (errEl) errEl.style.display = valid ? 'none' : 'block';
       if (!valid) ok = false;
     });
 
@@ -1055,39 +1092,31 @@
       return;
     }
 
-    var subject = 'Upit za stan - ' + building.value + ' (' + name.value.trim() + ')';
+    /* Sanitize inputs — strip HTML tags */
+    function sanitize(str) { return str.replace(/[<>]/g, ''); }
+    var sName = sanitize(name.value.trim());
+    var sPhone = sanitize(phone.value.trim());
+    var sEmail = sanitize(email.value.trim());
+    var sMsg = sanitize(msg.value.trim());
+
+    var subject = 'Upit za stan - ' + building.value + ' (' + sName + ')';
     var body =
-      'Ime i prezime: ' + name.value.trim() + '\n' +
-      'Telefon: ' + phone.value.trim() + '\n' +
-      'E-mail: ' + (email.value.trim() || '-') + '\n' +
+      'Ime i prezime: ' + sName + '\n' +
+      'Telefon: ' + sPhone + '\n' +
+      'E-mail: ' + (sEmail || '-') + '\n' +
       'Zgrada: ' + building.value + '\n\n' +
-      'Poruka:\n' + (msg.value.trim() || '-') + '\n\n' +
+      'Poruka:\n' + (sMsg || '-') + '\n\n' +
       '- Poslano sa stranice Arilux Nekretnine';
 
     window.location.href = 'mailto:info@arilux.ba?subject=' +
       encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
     note.className = 'formnote formnote--ok';
-    note.textContent = 'Hvala, ' + name.value.trim().split(' ')[0] + '! Vaš e-mail klijent se upravo otvara sa pripremljenim upitom. Ako se ne otvori, nazovite nas na +387 37 772 000.';
+    note.textContent = 'Hvala, ' + sName.split(' ')[0] + '! Vaš e-mail klijent se upravo otvara sa pripremljenim upitom. Ako se ne otvori, nazovite nas na +387 37 772 000.';
     form.reset();
   });
 
   /* ── Premium features ──────────────────────────────────────── */
-
-  /* WhatsApp FAB visibility */
-  var whatsappFab = document.getElementById('whatsappFab');
-  var viberFab = document.getElementById('viberFab');
-  if (whatsappFab || viberFab) {
-    var waShow = false;
-    window.addEventListener('scroll', function () {
-      var show = window.scrollY > 400;
-      if (show !== waShow) {
-        waShow = show;
-        if (whatsappFab) whatsappFab.classList.toggle('is-visible', show);
-        if (viberFab) viberFab.classList.toggle('is-visible', show);
-      }
-    }, { passive: true });
-  }
 
   /* ─────── Per-building Timeline ─────── */
   var TL_COLORS = { one:'#0041B1', park:'#2FB57E', centar:'#F26721', panorama:'#7B61FF' };
@@ -1187,8 +1216,12 @@
     });
   });
 
-  /* Initial render for Amor */
-  renderTimeline('one');
+  /* Initial render for Amor (defer non-critical work) */
+  if (window.requestIdleCallback) {
+    window.requestIdleCallback(function () { renderTimeline('one'); });
+  } else {
+    setTimeout(function () { renderTimeline('one'); }, 0);
+  }
 
   /* Location map interaction */
   /* Walking distances: calculated from GPS coords to real POIs in Velika Kladuša
@@ -1457,6 +1490,30 @@
 
   /* ── Ostalo ─────────────────────────────────────────────────── */
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  /* Back to top button */
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    var bttVisible = false;
+    window.addEventListener('scroll', function () {
+      var show = window.scrollY > 600;
+      if (show !== bttVisible) {
+        bttVisible = show;
+        backToTop.classList.toggle('is-visible', show);
+      }
+    }, { passive: true });
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  var yearEl = document.getElementById('year');
+  if (yearEl) {
+    var setYear = function () { yearEl.textContent = new Date().getFullYear(); };
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(setYear);
+    } else {
+      setTimeout(setYear, 0);
+    }
+  }
 
 })();
