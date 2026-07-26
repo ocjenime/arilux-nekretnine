@@ -2853,9 +2853,12 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 @media (max-width: 768px) {
-  .whatsapp-fab { bottom: 24px; right: 16px; width: 46px; height: 46px; }
+  .whatsapp-fab, .viber-fab { opacity: 1 !important; transform: none !important; }
+  .whatsapp-fab { bottom: 80px; right: 16px; width: 46px; height: 46px; }
   .whatsapp-fab svg { width: 20px; height: 20px; }
   .whatsapp-fab__tooltip { display: none; }
+  .viber-fab { bottom: 24px; right: 16px; width: 46px; height: 46px; }
+  .viber-fab svg { width: 22px; height: 22px; }
 }
 
 @media (max-width: 900px) {
