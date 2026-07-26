@@ -644,11 +644,82 @@
       </div>
     </section>
 
+    <!-- ═══════════ STANOVI FINDER ═══════════ -->
+    <section class="section section--gray" id="stanovi">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="kicker">02 - Pronađite svoj stan</p>
+          <h2 class="section__title">Slobodni stanovi,<br>u realnom vremenu.</h2>
+          <p class="section__lead">Filtrirajte po zgradi, broju soba i budžetu. Cijene su cijene predgradnje - rastu kako gradnja napreduje.</p>
+        </header>
+
+        <div class="finder reveal">
+          <div class="finder__filters">
+            <div class="finder__field">
+              <label class="finder__label" id="fl-zgrada">Zgrada</label>
+              <div class="chips" role="group" aria-labelledby="fl-zgrada" id="filterBuilding">
+                <button class="chip is-active" data-value="all">Sve</button>
+                <button class="chip" data-value="one">Arilux Amor</button>
+                <button class="chip" data-value="park">Arilux Park</button>
+                <button class="chip" data-value="centar">Arilux Centar</button>
+                <button class="chip" data-value="panorama">Arilux Panorama</button>
+              </div>
+            </div>
+            <div class="finder__field">
+              <label class="finder__label" id="fl-sobe">Broj soba</label>
+              <div class="chips" role="group" aria-labelledby="fl-sobe" id="filterRooms">
+                <button class="chip is-active" data-value="all">Sve</button>
+                <button class="chip" data-value="1">1</button>
+                <button class="chip" data-value="2">2</button>
+                <button class="chip" data-value="3">3</button>
+                <button class="chip" data-value="4">4+</button>
+              </div>
+            </div>
+            <div class="finder__field finder__field--range">
+              <label class="finder__label" for="filterPrice">Budžet do <output id="priceOut">250.000 KM</output></label>
+              <input type="range" id="filterPrice" min="150000" max="700000" step="10000" value="500000">
+            </div>
+            <div class="finder__field finder__field--check">
+              <label class="switch">
+                <input type="checkbox" id="filterAvailable">
+                <span class="switch__track" aria-hidden="true"></span>
+                Samo slobodni
+              </label>
+            </div>
+          </div>
+
+          <div class="finder__meta">
+            <p id="finderCount" role="status" aria-live="polite">-</p>
+            <div class="finder__sort">
+              <label for="sortSelect">Sortiraj:</label>
+              <select id="sortSelect">
+                <option value="price-asc">Cijena ↑</option>
+                <option value="price-desc">Cijena ↓</option>
+                <option value="area-asc">Kvadratura ↑</option>
+                <option value="area-desc">Kvadratura ↓</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="finder__grid" id="finderGrid"></div>
+
+          <div class="finder__empty" id="finderEmpty" hidden>
+            <p><strong>Nema rezultata za odabrane filtere.</strong><br>Probajte proširiti budžet ili broj soba - ili nas nazovite, možda imamo stan koji još nije objavljen.</p>
+            <a class="btn btn--blue btn--sm" href="tel:+38737772000">+387 37 772 000</a>
+          </div>
+
+          <div class="finder__more" id="finderMoreWrap">
+            <button class="btn btn--ghost-blue" id="finderMore">Prikaži više stanova</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══════════ GRADNJA - timeline ═══════════ -->
     <section class="section section--gray" id="gradnja">
       <div class="wrap">
         <header class="section__head reveal">
-          <p class="kicker">02 - Napredak gradnje</p>
+          <p class="kicker">03 - Napredak gradnje</p>
           <h2 class="section__title">Faze projekta</h2>
           <p class="section__lead">Pratite napredak izgradnje vašeg budućeg doma - od temelja do useljenja.</p>
         </header>
@@ -814,77 +885,6 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               <span>Preuzmi katalog</span>
             </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ STANOVI FINDER ═══════════ -->
-    <section class="section section--gray" id="stanovi">
-      <div class="wrap">
-        <header class="section__head reveal">
-          <p class="kicker">03 - Pronađite svoj stan</p>
-          <h2 class="section__title">Slobodni stanovi,<br>u realnom vremenu.</h2>
-          <p class="section__lead">Filtrirajte po zgradi, broju soba i budžetu. Cijene su cijene predgradnje - rastu kako gradnja napreduje.</p>
-        </header>
-
-        <div class="finder reveal">
-          <div class="finder__filters">
-            <div class="finder__field">
-              <label class="finder__label" id="fl-zgrada">Zgrada</label>
-              <div class="chips" role="group" aria-labelledby="fl-zgrada" id="filterBuilding">
-                <button class="chip is-active" data-value="all">Sve</button>
-                <button class="chip" data-value="one">Arilux Amor</button>
-                <button class="chip" data-value="park">Arilux Park</button>
-                <button class="chip" data-value="centar">Arilux Centar</button>
-                <button class="chip" data-value="panorama">Arilux Panorama</button>
-              </div>
-            </div>
-            <div class="finder__field">
-              <label class="finder__label" id="fl-sobe">Broj soba</label>
-              <div class="chips" role="group" aria-labelledby="fl-sobe" id="filterRooms">
-                <button class="chip is-active" data-value="all">Sve</button>
-                <button class="chip" data-value="1">1</button>
-                <button class="chip" data-value="2">2</button>
-                <button class="chip" data-value="3">3</button>
-                <button class="chip" data-value="4">4+</button>
-              </div>
-            </div>
-            <div class="finder__field finder__field--range">
-              <label class="finder__label" for="filterPrice">Budžet do <output id="priceOut">250.000 KM</output></label>
-              <input type="range" id="filterPrice" min="150000" max="700000" step="10000" value="500000">
-            </div>
-            <div class="finder__field finder__field--check">
-              <label class="switch">
-                <input type="checkbox" id="filterAvailable">
-                <span class="switch__track" aria-hidden="true"></span>
-                Samo slobodni
-              </label>
-            </div>
-          </div>
-
-          <div class="finder__meta">
-            <p id="finderCount" role="status" aria-live="polite">-</p>
-            <div class="finder__sort">
-              <label for="sortSelect">Sortiraj:</label>
-              <select id="sortSelect">
-                <option value="price-asc">Cijena ↑</option>
-                <option value="price-desc">Cijena ↓</option>
-                <option value="area-asc">Kvadratura ↑</option>
-                <option value="area-desc">Kvadratura ↓</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="finder__grid" id="finderGrid"></div>
-
-          <div class="finder__empty" id="finderEmpty" hidden>
-            <p><strong>Nema rezultata za odabrane filtere.</strong><br>Probajte proširiti budžet ili broj soba - ili nas nazovite, možda imamo stan koji još nije objavljen.</p>
-            <a class="btn btn--blue btn--sm" href="tel:+38737772000">+387 37 772 000</a>
-          </div>
-
-          <div class="finder__more" id="finderMoreWrap">
-            <button class="btn btn--ghost-blue" id="finderMore">Prikaži više stanova</button>
           </div>
         </div>
       </div>
