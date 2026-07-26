@@ -1030,15 +1030,6 @@ input[type="range"]::-moz-range-thumb {
 
 .dark__visual { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .dark__logo { width: min(420px, 80%); color: rgba(242, 103, 33, .9); filter: drop-shadow(0 30px 80px rgba(242,103,33,.25)); }
-.dark__est {
-  margin-top: 24px;
-  font-family: var(--font-d);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.5);
-}
 
 /* ── Kontakt ─────────────────────────────────────────────────── */
 
@@ -2292,6 +2283,72 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   width: 12px;
   height: 12px;
   background: var(--navy-2);
+}
+
+/* ── Viber Floating Button ─────────────────────────────────────── */
+.viber-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #7360F2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(115,96,242,.45);
+  z-index: 900;
+  opacity: 0;
+  transform: translateY(20px) scale(.85);
+  transition: opacity .4s, transform .4s;
+}
+.viber-fab.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.viber-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(115,96,242,.55);
+}
+.viber-fab__tooltip {
+  position: absolute;
+  right: 66px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--navy-2);
+  color: #fff;
+  font: 600 .8125rem/1.35 var(--font-b);
+  padding: 6px 12px;
+  border-radius: var(--r);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+}
+.viber-fab__tooltip::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: var(--navy-2);
+}
+.viber-fab:hover .viber-fab__tooltip {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .viber-fab {
+    width: 50px;
+    height: 50px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .viber-fab svg { width: 24px; height: 24px; }
+  .viber-fab__tooltip { display: none; }
 }
 
 /* ── Scroll Parallax Enhancement ───────────────────────────────── */

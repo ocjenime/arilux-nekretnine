@@ -990,15 +990,17 @@
   var burger = document.getElementById('burger');
   var mobileMenu = document.getElementById('mobileMenu');
   var whatsappFab = document.getElementById('whatsappFab');
+  var viberFab = document.getElementById('viberFab');
 
   function onScroll() {
     var sy = window.scrollY;
     header.classList.toggle('is-scrolled', sy > 10);
-    /* WhatsApp FAB visibility */
+    /* FABs visibility */
     var show = sy > 200;
     if (show !== waShow) {
       waShow = show;
       if (whatsappFab) whatsappFab.classList.toggle('is-visible', show);
+      if (viberFab) viberFab.classList.toggle('is-visible', show);
     }
   }
   var waShow = false;
