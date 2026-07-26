@@ -1633,4 +1633,39 @@
     });
   }
 
+  /* ── Quiz concierge card ──────────────────────────────────────
+     Appears only after genuine engagement: 45% scroll depth AND
+     at least 8 seconds on page. Dismissal remembered per session.
+     ──────────────────────────────────────────────────────────── */
+  var quizFab = document.getElementById('quizFab');
+  if (quizFab && !sessionStorage.getItem('quizFabDismissed')) {
+    var quizShown = false;
+    var pageStart = Date.now();
+
+    function maybeShowQuiz() {
+      if (quizShown) return;
+      var doc = document.documentElement;
+      var depth = (window.scrollY + window.innerHeight) / doc.scrollHeight;
+      var elapsed = (Date.now() - pageStart) / 1000;
+      if (depth >= 0.45 && elapsed >= 8) {
+        quizShown = true;
+        quizFab.classList.add('is-visible');
+        quizFab.setAttribute('aria-hidden', 'false');
+        window.removeEventListener('scroll', maybeShowQuiz);
+      }
+    }
+    window.addEventListener('scroll', maybeShowQuiz, { passive: true });
+
+    function dismissQuiz() {
+      quizFab.classList.remove('is-visible');
+      quizFab.setAttribute('aria-hidden', 'true');
+      sessionStorage.setItem('quizFabDismissed', '1');
+      window.removeEventListener('scroll', maybeShowQuiz);
+    }
+    document.getElementById('quizFabClose').addEventListener('click', dismissQuiz);
+    quizFab.querySelector('.quizfab__cta').addEventListener('click', function () {
+      sessionStorage.setItem('quizFabDismissed', '1');
+    });
+  }
+
 })();

@@ -445,6 +445,11 @@
       <a href="#onama" class="mobilemenu__link"><em>05</em>O nama</a>
       <a href="#kontakt" class="mobilemenu__link"><em>06</em>Kontakt</a>
     </nav>
+    <a href="kviz.html" class="mobilemenu__quiz">
+      <span class="mobilemenu__quiz-label">Lična preporuka</span>
+      <span class="mobilemenu__quiz-text">Pronađite svoj stan — kviz od 60 sekundi</span>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
     <div class="mobilemenu__foot">
       <a href="tel:+38737772000">+387 37 772 000</a>
       <a href="mailto:info@arilux.ba">info@arilux.ba</a>
@@ -482,6 +487,7 @@
           <a href="#zgrade" class="btn btn--orange">Pogledaj zgrade</a>
           <a href="#stanovi" class="btn btn--ghost">Slobodni stanovi</a>
         </div>
+        <p class="hero__quiz reveal"><a href="kviz.html">Ne znate odakle početi? Pronađite svoj stan u 60 sekundi<span class="hero__quiz-arrow" aria-hidden="true">→</span></a></p>
         <dl class="hero__stats reveal">
           <div><dt>Zgrade u ponudi</dt><dd data-count="4">0</dd></div>
           <div><dt>Stanova</dt><dd data-count="102">0</dd></div>
@@ -624,6 +630,30 @@
           </article>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ KVIZ — LIČNA PREPORUKA ═══════════ -->
+    <section class="quizcta" aria-labelledby="quizcta-title">
+      <div class="quizcta__glow" aria-hidden="true"></div>
+      <div class="wrap quizcta__inner">
+        <div class="quizcta__main reveal">
+          <p class="kicker kicker--light">Lična preporuka</p>
+          <h2 class="quizcta__title" id="quizcta-title">Četiri zgrade.<br>Jedna je <em>vaša.</em></h2>
+          <p class="quizcta__lead">Umjesto nagađanja — devet kratkih pitanja o vašem budžetu, prioritetima i tempu kupovine. Na kraju dobijate preporuku sačinjenu samo za vas.</p>
+          <div class="quizcta__actions">
+            <a href="kviz.html" class="btn btn--orange quizcta__btn">Započni kviz<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <p class="quizcta__meta">60 sekundi · Besplatno · Bez obaveza</p>
+          </div>
+        </div>
+        <ol class="quizcta__steps reveal" aria-label="Kako kviz funkcioniše">
+          <li><span>01</span>Koja zgrada vas privlači?</li>
+          <li><span>02</span>Šta vam je najbitnije?</li>
+          <li><span>03</span>Vaš budžet</li>
+          <li><span>04</span>Koliko soba trebate?</li>
+          <li class="quizcta__steps-more"><span>···</span>Iskustvo, tempo i svrha kupovine</li>
+          <li class="quizcta__steps-final"><span>09</span>Vaša preporuka</li>
+        </ol>
       </div>
     </section>
 
@@ -1315,6 +1345,7 @@
         <a href="#arilux-park">Arilux Park</a>
         <a href="#arilux-centar">Arilux Centar</a>
         <a href="#arilux-panorama">Arilux Panorama</a>
+        <a href="kviz.html" class="footer__quizlink">Koja zgrada je za vas? →</a>
       </nav>
       <nav class="footer__col" aria-label="Arilux.ba">
         <h4>Arilux.ba</h4>
@@ -1339,6 +1370,17 @@
       </div>
     </div>
   </footer>
+
+  <!-- ═══════════ KVIZ CONCIERGE — engagement-triggered ═══════════ -->
+  <aside class="quizfab" id="quizFab" aria-hidden="true" aria-label="Pomoć pri odabiru stana">
+    <button class="quizfab__close" id="quizFabClose" aria-label="Zatvori">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <p class="quizfab__kicker">Lična preporuka</p>
+    <p class="quizfab__title">Treba vam pomoć<br>pri odabiru?</p>
+    <p class="quizfab__meta">9 pitanja · 60 sekundi</p>
+    <a href="kviz.html" class="quizfab__cta">Pokreni kviz<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </aside>
 
   <!-- ═══════════ MODAL - detalji stana ═══════════ -->
   <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
