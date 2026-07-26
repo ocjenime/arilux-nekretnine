@@ -333,8 +333,9 @@
         dImg.alt = 'Arilux';
         dImg.className = 'dark__logo-img';
         dImg.style.cssText = 'width:min(420px,80%);height:auto;object-fit:contain;filter:drop-shadow(0 30px 80px rgba(242,103,33,.25))';
-        var darkBadge = darkVisual.querySelector('.dark__badge');
-        darkVisual.insertBefore(dImg, darkBadge);
+        var darkEst = darkVisual.querySelector('.dark__est');
+        if (darkEst) darkVisual.insertBefore(dImg, darkEst);
+        else darkVisual.appendChild(dImg);
       }
     }
 
@@ -989,17 +990,15 @@
   var burger = document.getElementById('burger');
   var mobileMenu = document.getElementById('mobileMenu');
   var whatsappFab = document.getElementById('whatsappFab');
-  var viberFab = document.getElementById('viberFab');
 
   function onScroll() {
     var sy = window.scrollY;
     header.classList.toggle('is-scrolled', sy > 10);
-    /* WhatsApp / Viber FAB visibility */
+    /* WhatsApp FAB visibility */
     var show = sy > 200;
     if (show !== waShow) {
       waShow = show;
       if (whatsappFab) whatsappFab.classList.toggle('is-visible', show);
-      if (viberFab) viberFab.classList.toggle('is-visible', show);
     }
   }
   var waShow = false;
@@ -1489,22 +1488,6 @@
   }
 
   /* ── Ostalo ─────────────────────────────────────────────────── */
-
-  /* Back to top button */
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    var bttVisible = false;
-    window.addEventListener('scroll', function () {
-      var show = window.scrollY > 600;
-      if (show !== bttVisible) {
-        bttVisible = show;
-        backToTop.classList.toggle('is-visible', show);
-      }
-    }, { passive: true });
-    backToTop.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
 
   var yearEl = document.getElementById('year');
   if (yearEl) {
