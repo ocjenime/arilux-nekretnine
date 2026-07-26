@@ -1232,35 +1232,63 @@
      Trgovine (centar): ~45.1842,15.8048
      Gradski park: ~45.1852,15.8028 */
   var LOC_DATA = {
-    one:      { school: '200 m · 3 min pješke', health: '350 m · 5 min pješke', center: '50 m · 1 min pješke', shop: '100 m · 2 min pješke', park: '400 m · 5 min pješke' },
-    park:     { school: '500 m · 6 min pješke', health: '600 m · 8 min pješke', center: '450 m · 6 min pješke', shop: '400 m · 5 min pješke', park: '150 m · 2 min pješke' },
-    centar:   { school: '150 m · 2 min pješke', health: '400 m · 5 min pješke', center: '100 m · 2 min pješke', shop: '150 m · 2 min pješke', park: '500 m · 6 min pješke' },
-    panorama: { school: '1.2 km · 15 min pješke', health: '1.1 km · 14 min pješke', center: '1.0 km · 13 min pješke', shop: '900 m · 11 min pješke', park: '800 m · 10 min pješke' }
+    one:      { school: '200 m', schoolSub: '3 min pješke', health: '350 m', healthSub: '5 min pješke', center: '50 m', centerSub: '1 min pješke', shop: '100 m', shopSub: '2 min pješke', park: '400 m', parkSub: '5 min pješke' },
+    park:     { school: '500 m', schoolSub: '6 min pješke', health: '600 m', healthSub: '8 min pješke', center: '450 m', centerSub: '6 min pješke', shop: '400 m', shopSub: '5 min pješke', park: '150 m', parkSub: '2 min pješke' },
+    centar:   { school: '150 m', schoolSub: '2 min pješke', health: '400 m', healthSub: '5 min pješke', center: '100 m', centerSub: '2 min pješke', shop: '150 m', shopSub: '2 min pješke', park: '500 m', parkSub: '6 min pješke' },
+    panorama: { school: '1.2 km', schoolSub: '15 min pješke', health: '1.1 km', healthSub: '14 min pješke', center: '1.0 km', centerSub: '13 min pješke', shop: '900 m', shopSub: '11 min pješke', park: '800 m', parkSub: '10 min pješke' }
+  };
+
+  var LOC_META = {
+    one:      { name: 'Arilux Amor', addr: 'Centar · Trg mladih', color: '#0041B1' },
+    park:     { name: 'Arilux Park', addr: 'Uz gradski park', color: '#2FB57E' },
+    centar:   { name: 'Arilux Centar', addr: 'Poslovno-stambeni trg', color: '#F26721' },
+    panorama: { name: 'Arilux Panorama', addr: 'Brdo Grabik', color: '#7B61FF' }
   };
 
   function getLocData(bid) {
     if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].distances) {
-      return window.__ARILUX_JSON.buildings[bid].distances;
+      var d = window.__ARILUX_JSON.buildings[bid].distances;
+      var parsed = {};
+      Object.keys(d).forEach(function (k) {
+        var parts = (d[k] || '').split(' · ');
+        parsed[k] = parts[0] || d[k];
+        parsed[k + 'Sub'] = parts[1] || '';
+      });
+      return parsed;
     }
     return LOC_DATA[bid] || LOC_DATA.one;
   }
 
   function setLocMapBuilding(bid) {
     var data = getLocData(bid);
+    var meta = LOC_META[bid] || LOC_META.one;
     document.getElementById('locSchool').textContent = data.school;
     document.getElementById('locHealth').textContent = data.health;
     document.getElementById('locCenter').textContent = data.center;
     document.getElementById('locShop').textContent = data.shop;
     document.getElementById('locPark').textContent = data.park;
 
-    document.querySelectorAll('.locmap__card').forEach(function (c) {
+    var subs = { locSchoolSub: data.schoolSub, locHealthSub: data.healthSub, locCenterSub: data.centerSub, locShopSub: data.shopSub, locParkSub: data.parkSub };
+    Object.keys(subs).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = subs[id];
+    });
+
+    var nameEl = document.getElementById('locActiveName');
+    var addrEl = document.getElementById('locActiveAddr');
+    var dotEl = document.getElementById('locActiveDot');
+    if (nameEl) nameEl.textContent = meta.name;
+    if (addrEl) addrEl.textContent = meta.addr;
+    if (dotEl) dotEl.style.background = meta.color;
+
+    document.querySelectorAll('.locmap__pill').forEach(function (c) {
       c.classList.toggle('is-active', c.dataset.building === bid);
     });
 
     panToBuilding(bid);
   }
 
-  document.querySelectorAll('.locmap__card').forEach(function (card) {
+  document.querySelectorAll('.locmap__pill').forEach(function (card) {
     card.addEventListener('click', function () { setLocMapBuilding(card.dataset.building); });
   });
 
