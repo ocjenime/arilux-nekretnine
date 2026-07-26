@@ -2868,6 +2868,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .catalogs__content { max-width: 100%; }
   .catalogs__selector { justify-content: center; }
   .catalogs__select-wrap { max-width: 100%; }
+  .btn--catalog { margin-top: 18px; }
 }
 
 /* ── Back to top ──────────────────────────────────────────────── */
