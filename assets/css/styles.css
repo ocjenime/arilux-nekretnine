@@ -3199,11 +3199,11 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 .quizcta__inner {
   position: relative;
-  display: grid;
-  grid-template-columns: 1.08fr .92fr;
-  gap: clamp(32px, 4.5vw, 72px);
-  align-items: center;
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
 }
+.quizcta__inner .kicker { justify-content: center; }
 .quizcta__title {
   font-family: var(--font-d);
   font-variation-settings: 'wdth' 118;
@@ -3219,12 +3219,13 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   font-size: clamp(15px, 1.3vw, 17px);
   line-height: 1.65;
   color: var(--text-secondary-dark);
-  max-width: 520px;
-  margin-bottom: 30px;
+  max-width: 560px;
+  margin: 0 auto 30px;
 }
 .quizcta__actions {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
@@ -3236,36 +3237,6 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   color: var(--text-tertiary-dark);
   letter-spacing: .02em;
 }
-
-/* Steps preview — the journey, in the site's own numbering */
-.quizcta__steps {
-  border-top: 1px solid var(--line-light);
-}
-.quizcta__steps li {
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--line-light);
-  font-size: 15px;
-  font-weight: 500;
-  color: rgba(255,255,255,.82);
-}
-.quizcta__steps li span {
-  font-family: var(--font-d);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: .08em;
-  color: var(--text-tertiary-dark);
-  flex: none;
-  width: 26px;
-}
-.quizcta__steps-more { color: var(--text-tertiary-dark); font-size: 13.5px; }
-.quizcta__steps-final {
-  color: #fff;
-  font-weight: 700;
-}
-.quizcta__steps-final span { color: var(--orange); }
 
 /* ── Concierge card ──────────────────────────────────────────── */
 .quizfab {
@@ -3392,14 +3363,9 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .quizcta__inner { grid-template-columns: 1fr; gap: 36px; }
-  .quizcta__steps { max-width: 480px; }
-}
-
 @media (max-width: 640px) {
   .hero__quiz { margin: -18px 0 40px; text-align: center; }
-  .quizcta__actions { flex-direction: column; align-items: stretch; text-align: center; }
+  .quizcta__actions { flex-direction: column; gap: 14px; }
   .quizcta__btn { width: 100%; }
   .quizfab {
     left: 12px;
