@@ -1516,4 +1516,36 @@
     }
   }
 
+  /* ── Catalog dropdown selector ─────────────────────────────── */
+  var catalogSelect = document.getElementById('catalogSelect');
+  var catalogDropdown = document.getElementById('catalogDropdown');
+  var catalogDownload = document.getElementById('catalogDownload');
+  if (catalogSelect && catalogDropdown && catalogDownload) {
+    var options = catalogDropdown.querySelectorAll('.catalogs__select-option');
+    catalogSelect.addEventListener('click', function (e) {
+      e.stopPropagation();
+      catalogSelect.classList.toggle('is-open');
+    });
+    options.forEach(function (opt) {
+      opt.addEventListener('click', function (e) {
+        e.stopPropagation();
+        options.forEach(function (o) { o.classList.remove('is-active'); o.setAttribute('aria-selected', 'false'); });
+        opt.classList.add('is-active');
+        opt.setAttribute('aria-selected', 'true');
+        var name = opt.querySelector('.catalogs__select-name').textContent;
+        var meta = opt.querySelector('.catalogs__select-meta').textContent;
+        var dot = opt.querySelector('.catalogs__select-dot').style.background;
+        document.querySelector('#catalogCurrent .catalogs__select-name').textContent = name;
+        document.querySelector('#catalogCurrent .catalogs__select-meta').textContent = meta;
+        document.querySelector('#catalogCurrent .catalogs__select-dot').style.background = dot;
+        catalogDownload.href = opt.dataset.file;
+        catalogDownload.download = opt.dataset.filename;
+        catalogSelect.classList.remove('is-open');
+      });
+    });
+    document.addEventListener('click', function () {
+      catalogSelect.classList.remove('is-open');
+    });
+  }
+
 })();

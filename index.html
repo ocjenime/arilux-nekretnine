@@ -758,89 +758,63 @@
       </div>
     </section>
 
-    <!-- ═══════════ KATALOZI - Premium download ═══════════ -->
+    <!-- ═══════════ KATALOZI - Premium selector ═══════════ -->
     <section class="catalogs" aria-label="Preuzmite katalog stanova" id="katalog">
       <div class="catalogs__bg"></div>
-      <div class="wrap">
-        <header class="catalogs__head reveal">
+      <div class="wrap catalogs__inner">
+        <div class="catalogs__content reveal">
           <p class="kicker kicker--light">Besplatni katalozi</p>
           <h2 class="catalogs__title">Preuzmite katalog<br>za vašu zgradu.</h2>
-          <p class="catalogs__lead">Kompletan pregled stanova, tlocrti, cijene i uslovi plaćanja — sve spremno za preuzimanje.</p>
-        </header>
-        <div class="catalogs__grid">
-
-          <a href="assets/catalog/arilux-amor.pdf" download="Arilux-Amor-Katalog-2026.pdf" class="catalog-card reveal" data-building="amor">
-            <div class="catalog-card__accent" style="--accent: var(--blue);"></div>
-            <div class="catalog-card__head">
-              <span class="catalog-card__num">01</span>
-              <h3 class="catalog-card__name">Arilux Amor</h3>
-              <p class="catalog-card__loc">Centar · Trg mladih</p>
+          <p class="catalogs__lead">Tlocrti, cijene, specifikacije i uslovi plaćanja — sve na jednom mjestu.</p>
+        </div>
+        <div class="catalogs__selector reveal">
+          <div class="catalogs__select-wrap">
+            <label class="catalogs__label" for="catalogSelect">Odaberite zgradu</label>
+            <div class="catalogs__select" id="catalogSelect" role="listbox" aria-label="Odaberite zgradu za katalog" tabindex="0">
+              <div class="catalogs__select-current" id="catalogCurrent">
+                <span class="catalogs__select-dot" style="background: #0041B1;"></span>
+                <div class="catalogs__select-info">
+                  <span class="catalogs__select-name">Arilux Amor</span>
+                  <span class="catalogs__select-meta">Centar · 28 stanova · 4.500 KM/m²</span>
+                </div>
+                <svg class="catalogs__select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <div class="catalogs__select-dropdown" id="catalogDropdown">
+                <div class="catalogs__select-option is-active" data-value="amor" data-file="assets/catalog/arilux-amor.pdf" data-filename="Arilux-Amor-Katalog-2026.pdf" role="option" aria-selected="true">
+                  <span class="catalogs__select-dot" style="background: #0041B1;"></span>
+                  <div class="catalogs__select-info">
+                    <span class="catalogs__select-name">Arilux Amor</span>
+                    <span class="catalogs__select-meta">Centar · 28 stanova · 4.500 KM/m²</span>
+                  </div>
+                </div>
+                <div class="catalogs__select-option" data-value="park" data-file="assets/catalog/arilux-park.pdf" data-filename="Arilux-Park-Katalog-2026.pdf" role="option" aria-selected="false">
+                  <span class="catalogs__select-dot" style="background: #2FB57E;"></span>
+                  <div class="catalogs__select-info">
+                    <span class="catalogs__select-name">Arilux Park</span>
+                    <span class="catalogs__select-meta">Uz park · 22 stana · 3.500 KM/m²</span>
+                  </div>
+                </div>
+                <div class="catalogs__select-option" data-value="centar" data-file="assets/catalog/arilux-centar.pdf" data-filename="Arilux-Centar-Katalog-2026.pdf" role="option" aria-selected="false">
+                  <span class="catalogs__select-dot" style="background: #F26721;"></span>
+                  <div class="catalogs__select-info">
+                    <span class="catalogs__select-name">Arilux Centar</span>
+                    <span class="catalogs__select-meta">Poslovno-stambeni · 36 stanova · 4.000 KM/m²</span>
+                  </div>
+                </div>
+                <div class="catalogs__select-option" data-value="panorama" data-file="assets/catalog/arilux-panorama.pdf" data-filename="Arilux-Panorama-Katalog-2026.pdf" role="option" aria-selected="false">
+                  <span class="catalogs__select-dot" style="background: #7B61FF;"></span>
+                  <div class="catalogs__select-info">
+                    <span class="catalogs__select-name">Arilux Panorama</span>
+                    <span class="catalogs__select-meta">Grabik · 16 stanova · 4.500 KM/m²</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <ul class="catalog-card__specs">
-              <li><b>28</b> stanova</li>
-              <li><b>P+6</b> spratova</li>
-              <li><b>4.500</b> KM/m²</li>
-            </ul>
-            <div class="catalog-card__cta">
+            <a href="assets/catalog/arilux-amor.pdf" download="Arilux-Amor-Katalog-2026.pdf" class="btn btn--catalog" id="catalogDownload">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               <span>Preuzmi katalog</span>
-            </div>
-          </a>
-
-          <a href="assets/catalog/arilux-park.pdf" download="Arilux-Park-Katalog-2026.pdf" class="catalog-card reveal" data-building="park">
-            <div class="catalog-card__accent" style="--accent: var(--green);"></div>
-            <div class="catalog-card__head">
-              <span class="catalog-card__num">02</span>
-              <h3 class="catalog-card__name">Arilux Park</h3>
-              <p class="catalog-card__loc">Uz gradski park</p>
-            </div>
-            <ul class="catalog-card__specs">
-              <li><b>22</b> stana</li>
-              <li><b>P+5</b> spratova</li>
-              <li><b>3.500</b> KM/m²</li>
-            </ul>
-            <div class="catalog-card__cta">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Preuzmi katalog</span>
-            </div>
-          </a>
-
-          <a href="assets/catalog/arilux-centar.pdf" download="Arilux-Centar-Katalog-2026.pdf" class="catalog-card reveal" data-building="centar">
-            <div class="catalog-card__accent" style="--accent: var(--orange);"></div>
-            <div class="catalog-card__head">
-              <span class="catalog-card__num">03</span>
-              <h3 class="catalog-card__name">Arilux Centar</h3>
-              <p class="catalog-card__loc">Poslovno-stambeni</p>
-            </div>
-            <ul class="catalog-card__specs">
-              <li><b>36</b> stanova</li>
-              <li><b>P+8</b> spratova</li>
-              <li><b>4.000</b> KM/m²</li>
-            </ul>
-            <div class="catalog-card__cta">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Preuzmi katalog</span>
-            </div>
-          </a>
-
-          <a href="assets/catalog/arilux-panorama.pdf" download="Arilux-Panorama-Katalog-2026.pdf" class="catalog-card reveal" data-building="panorama">
-            <div class="catalog-card__accent" style="--accent: var(--purple);"></div>
-            <div class="catalog-card__head">
-              <span class="catalog-card__num">04</span>
-              <h3 class="catalog-card__name">Arilux Panorama</h3>
-              <p class="catalog-card__loc">Grabik</p>
-            </div>
-            <ul class="catalog-card__specs">
-              <li><b>16</b> stanova</li>
-              <li><b>P+4</b> spratova</li>
-              <li><b>4.500</b> KM/m²</li>
-            </ul>
-            <div class="catalog-card__cta">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Preuzmi katalog</span>
-            </div>
-          </a>
-
+            </a>
+          </div>
         </div>
       </div>
     </section>
