@@ -422,6 +422,10 @@ body {
   appearance: none;
   -webkit-appearance: none;
   height: 100%;
+  max-width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .qz-phone__input {
   font-family: var(--font);
@@ -627,6 +631,7 @@ body {
   .qz-phone__select {
     padding: 12px 24px 12px 8px;
     font-size: 0.82rem;
+    max-width: 130px;
   }
   .qz-phone__input {
     padding: 12px;
