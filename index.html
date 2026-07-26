@@ -1300,6 +1300,14 @@
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/arilux-nekretnine/sw.js').catch(function () {});
       });
+      /* Kad nova verzija SW preuzme kontrolu, osvježi stranicu da korisnik
+         nikad ne vidi zastarjeli sadržaj */
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (refreshing) return;
+        refreshing = true;
+        window.location.reload();
+      });
     }
   </script>
 </body>
