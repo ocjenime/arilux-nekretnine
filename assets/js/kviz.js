@@ -108,11 +108,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function buildResults(a) {
     var buildingNames = {
-      amor: 'Arilux Amor — Centar, P+6, 4.500 KM/m²',
-      park: 'Arilux Park — Uz park, P+5, 3.500 KM/m²',
-      centar: 'Arilux Centar — Poslovno-stambeni, P+8, 4.000 KM/m²',
-      panorama: 'Arilux Panorama — Grabik, P+4, 4.500 KM/m²',
-      ne_znam: 'Sve zgrade — pregledat ćemo sve opcije zajedno'
+      amor: 'Arilux Amor · Centar, P+6, 4.500 KM/m²',
+      park: 'Arilux Park · Uz park, P+5, 3.500 KM/m²',
+      centar: 'Arilux Centar · Poslovno-stambeni, P+8, 4.000 KM/m²',
+      panorama: 'Arilux Panorama · Grabik, P+4, 4.500 KM/m²',
+      ne_znam: 'Sve zgrade, pregledat ćemo sve opcije zajedno'
     };
 
     var priorityLabels = {
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#results-match').innerHTML = items.join('');
   }
 
-  // Contact preference — show/hide time options
+  // Contact preference - show/hide time options
   $$('input[name="q8_contact"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
       var timeWrap = $('#time-pref');
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // No auto-advance — user must click "Dalje" on every step
+  // No auto-advance - user must click "Dalje" on every step
 
   // Init
   updateUI();

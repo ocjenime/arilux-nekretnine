@@ -252,7 +252,7 @@
       L.control.zoom({ position: 'bottomright' }).addTo(lmap);
     }
 
-    /* satellite layer (ESRI WorldImagery — free, no key) */
+    /* satellite layer (ESRI WorldImagery - free, no key) */
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles &copy; Esri',
       maxZoom: 19
@@ -312,7 +312,7 @@
     /* cache for instant apply on next visit */
     try { localStorage.setItem('arilux_logo_cache', JSON.stringify({ url: src, ts: Date.now() })); } catch(e) {}
 
-    /* header logo — original: 74px wide */
+    /* header logo - original: 74px wide */
     var logomark = document.querySelector('.header__logomark');
     if (logomark) {
       logomark.innerHTML = '';
@@ -323,7 +323,7 @@
       logomark.appendChild(img);
     }
 
-    /* dark section logo — original: min(420px, 80%) */
+    /* dark section logo - original: min(420px, 80%) */
     var darkVisual = document.querySelector('.dark__visual');
     if (darkVisual) {
       var existing = darkVisual.querySelector('img.dark__logo-img');
@@ -339,7 +339,7 @@
       }
     }
 
-    /* footer logo — original: 97px wide */
+    /* footer logo - original: 97px wide */
     var footerBrand = document.querySelector('.footer__brand');
     if (footerBrand) {
       var existingF = footerBrand.querySelector('img.footer__logo-img');
@@ -1093,7 +1093,7 @@
       return;
     }
 
-    /* Sanitize inputs — strip HTML tags */
+    /* Sanitize inputs - strip HTML tags */
     function sanitize(str) { return str.replace(/[<>]/g, ''); }
     var sName = sanitize(name.value.trim());
     var sPhone = sanitize(phone.value.trim());

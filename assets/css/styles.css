@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   ARILUX NEKRETNINE — dizajn sistem
+   ARILUX NEKRETNINE - dizajn sistem
    Paleta naslijeđena sa arilux.ba: #0041B1 / #F26721
    Tipografija: Archivo (display) + Inter (tekst)
    ═══════════════════════════════════════════════════════════════ */
@@ -1265,7 +1265,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .gal__dot { width: 8px; height: 8px; }
 }
 
-/* ── Modal — detalji stana ─────────────────────────────────── */
+/* ── Modal - detalji stana ─────────────────────────────────── */
 
 .modal-overlay {
   position: fixed;
@@ -1647,7 +1647,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .hero__cta { flex-direction: column; align-items: stretch; }
 }
 
-/* ── Landscape phones — single authoritative block ─────────── */
+/* ── Landscape phones - single authoritative block ─────────── */
 @media (orientation: landscape) and (max-height: 500px) {
   html { background: var(--navy-2); }
   html, body { overflow-x: hidden; }
@@ -1681,7 +1681,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   PREMIUM FEATURES — 2026 upgrade
+   PREMIUM FEATURES - 2026 upgrade
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── 3D Virtual Tour ──────────────────────────────────────────── */
@@ -2665,7 +2665,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .archvision__inner { padding-block: 40px; }
 }
 
-/* ── Leaflet satellite map (scoped — no global overrides) ─────── */
+/* ── Leaflet satellite map (scoped - no global overrides) ─────── */
 .locmap__map .leaflet-container { width: 100%; height: 100%; min-height: 480px; }
 .locmap__map .leaflet-control-zoom { border: none !important; box-shadow: 0 2px 8px rgba(0,0,0,.18); border-radius: 6px !important; overflow: hidden; }
 .locmap__map .leaflet-control-zoom a { width: 30px; height: 30px; line-height: 30px; font-size: 16px; color: #333; background: #fff; }
@@ -2690,7 +2690,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .locmap__map { font-family: var(--font-b); }
 
 /* ═══════════════════════════════════════════════════════════════
-   PERFORMANCE — CSS containment for off-screen sections
+   PERFORMANCE - CSS containment for off-screen sections
    Browser skips layout/paint for contained elements until needed
    ═══════════════════════════════════════════════════════════════ */
 #gradnja,
@@ -2713,10 +2713,10 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CONVERSION — testimonials, social proof
+   CONVERSION - testimonials, social proof
    ═══════════════════════════════════════════════════════════════ */
 
-/* ── Catalogs — lead capture section ──────────────────────────── */
+/* ── Catalogs - lead capture section ──────────────────────────── */
 .catalogs {
   position: relative;
   background: var(--navy);
@@ -3159,7 +3159,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   KVIZ — Lična preporuka
+   KVIZ - Lična preporuka
    Golden interstitial + hero link + concierge card + menu/footer
    ═══════════════════════════════════════════════════════════════ */
 

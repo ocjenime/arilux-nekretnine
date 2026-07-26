@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
-   ARILUX NEKRETNINE — Service Worker v1
+   ARILUX NEKRETNINE - Service Worker v1
    Cache-first for static assets, network-first for HTML
    ═══════════════════════════════════════════════════════════════ */
-var CACHE_NAME = 'arilux-v16';
+var CACHE_NAME = 'arilux-v17';
 var PRECACHE_URLS = [
   '/',
   '/index.html',
@@ -22,7 +22,7 @@ var PRECACHE_URLS = [
   '/manifest.json'
 ];
 
-/* Install — precache critical static assets */
+/* Install - precache critical static assets */
 self.addEventListener('install', function (e) {
   e.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
@@ -33,7 +33,7 @@ self.addEventListener('install', function (e) {
   );
 });
 
-/* Activate — clean up old caches */
+/* Activate - clean up old caches */
 self.addEventListener('activate', function (e) {
   e.waitUntil(
     caches.keys().then(function (names) {
@@ -47,7 +47,7 @@ self.addEventListener('activate', function (e) {
   );
 });
 
-/* Fetch — network-first for HTML, cache-first for assets */
+/* Fetch - network-first for HTML, cache-first for assets */
 self.addEventListener('fetch', function (e) {
   var url = new URL(e.request.url);
 
@@ -57,7 +57,7 @@ self.addEventListener('fetch', function (e) {
   /* Skip cross-origin requests (Leaflet, Unsplash, Google Fonts, ESRI tiles) */
   if (url.origin !== self.location.origin) return;
 
-  /* HTML pages — network-first */
+  /* HTML pages - network-first */
   if (e.request.headers.get('accept') &&
       e.request.headers.get('accept').indexOf('text/html') !== -1) {
     e.respondWith(
@@ -72,7 +72,7 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  /* Static assets — cache-first */
+  /* Static assets - cache-first */
   e.respondWith(
     caches.match(e.request).then(function (cached) {
       if (cached) return cached;
