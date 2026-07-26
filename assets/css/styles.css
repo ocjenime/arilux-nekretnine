@@ -451,11 +451,11 @@ a.topbar__item:hover { color: #fff; }
 
 /* ── Sekcije ─────────────────────────────────────────────────── */
 
-.section { padding-block: clamp(52px, 6vw, 88px); }
+.section { padding-block: clamp(32px, 3.5vw, 56px); }
 .section--gray { background: var(--gray); }
 .section--blue { background: linear-gradient(150deg, var(--blue-deep), var(--blue)); color: #fff; }
 
-.section__head { max-width: 780px; margin-bottom: clamp(28px, 4vw, 48px); }
+.section__head { max-width: 780px; margin-bottom: clamp(18px, 2.5vw, 32px); }
 
 /* ── Zgrade ──────────────────────────────────────────────────── */
 
@@ -570,7 +570,7 @@ a.topbar__item:hover { color: #fff; }
 
 /* ── Band (statistika) ───────────────────────────────────────── */
 
-.band { background: var(--navy); color: #fff; padding-block: clamp(40px, 5vw, 64px); }
+.band { background: var(--navy); color: #fff; padding-block: clamp(24px, 3vw, 40px); }
 .band__inner {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -815,7 +815,7 @@ input[type="range"]::-moz-range-thumb {
 .lifestyle__inner {
   position: relative;
   z-index: 2;
-  padding-block: clamp(40px, 5vw, 64px);
+  padding-block: clamp(28px, 3.5vw, 44px);
   max-width: 680px;
 }
 .lifestyle__title {
@@ -845,12 +845,12 @@ input[type="range"]::-moz-range-thumb {
 /* ── Proximity / Lokacija ──────────────────────────────────── */
 
 .proximity {
-  padding: clamp(48px, 6vw, 80px) 0;
+  padding: clamp(32px, 3.5vw, 52px) 0;
   background: var(--navy);
   color: var(--text-on-dark);
   overflow: hidden;
 }
-.proximity__head { text-align: center; margin-bottom: clamp(28px, 4vw, 48px); }
+.proximity__head { text-align: center; margin-bottom: clamp(18px, 2.5vw, 32px); }
 .proximity__title {
   font-family: var(--font-d);
   font-weight: 800;
@@ -998,7 +998,7 @@ input[type="range"]::-moz-range-thumb {
 
 /* ── O nama (dark) ───────────────────────────────────────────── */
 
-.dark { background: var(--navy-2); color: #fff; padding-block: clamp(52px, 7vw, 88px); overflow: hidden; }
+.dark { background: var(--navy-2); color: #fff; padding-block: clamp(32px, 3.5vw, 56px); overflow: hidden; }
 .dark__inner {
   display: grid;
   grid-template-columns: 1.2fr .8fr;
@@ -1665,7 +1665,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   .hero__lead { font-size: 12px; }
   .hero__skyline, .hero__glow { display: none; }
   .hero__stats { grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .section { padding: 20px 24px; }
+  .section { padding: 24px 20px; }
   .steps { grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .perks { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 }
@@ -2170,7 +2170,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 .archvision__inner {
   position: relative;
   z-index: 2;
-  padding-block: clamp(48px, 6vw, 80px);
+  padding-block: clamp(32px, 3.5vw, 52px);
   max-width: 720px;
 }
 
@@ -2637,7 +2637,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
   position: relative;
   background: var(--navy);
   color: #fff;
-  padding-block: clamp(62px, 8vw, 108px);
+  padding-block: clamp(36px, 4vw, 56px);
 }
 .catalogs__bg {
   position: absolute;
