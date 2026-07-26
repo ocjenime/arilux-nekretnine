@@ -783,7 +783,7 @@
     return '<svg viewBox="0 0 ' + w + ' ' + h + '" class="fp__svg">' +
       '<rect width="' + w + '" height="' + h + '" fill="#F8F9FB" rx="6"/>' +
       svg +
-      '<text x="' + (w / 2) + '" y="' + (h - 4) + '" ' + dim + ' font-size="8" letter-spacing=".12em">TLOCRT - NIJE MJERITVEN</text>' +
+      '<text x="' + (w / 2) + '" y="' + (h - 4) + '" ' + dim + ' font-size="8" letter-spacing=".12em">TLOCRT, NIJE MJERITVEN</text>' +
       '</svg>';
   }
 
@@ -796,7 +796,7 @@
 
     view.innerHTML = imgs.map(function (url, i) {
       return '<div class="gal__slide' + (i === 0 ? ' is-active' : '') + '">' +
-        '<img src="' + url + '" alt="Stan - fotografija ' + (i + 1) + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">' +
+        '<img src="' + url + '" alt="Stan, fotografija ' + (i + 1) + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">' +
         '</div>';
     }).join('');
 
@@ -1089,7 +1089,7 @@
     note.hidden = false;
     if (!ok) {
       note.className = 'formnote formnote--err';
-      note.textContent = 'Molimo upišite ime i broj telefona - bez toga ne možemo stupiti u kontakt.';
+      note.textContent = 'Molimo upišite ime i broj telefona, bez toga ne možemo stupiti u kontakt.';
       return;
     }
 
@@ -1100,7 +1100,7 @@
     var sEmail = sanitize(email.value.trim());
     var sMsg = sanitize(msg.value.trim());
 
-    var subject = 'Upit za stan - ' + building.value + ' (' + sName + ')';
+      var subject = 'Upit za stan: ' + building.value + ' (' + sName + ')';
     var body =
       'Ime i prezime: ' + sName + '\n' +
       'Telefon: ' + sPhone + '\n' +
