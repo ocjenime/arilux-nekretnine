@@ -88,7 +88,7 @@
           <label class="qz-card qz-card--text">
             <input type="radio" name="q1_building" value="ne_znam">
             <span class="qz-card__body qz-card__body--text">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
               <span class="qz-card__name">Ne znam, pomozi mi</span>
             </span>
           </label>
@@ -335,27 +335,136 @@
       </div>
     </div>
 
-    <!-- STEP 8: Kontakt podaci -->
+    <!-- STEP 8: Kontakt preferencija -->
     <div class="qz-step" data-step="8">
       <div class="qz-step__inner">
-        <h2 class="qz-step__title">Pošaljite nam upit</h2>
+        <h2 class="qz-step__title">Kako biste voljeli da vas kontaktiramo?</h2>
+        <p class="qz-step__sub">Odaberite način i vrijeme koje vam najviše odgovara.</p>
+        <div class="qz-contact-pref">
+          <div class="qz-contact-pref__method">
+            <p class="qz-contact-pref__label">Način kontakta</p>
+            <div class="qz-options">
+              <label class="qz-opt qz-opt--contact">
+                <input type="radio" name="q8_contact" value="email">
+                <span class="qz-opt__body qz-opt__body--contact">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <span class="qz-opt__text">Email</span>
+                  <span class="qz-opt__hint">Odgovor na email adresu</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--contact">
+                <input type="radio" name="q8_contact" value="telefon">
+                <span class="qz-opt__body qz-opt__body--contact">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <span class="qz-opt__text">Telefon</span>
+                  <span class="qz-opt__hint">Poziv na vaš broj</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--contact">
+                <input type="radio" name="q8_contact" value="whatsapp">
+                <span class="qz-opt__body qz-opt__body--contact">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  <span class="qz-opt__text">WhatsApp</span>
+                  <span class="qz-opt__hint">Poruka na WhatsApp</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="qz-contact-pref__time" id="time-pref" style="display:none">
+            <p class="qz-contact-pref__label">Kada vam najviše pase?</p>
+            <div class="qz-options qz-options--time">
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="jutro">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                  <span class="qz-opt__text">Jutro</span>
+                  <span class="qz-opt__hint">8:00 – 12:00</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="podne">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                  <span class="qz-opt__text">Podne</span>
+                  <span class="qz-opt__hint">12:00 – 17:00</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="vecer">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                  <span class="qz-opt__text">Večer</span>
+                  <span class="qz-opt__hint">17:00 – 20:00</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="bilo_kad">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span class="qz-opt__text">Bilo kad</span>
+                  <span class="qz-opt__hint">Nije bitno</span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 9: Kontakt podaci -->
+    <div class="qz-step" data-step="9">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Vaši podaci</h2>
         <p class="qz-step__sub">Ostavite svoje podatke i mi ćemo vam poslati personaliziranu ponudu.</p>
         <form class="qz-form" id="quiz-form">
           <div class="qz-form__group">
             <label class="qz-form__label">Ime i prezime *</label>
             <input type="text" name="ime" required placeholder="Vaše ime i prezime" class="qz-form__input">
           </div>
-          <div class="qz-form__row">
-            <div class="qz-form__group">
-              <label class="qz-form__label">Email *</label>
-              <input type="email" name="email" required placeholder="vas@email.com" class="qz-form__input">
-            </div>
-            <div class="qz-form__group">
-              <label class="qz-form__label">Telefon</label>
-              <input type="tel" name="telefon" placeholder="+387 61 000 000" class="qz-form__input">
-            </div>
+          <div class="qz-form__group">
+            <label class="qz-form__label">Email adresa *</label>
+            <input type="email" name="email" required placeholder="vas@email.com" class="qz-form__input">
           </div>
           <div class="qz-form__group">
+            <label class="qz-form__label">Telefon</label>
+            <div class="qz-phone">
+              <div class="qz-phone__select-wrap">
+                <select name="phone_code" class="qz-phone__select" id="phone-code">
+                  <option value="+387" data-flag="BA" selected>+387 🇧🇦</option>
+                  <option value="+385" data-flag="HR">+385 🇭🇷</option>
+                  <option value="+381" data-flag="RS">+381 🇷🇸</option>
+                  <option value="+382" data-flag="ME">+382 🇲🇪</option>
+                  <option value="+386" data-flag="SI">+386 🇸🇮</option>
+                  <option value="+49" data-flag="DE">+49 🇩🇪</option>
+                  <option value="+43" data-flag="AT">+43 🇦🇹</option>
+                  <option value="+41" data-flag="CH">+41 🇨🇭</option>
+                  <option value="+39" data-flag="IT">+39 🇮🇹</option>
+                  <option value="+33" data-flag="FR">+33 🇫🇷</option>
+                  <option value="+44" data-flag="GB">+44 🇬🇧</option>
+                  <option value="+1" data-flag="US">+1 🇺🇸</option>
+                  <option value="+46" data-flag="SE">+46 🇸🇪</option>
+                  <option value="+47" data-flag="NO">+47 🇳🇴</option>
+                  <option value="+45" data-flag="DK">+45 🇩🇰</option>
+                  <option value="+358" data-flag="FI">+358 🇫🇮</option>
+                  <option value="+31" data-flag="NL">+31 🇳🇱</option>
+                  <option value="+32" data-flag="BE">+32 🇧🇪</option>
+                  <option value="+48" data-flag="PL">+48 🇵🇱</option>
+                  <option value="+420" data-flag="CZ">+420 🇨🇿</option>
+                  <option value="+36" data-flag="HU">+36 🇭🇺</option>
+                  <option value="+40" data-flag="RO">+40 🇷🇴</option>
+                  <option value="+359" data-flag="BG">+359 🇧🇬</option>
+                  <option value="+30" data-flag="GR">+30 🇬🇷</option>
+                  <option value="+90" data-flag="TR">+90 🇹🇷</option>
+                  <option value="+353" data-flag="IE">+353 🇮🇪</option>
+                  <option value="+351" data-flag="PT">+351 🇵🇹</option>
+                  <option value="+34" data-flag="ES">+34 🇪🇸</option>
+                </select>
+              </div>
+              <input type="tel" name="telefon" placeholder="61 000 000" class="qz-phone__input">
+            </div>
+          </div>
+          <div class="qz-form__group" id="msg-field">
             <label class="qz-form__label">Poruka (opcionalno)</label>
             <textarea name="poruka" rows="3" placeholder="Imate li dodatna pitanja?" class="qz-form__input qz-form__textarea"></textarea>
           </div>

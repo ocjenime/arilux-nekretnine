@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  var TOTAL = 8;
+  var TOTAL = 9;
   var current = 1;
   var answers = {};
 
@@ -33,48 +33,53 @@ document.addEventListener('DOMContentLoaded', function () {
       btnSubmit.style.display = 'none';
     }
 
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function collectAnswers() {
     var a = {};
 
-    // Q1: building
     var q1 = $('input[name="q1_building"]:checked');
     a.building = q1 ? q1.value : '';
 
-    // Q2: priorities (checkboxes)
     var q2 = $$('input[name="q2_priority"]:checked');
     a.priorities = q2.map(function (c) { return c.value; });
 
-    // Q3: budget
     var q3 = $('input[name="q3_budget"]:checked');
     a.budget = q3 ? q3.value : '';
 
-    // Q4: rooms
     var q4 = $('input[name="q4_rooms"]:checked');
     a.rooms = q4 ? q4.value : '';
 
-    // Q5: experience
     var q5 = $('input[name="q5_experience"]:checked');
     a.experience = q5 ? q5.value : '';
 
-    // Q6: timeline
     var q6 = $('input[name="q6_timeline"]:checked');
     a.timeline = q6 ? q6.value : '';
 
-    // Q7: purpose
     var q7 = $('input[name="q7_purpose"]:checked');
     a.purpose = q7 ? q7.value : '';
+
+    var q8c = $('input[name="q8_contact"]:checked');
+    a.contact = q8c ? q8c.value : '';
+    var q8t = $('input[name="q8_time"]:checked');
+    a.time = q8t ? q8t.value : '';
 
     return a;
   }
 
   function hasAnswer(step) {
     if (step === 2) {
-      // Checkboxes — at least one
       return $$('input[name="q2_priority"]:checked').length > 0;
+    }
+    if (step === 8) {
+      // Must pick contact method; if phone/whatsapp, also pick time
+      var contact = $('input[name="q8_contact"]:checked');
+      if (!contact) return false;
+      if (contact.value !== 'email') {
+        return !!$('input[name="q8_time"]:checked');
+      }
+      return true;
     }
     var names = {
       1: 'q1_building',
@@ -93,9 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var el = $('.qz-step[data-step="' + target + '"]');
     if (el) {
       el.classList.add('active');
-      // Re-trigger animation
       el.style.animation = 'none';
-      el.offsetHeight; // reflow
+      el.offsetHeight;
       el.style.animation = '';
     }
     if (typeof step === 'number') current = step;
@@ -120,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
       tišina: 'Mir i tišina'
     };
 
+    var contactLabels = { email: 'Email', telefon: 'Telefon', whatsapp: 'WhatsApp' };
+    var timeLabels = { jutro: 'Jutro (8–12)', podne: 'Podne (12–17)', vecer: 'Večer (17–20)', bilo_kad: 'Bilo kad' };
+
     var items = [];
     items.push('<h3>Vaša preporuka</h3><ul>');
 
@@ -141,13 +148,33 @@ document.addEventListener('DOMContentLoaded', function () {
       items.push('<li><strong>Svrha:</strong> ' + (purposeLabels[a.purpose] || a.purpose) + '</li>');
     }
     if (a.timeline) {
-      var timeLabels = { odmah: 'Odmah', godinu: 'U toku godine', '2_3_godine': '2–3 godine', samo_istrazujem: 'Samo istražujem' };
-      items.push('<li><strong>Vremenski okvir:</strong> ' + (timeLabels[a.timeline] || a.timeline) + '</li>');
+      var tLabels = { odmah: 'Odmah', godinu: 'U toku godine', '2_3_godine': '2–3 godine', samo_istrazujem: 'Samo istražujem' };
+      items.push('<li><strong>Vremenski okvir:</strong> ' + (tLabels[a.timeline] || a.timeline) + '</li>');
+    }
+    if (a.contact) {
+      items.push('<li><strong>Kontakt:</strong> ' + (contactLabels[a.contact] || a.contact) + '</li>');
+    }
+    if (a.time) {
+      items.push('<li><strong>Vrijeme:</strong> ' + (timeLabels[a.time] || a.time) + '</li>');
     }
     items.push('</ul>');
 
     $('#results-match').innerHTML = items.join('');
   }
+
+  // Contact preference — show/hide time options
+  $$('input[name="q8_contact"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      var timeWrap = $('#time-pref');
+      if (radio.value === 'email') {
+        timeWrap.style.display = 'none';
+        // Uncheck time if switching to email
+        $$('input[name="q8_time"]').forEach(function (r) { r.checked = false; });
+      } else {
+        timeWrap.style.display = 'block';
+      }
+    });
+  });
 
   // Navigation
   btnNext.addEventListener('click', function () {
@@ -170,7 +197,6 @@ document.addEventListener('DOMContentLoaded', function () {
     answers = collectAnswers();
     answersField.value = JSON.stringify(answers);
 
-    // Send to Formspree
     var data = new FormData(form);
     data.append('quiz_odgovori', JSON.stringify(answers));
 
@@ -186,7 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
       goTo('results');
       nav.style.display = 'none';
     }).catch(function () {
-      // Still show results even if Formspree fails
       buildResults(answers);
       goTo('results');
       nav.style.display = 'none';

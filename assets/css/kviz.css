@@ -325,7 +325,120 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-/* ── Form (Q8) ── */
+/* ── Contact Preference (Q8) ── */
+.qz-contact-pref {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.qz-contact-pref__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.qz-opt--contact .qz-opt__body--contact {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 16px;
+  gap: 8px;
+}
+.qz-opt--contact .qz-opt__body--contact svg {
+  width: 28px;
+  height: 28px;
+  color: var(--gray-400);
+  transition: color 0.2s;
+}
+.qz-opt input:checked + .qz-opt__body--contact svg {
+  color: var(--orange);
+}
+.qz-options--time {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.qz-opt--time .qz-opt__body--time {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 12px;
+  gap: 6px;
+}
+.qz-opt--time .qz-opt__body--time svg {
+  width: 24px;
+  height: 24px;
+  color: var(--gray-400);
+  transition: color 0.2s;
+}
+.qz-opt input:checked + .qz-opt__body--time svg {
+  color: var(--orange);
+}
+.qz-opt--time .qz-opt__hint {
+  margin-left: 0;
+}
+
+/* ── Phone Input ── */
+.qz-phone {
+  display: flex;
+  gap: 0;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--white);
+  transition: border-color 0.2s;
+}
+.qz-phone:focus-within {
+  border-color: var(--orange);
+}
+.qz-phone__select-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.qz-phone__select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--gray-400);
+  pointer-events: none;
+}
+.qz-phone__select {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 28px 12px 12px;
+  border: none;
+  border-right: 2px solid var(--gray-100);
+  background: var(--gray-100);
+  color: var(--dark);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 100%;
+}
+.qz-phone__input {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  color: var(--dark);
+}
+.qz-phone__input::placeholder {
+  color: var(--gray-400);
+}
+
+/* ── Form (Q9) ── */
 .qz-form {
   display: flex;
   flex-direction: column;
@@ -505,8 +618,19 @@ body {
   .qz-options--purpose {
     grid-template-columns: 1fr;
   }
+  .qz-options--time {
+    grid-template-columns: 1fr 1fr;
+  }
   .qz-form__row {
     grid-template-columns: 1fr;
+  }
+  .qz-phone__select {
+    padding: 12px 24px 12px 8px;
+    font-size: 0.82rem;
+  }
+  .qz-phone__input {
+    padding: 12px;
+    font-size: 0.9rem;
   }
   .qz-nav {
     padding: 0 16px;
