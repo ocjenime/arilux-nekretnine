@@ -193,10 +193,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Auto-advance on selection (image cards + options)
-  $$('.qz-card input, .qz-opt input').forEach(function (input) {
+  // Auto-advance on selection — only for radio buttons (single-select steps)
+  // Step 2 uses checkboxes (multi-select), so user must click "Dalje" manually
+  $$('.qz-card input[type="radio"], .qz-opt input[type="radio"]').forEach(function (input) {
     input.addEventListener('change', function () {
-      // Short delay so radio/checkbox visual updates first
       setTimeout(function () {
         if (current < TOTAL) {
           goTo(current + 1);
