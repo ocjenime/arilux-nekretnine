@@ -1501,35 +1501,107 @@
     }
   }
 
-  /* ── Catalog dropdown selector ─────────────────────────────── */
-  var catalogSelect = document.getElementById('catalogSelect');
-  var catalogDropdown = document.getElementById('catalogDropdown');
-  var catalogDownload = document.getElementById('catalogDownload');
-  if (catalogSelect && catalogDropdown && catalogDownload) {
-    var options = catalogDropdown.querySelectorAll('.catalogs__select-option');
-    catalogSelect.addEventListener('click', function (e) {
-      e.stopPropagation();
-      catalogSelect.classList.toggle('is-open');
-    });
-    options.forEach(function (opt) {
-      opt.addEventListener('click', function (e) {
-        e.stopPropagation();
-        options.forEach(function (o) { o.classList.remove('is-active'); o.setAttribute('aria-selected', 'false'); });
-        opt.classList.add('is-active');
-        opt.setAttribute('aria-selected', 'true');
-        var name = opt.querySelector('.catalogs__select-name').textContent;
-        var meta = opt.querySelector('.catalogs__select-meta').textContent;
-        var dot = opt.querySelector('.catalogs__select-dot').style.background;
-        document.querySelector('#catalogCurrent .catalogs__select-name').textContent = name;
-        document.querySelector('#catalogCurrent .catalogs__select-meta').textContent = meta;
-        document.querySelector('#catalogCurrent .catalogs__select-dot').style.background = dot;
-        catalogDownload.href = opt.dataset.file;
-        catalogDownload.download = opt.dataset.filename;
-        catalogSelect.classList.remove('is-open');
-      });
-    });
-    document.addEventListener('click', function () {
-      catalogSelect.classList.remove('is-open');
+  /* ── Catalog Request Modal ────────────────────────────────── */
+  var catalogRequestBtn = document.getElementById('catalogRequestBtn');
+  var catalogModal = document.getElementById('catalogModal');
+  var catalogModalBackdrop = document.getElementById('catalogModalBackdrop');
+  var catalogModalClose = document.getElementById('catalogModalClose');
+  var catalogForm = document.getElementById('catalogForm');
+  var catalogSubmitBtn = document.getElementById('catalogSubmitBtn');
+  var catalogSuccess = document.getElementById('catalogSuccess');
+  var catalogSuccessClose = document.getElementById('catalogSuccessClose');
+
+  function openCatalogModal() {
+    if (!catalogModal) return;
+    catalogModal.classList.add('is-open');
+    catalogModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCatalogModal() {
+    if (!catalogModal) return;
+    catalogModal.classList.remove('is-open');
+    catalogModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(function () {
+      if (catalogForm) catalogForm.reset();
+      catalogForm.style.display = '';
+      if (catalogSuccess) { catalogSuccess.style.display = 'none'; catalogSuccess.setAttribute('aria-hidden', 'true'); }
+      var errs = catalogForm.querySelectorAll('.is-error');
+      errs.forEach(function (e) { e.classList.remove('is-error'); });
+    }, 350);
+  }
+  if (catalogRequestBtn) catalogRequestBtn.addEventListener('click', openCatalogModal);
+  if (catalogModalBackdrop) catalogModalBackdrop.addEventListener('click', closeCatalogModal);
+  if (catalogModalClose) catalogModalClose.addEventListener('click', closeCatalogModal);
+  if (catalogSuccessClose) catalogSuccessClose.addEventListener('click', closeCatalogModal);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && catalogModal && catalogModal.classList.contains('is-open')) closeCatalogModal();
+  });
+
+  if (catalogForm) {
+    catalogForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('cfName');
+      var email = document.getElementById('cfEmail');
+      var country = document.getElementById('cfCountry');
+      var buildings = catalogForm.querySelectorAll('input[name="zgrade"]:checked');
+      var valid = true;
+
+      [name, email, country].forEach(function (f) { f.classList.remove('is-error'); });
+      if (!name.value.trim()) { name.classList.add('is-error'); valid = false; }
+      if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { email.classList.add('is-error'); valid = false; }
+      if (!country.value.trim()) { country.classList.add('is-error'); valid = false; }
+      if (buildings.length === 0) { valid = false; }
+
+      if (!valid) {
+        var firstErr = catalogForm.querySelector('.is-error');
+        if (firstErr) firstErr.focus();
+        return;
+      }
+
+      var zgradeText = Array.from(buildings).map(function (b) { return b.value; }).join(', ');
+      var budgetVal = document.getElementById('cfBudget').value.trim();
+      var phoneVal = document.getElementById('cfPhone').value.trim();
+      var addrVal = document.getElementById('cfAddress').value.trim();
+
+      var msg = 'ZAHTJEV ZA KATALOG\n\n';
+      msg += 'Ime i prezime: ' + name.value.trim() + '\n';
+      msg += 'Email: ' + email.value.trim() + '\n';
+      if (phoneVal) msg += 'Telefon: ' + phoneVal + '\n';
+      if (addrVal) msg += 'Adresa: ' + addrVal + '\n';
+      msg += 'Država: ' + country.value.trim() + '\n';
+      if (budgetVal) msg += 'Budžet: ' + budgetVal + ' KM\n';
+      msg += 'Zgrade: ' + zgradeText + '\n';
+
+      var hiddenField = catalogForm.querySelector('input[name="poruka"]');
+      if (!hiddenField) {
+        hiddenField = document.createElement('input');
+        hiddenField.type = 'hidden';
+        hiddenField.name = 'poruka';
+        catalogForm.appendChild(hiddenField);
+      }
+      hiddenField.value = msg;
+
+      catalogSubmitBtn.classList.add('is-loading');
+      catalogSubmitBtn.disabled = true;
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', catalogForm.action, true);
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          catalogSubmitBtn.classList.remove('is-loading');
+          catalogSubmitBtn.disabled = false;
+          if (xhr.status === 200 || xhr.status === 301 || xhr.status === 302) {
+            catalogForm.style.display = 'none';
+            catalogSuccess.style.display = 'block';
+            catalogSuccess.setAttribute('aria-hidden', 'false');
+          } else {
+            alert('Došlo je do greške. Molimo pokušajte ponovo ili nas kontaktirajte telefonom.');
+          }
+        }
+      };
+      xhr.send(new FormData(catalogForm));
     });
   }
 
