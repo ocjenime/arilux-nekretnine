@@ -193,17 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Auto-advance on selection — only for radio buttons (single-select steps)
-  // Step 2 uses checkboxes (multi-select), so user must click "Dalje" manually
-  $$('.qz-card input[type="radio"], .qz-opt input[type="radio"]').forEach(function (input) {
-    input.addEventListener('change', function () {
-      setTimeout(function () {
-        if (current < TOTAL) {
-          goTo(current + 1);
-        }
-      }, 300);
-    });
-  });
+  // No auto-advance — user must click "Dalje" on every step
 
   // Init
   updateUI();
