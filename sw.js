@@ -2,13 +2,17 @@
    ARILUX NEKRETNINE — Service Worker v1
    Cache-first for static assets, network-first for HTML
    ═══════════════════════════════════════════════════════════════ */
-var CACHE_NAME = 'arilux-v5';
+var CACHE_NAME = 'arilux-v6';
 var PRECACHE_URLS = [
   '/',
   '/index.html',
   '/assets/css/styles.css',
   '/assets/js/main.js',
   '/assets/img/favicon.svg',
+  '/assets/catalog/arilux-amor.pdf',
+  '/assets/catalog/arilux-park.pdf',
+  '/assets/catalog/arilux-centar.pdf',
+  '/assets/catalog/arilux-panorama.pdf',
   '/data/site.json',
   '/manifest.json'
 ];

@@ -2708,43 +2708,131 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 }
 .urgency__text a:hover { text-decoration-color: var(--green); }
 
-/* ── Lead magnet ──────────────────────────────────────────────── */
-.leadmagnet {
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
-  padding: 32px 0;
+/* ── Catalogs — premium download section ──────────────────────── */
+.catalogs {
+  position: relative;
+  background: var(--navy);
+  color: #fff;
+  overflow: hidden;
 }
-.leadmagnet__inner {
+.catalogs__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(0,65,177,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(242,103,33,.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.catalogs__head { max-width: 620px; margin-bottom: clamp(28px, 4vw, 48px); position: relative; z-index: 1; }
+.catalogs__title {
+  font-family: var(--font-d);
+  font-variation-settings: 'wdth' 115;
+  font-weight: 800;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.catalogs__lead {
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.7;
+  color: rgba(255,255,255,.72);
+  max-width: 520px;
+}
+.catalogs__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  position: relative;
+  z-index: 1;
+}
+.catalog-card {
   display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.leadmagnet__icon {
-  width: 64px;
-  height: 64px;
+  flex-direction: column;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
   border-radius: 16px;
-  background: rgba(255,255,255,.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+  text-decoration: none;
   color: #fff;
-  flex-shrink: 0;
 }
-.leadmagnet__text {
+.catalog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,.5);
+  border-color: rgba(255,255,255,.2);
+}
+.catalog-card__accent {
+  height: 4px;
+  background: var(--accent);
+  width: 100%;
+}
+.catalog-card__head {
+  padding: 24px 24px 0;
   flex: 1;
-  color: #fff;
 }
-.leadmagnet__text h3 {
+.catalog-card__num {
   font-family: var(--font-d);
   font-weight: 800;
-  font-size: 18px;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  display: block;
+  margin-bottom: 8px;
+}
+.catalog-card__name {
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.2;
   margin-bottom: 4px;
 }
-.leadmagnet__text p {
+.catalog-card__loc {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+}
+.catalog-card__specs {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  list-style: none;
+}
+.catalog-card__specs li {
+  font-size: 13px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.3;
+}
+.catalog-card__specs b {
+  display: block;
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.catalog-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  margin: 0 24px 24px;
+  background: rgba(255,255,255,.08);
+  border-radius: 10px;
   font-size: 14px;
-  opacity: .8;
+  font-weight: 600;
+  transition: background .2s;
+}
+.catalog-card:hover .catalog-card__cta {
+  background: rgba(255,255,255,.14);
+}
+
+@media (max-width: 900px) {
+  .catalogs__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .leadmagnet__inner { flex-direction: column; text-align: center; gap: 16px; }
+  .catalogs__grid { grid-template-columns: 1fr; }
+  .catalog-card__specs { gap: 20px; }
 }
 
 /* ── Back to top ──────────────────────────────────────────────── */
