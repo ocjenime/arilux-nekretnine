@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arilux Kviz — Pronađite idealan stan</title>
+  <meta name="description" content="Otkrijte koji Arilux stan odgovara vašim potrebama. Kratki kviz koji vam pomaže pronaći idealnu nekretninu u Velikoj Kladuši.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/kviz.css">
+</head>
+<body>
+
+<div id="quiz-app">
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <svg viewBox="0 0 133.2 79.4" width="64"><path fill-rule="evenodd" fill="#F26721" d="M0,79.4h133.2V25.3L66.6,0L0,25.4V79.4z M13.4,53.1v16H7.1V33.8c0-0.9,0.6-1.9,1.4-2.3l4.8-1.7l6.5-2.3l4.1-1.4c0.9-0.3,1.8,0.8,1.8,1.7v9.8V69h-5.9V52.1L13.4,53.1z M19.8,46.2V34.5c0-0.6-0.5-0.9-1-0.8L14.4,35c-0.6,0.2-1,0.8-1,1.4v11L19.8,46.2z M30.3,69V23.8l9.4-3.3c0.4-0.1,0.8-0.3,1.2-0.4l2.9-1c2.8-1,5.2,0.7,5.2,3.7v15.1c0,2.5-1.6,5.2-3.8,6.6c4,1.8,3.8,8.1,3.8,11.9v12.6h-6.3V55c0-4.6-1.2-6.1-4.1-5.7l-2.2,0.3v19.3L30.3,69z M36.5,28.3v14.6l3.9-0.9c1-0.2,2.3-1.9,2.3-2.8v-11c0-1-0.8-1.6-1.7-1.3L36.5,28.3z M53.3,68.9V15.6l6.3-2.2v55.4L53.3,68.9z M73.7,13.4v55.5H87v-6.4h-7.3V15.6L73.7,13.4z M89,36.3v20v8.1c0,2.8,2.1,5.1,4.8,5.1h6.6c2.6,0,4.8-2.3,4.8-5.1V24.8L100,23v37.8c0,0.9-0.7,1.7-1.6,1.7h-0.6c-0.2,0-0.4,0-0.6,0c-0.2,0-0.4,0-0.5,0h-0.7c-0.9,0-1.6-0.8-1.6-1.7V21L89,19V36.3z M113.4,48L106.3,69l4.7,0l4.6-13l3.7,13l5.3,0l-6.2-20.8l5.9-16.4l-4.8-1.7l-3.5,10.2l-3.8-12.8l-5.1-1.9L113.4,48z"/></svg>
+    <p class="preloader-text">Pripremamo kviz...</p>
+  </div>
+
+  <!-- Top bar -->
+  <header class="qz-topbar">
+    <a href="index.html" class="qz-logo">
+      <svg viewBox="0 0 133.2 79.4" width="36"><path fill-rule="evenodd" fill="#F26721" d="M0,79.4h133.2V25.3L66.6,0L0,25.4V79.4z M13.4,53.1v16H7.1V33.8c0-0.9,0.6-1.9,1.4-2.3l4.8-1.7l6.5-2.3l4.1-1.4c0.9-0.3,1.8,0.8,1.8,1.7v9.8V69h-5.9V52.1L13.4,53.1z M19.8,46.2V34.5c0-0.6-0.5-0.9-1-0.8L14.4,35c-0.6,0.2-1,0.8-1,1.4v11L19.8,46.2z M30.3,69V23.8l9.4-3.3c0.4-0.1,0.8-0.3,1.2-0.4l2.9-1c2.8-1,5.2,0.7,5.2,3.7v15.1c0,2.5-1.6,5.2-3.8,6.6c4,1.8,3.8,8.1,3.8,11.9v12.6h-6.3V55c0-4.6-1.2-6.1-4.1-5.7l-2.2,0.3v19.3L30.3,69z M36.5,28.3v14.6l3.9-0.9c1-0.2,2.3-1.9,2.3-2.8v-11c0-1-0.8-1.6-1.7-1.3L36.5,28.3z M53.3,68.9V15.6l6.3-2.2v55.4L53.3,68.9z M73.7,13.4v55.5H87v-6.4h-7.3V15.6L73.7,13.4z M89,36.3v20v8.1c0,2.8,2.1,5.1,4.8,5.1h6.6c2.6,0,4.8-2.3,4.8-5.1V24.8L100,23v37.8c0,0.9-0.7,1.7-1.6,1.7h-0.6c-0.2,0-0.4,0-0.6,0c-0.2,0-0.4,0-0.5,0h-0.7c-0.9,0-1.6-0.8-1.6-1.7V21L89,19V36.3z M113.4,48L106.3,69l4.7,0l4.6-13l3.7,13l5.3,0l-6.2-20.8l5.9-16.4l-4.8-1.7l-3.5,10.2l-3.8-12.8l-5.1-1.9L113.4,48z"/></svg>
+      <span>Kviz</span>
+    </a>
+    <div class="qz-progress">
+      <span class="qz-progress__label"><span id="step-current">1</span>/<span id="step-total">8</span></span>
+      <div class="qz-progress__bar"><div class="qz-progress__fill" id="progress-fill"></div></div>
+    </div>
+  </header>
+
+  <!-- Wizard -->
+  <div class="qz-wizard" id="wizard">
+
+    <!-- STEP 1: Zgrada -->
+    <div class="qz-step active" data-step="1">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Koja zgrada vam se najviše sviđa?</h2>
+        <p class="qz-step__sub">Odaberite zgradu koja vas privlači ili preskočite ako niste sigurni.</p>
+        <div class="qz-cards qz-cards--buildings">
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="amor">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop&crop=center" alt="Arilux Amor" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#0041B1"></span> Amor</span>
+                <span class="qz-card__meta">Centar · P+6 · 28 stanova</span>
+                <span class="qz-card__price">4.500 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="park">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=400&fit=crop&crop=center" alt="Arilux Park" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#2FB57E"></span> Park</span>
+                <span class="qz-card__meta">Uz park · P+5 · 22 stana</span>
+                <span class="qz-card__price">3.500 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="centar">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop&crop=center" alt="Arilux Centar" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#F26721"></span> Centar</span>
+                <span class="qz-card__meta">Poslovno-stambeni · P+8 · 36 stanova</span>
+                <span class="qz-card__price">4.000 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="panorama">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=600&h=400&fit=crop&crop=center" alt="Arilux Panorama" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#7B61FF"></span> Panorama</span>
+                <span class="qz-card__meta">Grabik · P+4 · 16 stanova</span>
+                <span class="qz-card__price">4.500 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--text">
+            <input type="radio" name="q1_building" value="ne_znam">
+            <span class="qz-card__body qz-card__body--text">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span class="qz-card__name">Ne znam, pomozi mi</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Lokacija / Prioritet -->
+    <div class="qz-step" data-step="2">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Šta vam je najbitnije pri odabiru?</h2>
+        <p class="qz-step__sub">Odaberite jedan ili više faktora koji su vam važni.</p>
+        <div class="qz-cards qz-cards--priorities">
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="blizina_centra">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span class="qz-card__name">Blizina centra</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="park">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 14V2"/><path d="M9 18.12L10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76"/><path d="M21 12h-4l-3 8H3"/></svg>
+              <span class="qz-card__name">Blizina parka</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="skola">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span class="qz-card__name">Blizina škole</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="pogled">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="qz-card__name">Lijep pogled</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="investicija">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span class="qz-card__name">Dobra investicija</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="tišina">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+              <span class="qz-card__name">Mir i tišina</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Budžet -->
+    <div class="qz-step" data-step="3">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Koji je vaš budžet?</h2>
+        <p class="qz-step__sub">Odaberite raspon cijena koji vam odgovara.</p>
+        <div class="qz-options qz-options--budget">
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="do_50000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Do 50.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="50000_80000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">50.000 – 80.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="80000_120000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">80.000 – 120.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="120000_180000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">120.000 – 180.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="preko_180000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Preko 180.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="flexibilno">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Fleksibilan budžet</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: Broj soba -->
+    <div class="qz-step" data-step="4">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Koliko soba vam treba?</h2>
+        <p class="qz-step__sub">Odaberite željeni broj soba.</p>
+        <div class="qz-options qz-options--rooms">
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="studio">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Stan</span>
+              <span class="qz-opt__hint">Jednosobni stan</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="1">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">1 soba</span>
+              <span class="qz-opt__hint">Dnevna + spavaća</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="2">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">2 sobe</span>
+              <span class="qz-opt__hint">Dvije spavaće</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="3">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">3 sobe</span>
+              <span class="qz-opt__hint">Trosobni stan</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="flexibilno">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Fleksibilno</span>
+              <span class="qz-opt__hint">Pokažite mi sve opcije</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: Prethodno iskustvo -->
+    <div class="qz-step" data-step="5">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Da li ste kupovali nekretnine ranije?</h2>
+        <p class="qz-step__sub">Ovo nam pomaže da vam prilagodimo preporuke.</p>
+        <div class="qz-options qz-options--simple">
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q5_experience" value="da">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="qz-opt__text">Da, kupovali smo</span>
+            </span>
+          </label>
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q5_experience" value="ne">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <span class="qz-opt__text">Ne, prvi put kupujem</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: Vremenski okvir -->
+    <div class="qz-step" data-step="6">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Kada planirate kupovinu?</h2>
+        <p class="qz-step__sub">Označite kad biste željeli useliti.</p>
+        <div class="qz-options qz-options--timeline">
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="odmah">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Odmah</span>
+              <span class="qz-opt__hint">Što prije moguće</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="godinu">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">U toku godine</span>
+              <span class="qz-opt__hint">Sledećih 12 mjeseci</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="2_3_godine">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">U naredne 2–3 godine</span>
+              <span class="qz-opt__hint">Planiram na duži rok</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="samo_istrazujem">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Samo istražujem</span>
+              <span class="qz-opt__hint">Još nisam siguran/na</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7: Svrha -->
+    <div class="qz-step" data-step="7">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Koja je svrha kupovine?</h2>
+        <p class="qz-step__sub">Zašto želite kupiti stan?</p>
+        <div class="qz-options qz-options--purpose">
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q7_purpose" value="stanovanje">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span class="qz-opt__text">Stanovanje</span>
+              <span class="qz-opt__hint">Za sebe i porodicu</span>
+            </span>
+          </label>
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q7_purpose" value="investicija">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span class="qz-opt__text">Investicija</span>
+              <span class="qz-opt__hint">Iznajmljivanje ili prodaja</span>
+            </span>
+          </label>
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q7_purpose" value="oboje">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              <span class="qz-opt__text">Oboje</span>
+              <span class="qz-opt__hint">Prvo stanovanje, pa iznajmljivanje</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8: Kontakt podaci -->
+    <div class="qz-step" data-step="8">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Pošaljite nam upit</h2>
+        <p class="qz-step__sub">Ostavite svoje podatke i mi ćemo vam poslati personaliziranu ponudu.</p>
+        <form class="qz-form" id="quiz-form">
+          <div class="qz-form__group">
+            <label class="qz-form__label">Ime i prezime *</label>
+            <input type="text" name="ime" required placeholder="Vaše ime i prezime" class="qz-form__input">
+          </div>
+          <div class="qz-form__row">
+            <div class="qz-form__group">
+              <label class="qz-form__label">Email *</label>
+              <input type="email" name="email" required placeholder="vas@email.com" class="qz-form__input">
+            </div>
+            <div class="qz-form__group">
+              <label class="qz-form__label">Telefon</label>
+              <input type="tel" name="telefon" placeholder="+387 61 000 000" class="qz-form__input">
+            </div>
+          </div>
+          <div class="qz-form__group">
+            <label class="qz-form__label">Poruka (opcionalno)</label>
+            <textarea name="poruka" rows="3" placeholder="Imate li dodatna pitanja?" class="qz-form__input qz-form__textarea"></textarea>
+          </div>
+          <input type="hidden" name="quiz_odgovori" id="quiz-answers-field" value="">
+        </form>
+      </div>
+    </div>
+
+    <!-- RESULTS: Rezultat -->
+    <div class="qz-step" data-step="results">
+      <div class="qz-step__inner qz-results">
+        <div class="qz-results__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2FB57E" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2 class="qz-step__title">Hvala vam!</h2>
+        <p class="qz-step__sub">Poslali smo vam personaliziranu preporuku na email. Naš agent će vas kontaktirati u najkraćem roku.</p>
+        <div class="qz-results__match" id="results-match"></div>
+        <a href="index.html" class="qz-results__back">Nazad na početnu stranicu</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation -->
+  <div class="qz-nav" id="qz-nav">
+    <button type="button" class="qz-nav__btn qz-nav__btn--back" id="btn-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Nazad
+    </button>
+    <button type="button" class="qz-nav__btn qz-nav__btn--next" id="btn-next">
+      Dalje
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <button type="button" class="qz-nav__btn qz-nav__btn--submit" id="btn-submit" style="display:none">
+      Pošalji upit
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+
+</div>
+
+<script src="assets/js/kviz.js"></script>
+</body>
+</html>
