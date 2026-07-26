@@ -2227,7 +2227,7 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 
 .whatsapp-fab {
   position: fixed;
-  bottom: 28px;
+  bottom: 100px;
   right: 28px;
   z-index: 90;
   width: 60px;
