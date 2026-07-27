@@ -37,7 +37,7 @@
   };
 
   /* ── i18n: detect language and provide translations ─────────── */
-  var LANG = document.documentElement.lang === 'de' ? 'de' : 'bs';
+  var LANG = (function() { var l = document.documentElement.lang; return (l === 'de' || l === 'en') ? l : 'bs'; })();
 
   var I18N = {
     de: {
@@ -77,15 +77,53 @@
       prefilledMsg: 'Ich interessiere mich für Wohnung {id} ({name}), {m2} m². Bitte um weitere Informationen und einen Termin.',
       btnReserve: 'Wohnung reservieren \u2192',
       btnCall: 'Anrufen: +387 37 772 000'
+    },
+    en: {
+      roomLabel: { 1: '1-Room', 2: '2-Room', 3: '3-Room', 4: '4-Room' },
+      floorLabel: { 1: 'Ground Floor', 2: '1st Floor', 3: '2nd Floor', 4: '3rd Floor', 5: '4th Floor', 6: '5th Floor', 7: '6th Floor', 8: '7th Floor', 9: '8th Floor' },
+      statusLabel: { available: 'Available', reserved: 'Reserved', sold: 'Sold' },
+      floor: 'Floor',
+      floors: 'Floors',
+      totalFloors: 'Total Floors',
+      penthouse: 'Penthouse',
+      penthouseUnit: 'Penthouse Unit',
+      found: 'apartments found',
+      available: 'available',
+      reserve: 'Reserve',
+      reserveApt: 'Reserve Apartment',
+      call: 'Call',
+      sendInquiry: 'Send Waitlist Inquiry',
+      callSimilar: 'Call for Similar Apartments',
+      showPlan: 'Show Floor Plan',
+      hidePlan: 'Hide Floor Plan',
+      floorSpec: 'Floor',
+      areaSpec: 'Living Area',
+      roomsSpec: 'Rooms',
+      bathroomsSpec: 'Bathrooms',
+      balconySpec: 'Balcony',
+      balconyYes: 'Yes',
+      balconyNo: 'No',
+      orientationSpec: 'Orientation',
+      orientation: ['South', 'North', 'East', 'West'],
+      features: {
+        one: ['Underfloor Heating', 'Heat Pump', 'A+ Energy Standard', 'Balcony', 'Underground Parking', 'Ground Floor Commercial'],
+        park: ['Underfloor Heating', 'Heat Pump', 'A+ Energy Standard', 'Private Parking', 'Playground', 'Park-View Terraces'],
+        centar: ['Underfloor Heating', 'Heat Pump', 'A+ Energy Standard', 'Elevator', 'Commercial Units', 'Basement Garage'],
+        panorama: ['Underfloor Heating', 'Heat Pump', 'A+ Energy Standard', 'Terraces', 'Rooftop Terraces (PH)', 'Panoramic View']
+      },
+      tourNames: ['Living Room', 'Bedroom', 'Kitchen', 'Bathroom', 'Balcony'],
+      prefilledMsg: 'I\'m interested in apartment {id} ({name}), {m2} m². Please send more information and schedule a visit.',
+      btnReserve: 'Reserve Apartment \u2192',
+      btnCall: 'Call: +387 37 772 000'
     }
   };
 
   function t(key) {
-    if (LANG === 'de' && I18N.de[key] !== undefined) return I18N.de[key];
+    if (I18N[LANG] && I18N[LANG][key] !== undefined) return I18N[LANG][key];
     return null;
   }
   function tArr(key) {
-    if (LANG === 'de' && I18N.de[key]) return I18N.de[key];
+    if (I18N[LANG] && I18N[LANG][key]) return I18N[LANG][key];
     return null;
   }
 
@@ -554,7 +592,7 @@
     visible.forEach(function (a, i) { grid.appendChild(aptCard(a, i)); });
 
     var avail = all.filter(function (a) { return a.status === 'available'; }).length;
-    countEl.innerHTML = (LANG === 'de' ? 'Gefunden: <b>' + all.length + '</b> Wohnungen · <b>' + avail + '</b> verfügbar' : 'Pronađeno <b>' + all.length + '</b> stanova · <b>' + avail + '</b> slobodnih');
+    countEl.innerHTML = (LANG === 'de' ? 'Gefunden: <b>' + all.length + '</b> Wohnungen · <b>' + avail + '</b> verfügbar' : LANG === 'en' ? 'Found: <b>' + all.length + '</b> apartments · <b>' + avail + '</b> available' : 'Pronađeno <b>' + all.length + '</b> stanova · <b>' + avail + '</b> slobodnih');
 
     emptyEl.hidden = all.length !== 0;
     grid.style.display = all.length === 0 ? 'none' : '';
@@ -907,8 +945,8 @@
     document.getElementById('modalSpecs').innerHTML =
       '<div class="modal__spec"><dt>' + (t('floorSpec') || 'Sprat') + '</dt><dd>' + apt.floor + '. <small>/ ' + totalFloors + '</small></dd></div>' +
       '<div class="modal__spec"><dt>' + (t('areaSpec') || 'Kvadratura') + '</dt><dd>' + apt.area + ' <small>m\u00B2</small></dd></div>' +
-      '<div class="modal__spec"><dt>' + (t('roomsSpec') || 'Sobe') + '</dt><dd>' + apt.rooms + ' <small>' + (apt.rooms === 1 ? (LANG === 'de' ? 'Zimmer' : 'soba') : (LANG === 'de' ? 'Zimmer' : 'sobe')) + '</small></dd></div>' +
-      '<div class="modal__spec"><dt>' + (t('bathroomsSpec') || 'Kupatila') + '</dt><dd>' + baths + ' <small>' + (baths === 1 ? (LANG === 'de' ? 'Badezimmer' : 'kupatilo') : (LANG === 'de' ? 'Badezimmer' : 'kupatila')) + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>' + (t('roomsSpec') || 'Sobe') + '</dt><dd>' + apt.rooms + ' <small>' + (apt.rooms === 1 ? (LANG === 'de' ? 'Zimmer' : LANG === 'en' ? 'Room' : 'soba') : (LANG === 'de' ? 'Zimmer' : LANG === 'en' ? 'Rooms' : 'sobe')) + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>' + (t('bathroomsSpec') || 'Kupatila') + '</dt><dd>' + baths + ' <small>' + (baths === 1 ? (LANG === 'de' ? 'Badezimmer' : LANG === 'en' ? 'Bathroom' : 'kupatilo') : (LANG === 'de' ? 'Badezimmer' : LANG === 'en' ? 'Bathrooms' : 'kupatila')) + '</small></dd></div>' +
       '<div class="modal__spec"><dt>' + (t('balconySpec') || 'Balkon') + '</dt><dd>' + balcony + '</dd></div>' +
       '<div class="modal__spec"><dt>' + (t('orientationSpec') || 'Orijentacija') + '</dt><dd style="font-size:clamp(18px,2vw,24px)">' + orient + '</dd></div>';
 
@@ -1301,7 +1339,7 @@
      Trg mladih (centar): ~45.1842,15.8052
      Trgovine (centar): ~45.1842,15.8048
      Gradski park: ~45.1852,15.8028 */
-  var WALK_SUB = LANG === 'de' ? 'Min. zu Fuß' : 'min pješke';
+  var WALK_SUB = LANG === 'de' ? 'Min. zu Fuß' : LANG === 'en' ? 'min walk' : 'min pješke';
 
   var LOC_DATA = {
     one:      { school: '200 m', schoolSub: '3 ' + WALK_SUB, health: '350 m', healthSub: '5 ' + WALK_SUB, center: '50 m', centerSub: '1 ' + WALK_SUB, shop: '100 m', shopSub: '2 ' + WALK_SUB, park: '400 m', parkSub: '5 ' + WALK_SUB },
@@ -1315,6 +1353,11 @@
     park:     { name: 'Arilux Park', addr: 'Am Stadtpark', color: '#2FB57E' },
     centar:   { name: 'Arilux Centar', addr: 'Gesch\u00E4fts- und Wohnplatz', color: '#F26721' },
     panorama: { name: 'Arilux Panorama', addr: 'Grabik-H\u00FCgel', color: '#7B61FF' }
+  } : LANG === 'en' ? {
+    one:      { name: 'Arilux Amor', addr: 'City Center \u00B7 Trg mladih', color: '#0041B1' },
+    park:     { name: 'Arilux Park', addr: 'Next to City Park', color: '#2FB57E' },
+    centar:   { name: 'Arilux Centar', addr: 'Business & Living District', color: '#F26721' },
+    panorama: { name: 'Arilux Panorama', addr: 'Grabik Hill', color: '#7B61FF' }
   } : {
     one:      { name: 'Arilux Amor', addr: 'Centar \u00B7 Trg mladih', color: '#0041B1' },
     park:     { name: 'Arilux Park', addr: 'Uz gradski park', color: '#2FB57E' },

@@ -297,11 +297,11 @@ a.topbar__item:hover { color: #fff; }
 .header__actions { display: flex; align-items: center; gap: 10px; }
 
 /* ── Language switcher ──────────────────────────────────────── */
-.lang-switch { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: .5px; }
-.lang-switch__link { color: rgba(255,255,255,.5); text-decoration: none; padding: 4px 6px; border-radius: 4px; transition: color .2s, background .2s; }
-.lang-switch__link:hover { color: #fff; background: rgba(255,255,255,.08); }
-.lang-switch__link--active { color: #fff; pointer-events: none; }
-.lang-switch__sep { color: rgba(255,255,255,.25); font-weight: 400; }
+.lang-switch { display: flex; align-items: center; gap: 0; font-size: 11.5px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; padding: 2px 3px; }
+.lang-switch__link { color: rgba(255,255,255,.45); text-decoration: none; padding: 5px 10px; border-radius: 4px; transition: color .3s cubic-bezier(.4,0,.2,1), background .3s cubic-bezier(.4,0,.2,1); position: relative; }
+.lang-switch__link:hover { color: rgba(255,255,255,.85); background: rgba(255,255,255,.07); }
+.lang-switch__link--active { color: #fff; pointer-events: none; background: rgba(255,255,255,.1); }
+.lang-switch__sep { color: rgba(255,255,255,.15); font-weight: 300; width: 1px; height: 14px; background: rgba(255,255,255,.15); }
 
 .header__burger { display: none; flex-direction: column; gap: 5px; padding: 8px; border-radius: 8px; transition: background .2s; order: -1; }
 .header__burger:hover { background: rgba(255,255,255,.12); }
