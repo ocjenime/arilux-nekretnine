@@ -360,6 +360,14 @@ a.topbar__item:hover { color: #fff; }
 .mobilemenu__foot { display: flex; gap: 26px; flex-wrap: wrap; color: rgba(255,255,255,.75); font-weight: 600; }
 .mobilemenu__foot a:hover { color: var(--orange); }
 
+/* ── Mobile menu language row ────────────────────────────────── */
+.mobilemenu__lang { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; margin-top: 8px; border-top: 1px solid rgba(255,255,255,.06); }
+.mobilemenu__lang-label { font-family: var(--font-d); font-weight: 700; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+.mobilemenu__lang-links { display: flex; align-items: center; gap: 6px; }
+.mobilemenu__lang-link { display: inline-flex; align-items: center; justify-content: center; min-width: 52px; padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.55); text-decoration: none; border: 1px solid rgba(255,255,255,.1); transition: color .25s, border-color .25s, background .25s; }
+.mobilemenu__lang-link:hover { color: #fff; border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.04); }
+.mobilemenu__lang-link.is-active { color: #fff; border-color: var(--orange); background: rgba(242,103,33,.12); pointer-events: none; }
+
 /* ── Hero ────────────────────────────────────────────────────── */
 
 .hero {
@@ -1620,12 +1628,14 @@ a.contact__card:hover { background: rgba(255,255,255,.07); border-color: var(--o
 
 @media (max-width: 640px) {
   .header__logo { flex: 1; justify-content: center; }
-  .header__logomark svg { width: 128px; }
+  .header__logomark svg { width: 118px; }
   .header__logotext { display: none; }
   .header__subtext { display: block; white-space: nowrap; font-family: var(--font-d); font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); border-left: 1px solid var(--line-light); padding-left: 12px; }
   .header__burger { display: flex !important; }
   .header__burger span { background: #fff; }
-  .header__actions .btn--sm { padding: 8px 14px; font-size: 10px; }
+  .header__actions { gap: 8px; }
+  .header__actions .lang-switch { display: none; }
+  .header__actions .btn--sm { padding: 9px 14px; font-size: 10px; letter-spacing: .08em; }
   .topbar__group { gap: 14px; }
   .topbar__item:nth-child(3) { display: none; }
   .hero { min-height: 0; }
