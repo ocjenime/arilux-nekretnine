@@ -160,6 +160,39 @@ document.addEventListener('DOMContentLoaded', function () {
     items.push('</ul>');
 
     $('#results-match').innerHTML = items.join('');
+
+    /* WhatsApp direktan kanal: sažetak kviza stiže na prodajni broj */
+    var form = $('#quiz-form');
+    var name = form.querySelector('input[name="ime"]').value.trim();
+    var email = form.querySelector('input[name="email"]').value.trim();
+    var phoneCode = form.querySelector('select[name="phone_code"]');
+    var phone = form.querySelector('input[name="telefon"]').value.trim();
+    var fullPhone = phone ? ((phoneCode ? phoneCode.value : '') + ' ' + phone) : '';
+
+    var lines = ['Zdravo! Riješio/la sam Arilux kviz.', ''];
+    if (a.building) lines.push('Zgrada: ' + (buildingNames[a.building] || a.building));
+    if (a.priorities.length) lines.push('Prioriteti: ' + a.priorities.map(function (p) { return priorityLabels[p] || p; }).join(', '));
+    if (a.budget) lines.push('Budžet: ' + a.budget.replace(/_/g, ' '));
+    if (a.rooms) lines.push('Sobe: ' + a.rooms);
+    if (a.purpose) {
+      var pl = { stanovanje: 'Stanovanje', investicija: 'Investicija', oboje: 'Oboje' };
+      lines.push('Svrha: ' + (pl[a.purpose] || a.purpose));
+    }
+    if (a.timeline) {
+      var tl = { odmah: 'Odmah', godinu: 'U toku godine', '2_3_godine': '2-3 godine', samo_istrazujem: 'Samo istražujem' };
+      lines.push('Vremenski okvir: ' + (tl[a.timeline] || a.timeline));
+    }
+    if (a.contact) lines.push('Željeni kontakt: ' + (contactLabels[a.contact] || a.contact));
+    if (a.time) lines.push('Vrijeme za kontakt: ' + (timeLabels[a.time] || a.time));
+    lines.push('');
+    if (name) lines.push('Ime: ' + name);
+    if (email) lines.push('Email: ' + email);
+    if (fullPhone) lines.push('Telefon: ' + fullPhone);
+
+    var waBtn = $('#resultsWhatsApp');
+    if (waBtn) {
+      waBtn.href = 'https://wa.me/38761088002?text=' + encodeURIComponent(lines.join('\n'));
+    }
   }
 
   // Contact preference - show/hide time options
