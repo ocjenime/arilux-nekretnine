@@ -813,6 +813,8 @@
   };
 
   function getFeatures(bid) {
+    /* de/en: always use translated features; bs: admin-edited JSON wins */
+    if (LANG !== 'bs') return BUILDING_INC[bid] || [];
     if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].features) {
       return window.__ARILUX_JSON.buildings[bid].features;
     }
@@ -864,9 +866,19 @@
   };
 
   function getProx(bid) {
-    if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].proximity) {
-      return window.__ARILUX_JSON.buildings[bid].proximity;
+    var jsonProx = (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid]) ? window.__ARILUX_JSON.buildings[bid].proximity : null;
+    var i18nProx = t('prox');
+    /* de/en: translated name/sub; JSON dist/icon stays admin-editable */
+    if (i18nProx && i18nProx[bid]) {
+      var tp = i18nProx[bid];
+      if (jsonProx && jsonProx.length === tp.length) {
+        return tp.map(function (p, i) {
+          return { icon: jsonProx[i].icon || p.icon, dist: jsonProx[i].dist || p.dist, name: p.name, sub: p.sub };
+        });
+      }
+      return tp;
     }
+    if (jsonProx) return jsonProx;
     return BUILDING_PROX[bid] || [];
   }
 
@@ -1252,6 +1264,7 @@
     document.body.style.overflow = open ? 'hidden' : '';
 
     if (open) {
+      mobileMenu.scrollTop = 0;
       menuLinks.forEach(function (l, i) {
         l.style.opacity = '0';
         l.style.transform = 'translateX(-20px)';
@@ -1374,10 +1387,14 @@
   });
 
   function getTL(bid) {
-    if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].phases) {
-      return window.__ARILUX_JSON.buildings[bid].phases;
-    }
-    return TL_DATA[bid] || [];
+    var jsonPhases = (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid]) ? window.__ARILUX_JSON.buildings[bid].phases : null;
+    if (!jsonPhases) return TL_DATA[bid] || [];
+    if (LANG === 'bs') return jsonPhases;
+    /* de/en: translated titles/descriptions, JSON pct/state stays admin-editable */
+    return jsonPhases.map(function (p, i) {
+      var tr = TL_TITLES[i] || p;
+      return { phase: tr.phase, title: tr.title, desc: tr.desc, pct: p.pct, state: p.state };
+    });
   }
 
   function animateTimelineFills() {
@@ -1481,7 +1498,13 @@
       Object.keys(d).forEach(function (k) {
         var parts = (d[k] || '').split(' · ');
         parsed[k] = parts[0] || d[k];
-        parsed[k + 'Sub'] = parts[1] || '';
+        var sub = parts[1] || '';
+        /* JSON stores Bosnian "5 min pješke" — rebuild suffix per language */
+        if (LANG !== 'bs' && sub) {
+          var m = sub.match(/^(\d+)/);
+          if (m) sub = m[1] + ' ' + WALK_SUB;
+        }
+        parsed[k + 'Sub'] = sub;
       });
       return parsed;
     }
