@@ -3,6 +3,125 @@ document.addEventListener('DOMContentLoaded', function () {
   var current = 1;
   var answers = {};
 
+  /* ── i18n: detect language from <html lang> ────────────────── */
+  var QLANG = (function () { var l = document.documentElement.lang; return (l === 'de' || l === 'en') ? l : 'bs'; })();
+
+  var QI18N = {
+    bs: {
+      sending: 'Šalje se...',
+      recTitle: 'Vaša preporuka',
+      building: 'Zgrada',
+      priorities: 'Prioriteti',
+      budget: 'Budžet',
+      rooms: 'Sobe',
+      purpose: 'Svrha',
+      timeline: 'Vremenski okvir',
+      contact: 'Kontakt',
+      time: 'Vrijeme',
+      waIntro: 'Zdravo! Riješio/la sam Arilux kviz.',
+      waContact: 'Željeni kontakt',
+      waTime: 'Vrijeme za kontakt',
+      waName: 'Ime',
+      waEmail: 'Email',
+      waPhone: 'Telefon',
+      buildingNames: {
+        amor: 'Arilux Amor · Centar, P+6, 4.500 KM/m²',
+        park: 'Arilux Park · Uz park, P+5, 3.500 KM/m²',
+        centar: 'Arilux Centar · Poslovno-stambeni, P+8, 4.000 KM/m²',
+        panorama: 'Arilux Panorama · Grabik, P+4, 4.500 KM/m²',
+        ne_znam: 'Sve zgrade, pregledat ćemo sve opcije zajedno'
+      },
+      priorityLabels: {
+        blizina_centra: 'Blizina centra',
+        park: 'Blizina parka',
+        skola: 'Blizina škole',
+        pogled: 'Lijep pogled',
+        investicija: 'Dobra investicija',
+        tišina: 'Mir i tišina'
+      },
+      contactLabels: { email: 'Email', telefon: 'Telefon', whatsapp: 'WhatsApp' },
+      timeLabels: { jutro: 'Jutro (8–12)', podne: 'Podne (12–17)', vecer: 'Večer (17–20)', bilo_kad: 'Bilo kad' },
+      purposeLabels: { stanovanje: 'Stanovanje', investicija: 'Investicija', oboje: 'Oboje' },
+      timelineLabels: { odmah: 'Odmah', godinu: 'U toku godine', '2_3_godine': '2–3 godine', samo_istrazujem: 'Samo istražujem' }
+    },
+    de: {
+      sending: 'Wird gesendet...',
+      recTitle: 'Ihre Empfehlung',
+      building: 'Gebäude',
+      priorities: 'Prioritäten',
+      budget: 'Budget',
+      rooms: 'Zimmer',
+      purpose: 'Zweck',
+      timeline: 'Zeitrahmen',
+      contact: 'Kontakt',
+      time: 'Zeit',
+      waIntro: 'Hallo! Ich habe das Arilux Quiz ausgefüllt.',
+      waContact: 'Bevorzugter Kontakt',
+      waTime: 'Beste Kontaktzeit',
+      waName: 'Name',
+      waEmail: 'E-Mail',
+      waPhone: 'Telefon',
+      buildingNames: {
+        amor: 'Arilux Amor · Zentrum, P+6, 4.500 KM/m²',
+        park: 'Arilux Park · Am Park, P+5, 3.500 KM/m²',
+        centar: 'Arilux Centar · Geschäfts- und Wohnplatz, P+8, 4.000 KM/m²',
+        panorama: 'Arilux Panorama · Grabik, P+4, 4.500 KM/m²',
+        ne_znam: 'Alle Gebäude, wir schauen uns alle Optionen gemeinsam an'
+      },
+      priorityLabels: {
+        blizina_centra: 'Nähe zum Zentrum',
+        park: 'Nähe zum Park',
+        skola: 'Nähe zur Schule',
+        pogled: 'Schöne Aussicht',
+        investicija: 'Gute Investition',
+        tišina: 'Ruhe und Frieden'
+      },
+      contactLabels: { email: 'E-Mail', telefon: 'Telefon', whatsapp: 'WhatsApp' },
+      timeLabels: { jutro: 'Morgens (8–12)', podne: 'Mittags (12–17)', vecer: 'Abends (17–20)', bilo_kad: 'Jederzeit' },
+      purposeLabels: { stanovanje: 'Eigennutzung', investicija: 'Investition', oboje: 'Beides' },
+      timelineLabels: { odmah: 'Sofort', godinu: 'Innerhalb eines Jahres', '2_3_godine': 'In 2–3 Jahren', samo_istrazujem: 'Ich schaue mich nur um' }
+    },
+    en: {
+      sending: 'Sending...',
+      recTitle: 'Your recommendation',
+      building: 'Building',
+      priorities: 'Priorities',
+      budget: 'Budget',
+      rooms: 'Rooms',
+      purpose: 'Purpose',
+      timeline: 'Timeline',
+      contact: 'Contact',
+      time: 'Time',
+      waIntro: 'Hello! I have completed the Arilux quiz.',
+      waContact: 'Preferred contact',
+      waTime: 'Best contact time',
+      waName: 'Name',
+      waEmail: 'Email',
+      waPhone: 'Phone',
+      buildingNames: {
+        amor: 'Arilux Amor · City Center, P+6, 4,500 KM/m²',
+        park: 'Arilux Park · By the Park, P+5, 3,500 KM/m²',
+        centar: 'Arilux Centar · Business & Living, P+8, 4,000 KM/m²',
+        panorama: 'Arilux Panorama · Grabik Hill, P+4, 4,500 KM/m²',
+        ne_znam: 'All buildings, we will look at all options together'
+      },
+      priorityLabels: {
+        blizina_centra: 'Close to center',
+        park: 'Close to park',
+        skola: 'Close to school',
+        pogled: 'Nice view',
+        investicija: 'Good investment',
+        tišina: 'Peace and quiet'
+      },
+      contactLabels: { email: 'Email', telefon: 'Phone', whatsapp: 'WhatsApp' },
+      timeLabels: { jutro: 'Morning (8–12)', podne: 'Afternoon (12–17)', vecer: 'Evening (17–20)', bilo_kad: 'Anytime' },
+      purposeLabels: { stanovanje: 'Living', investicija: 'Investment', oboje: 'Both' },
+      timelineLabels: { odmah: 'Immediately', godinu: 'Within a year', '2_3_godine': 'In 2–3 years', samo_istrazujem: 'Just browsing' }
+    }
+  };
+
+  var L = QI18N[QLANG];
+
   var $ = function (s, p) { return (p || document).querySelector(s); };
   var $$ = function (s, p) { return Array.from((p || document).querySelectorAll(s)); };
 
@@ -107,55 +226,40 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function buildResults(a) {
-    var buildingNames = {
-      amor: 'Arilux Amor · Centar, P+6, 4.500 KM/m²',
-      park: 'Arilux Park · Uz park, P+5, 3.500 KM/m²',
-      centar: 'Arilux Centar · Poslovno-stambeni, P+8, 4.000 KM/m²',
-      panorama: 'Arilux Panorama · Grabik, P+4, 4.500 KM/m²',
-      ne_znam: 'Sve zgrade, pregledat ćemo sve opcije zajedno'
-    };
-
-    var priorityLabels = {
-      blizina_centra: 'Blizina centra',
-      park: 'Blizina parka',
-      skola: 'Blizina škole',
-      pogled: 'Lijep pogled',
-      investicija: 'Dobra investicija',
-      tišina: 'Mir i tišina'
-    };
-
-    var contactLabels = { email: 'Email', telefon: 'Telefon', whatsapp: 'WhatsApp' };
-    var timeLabels = { jutro: 'Jutro (8–12)', podne: 'Podne (12–17)', vecer: 'Večer (17–20)', bilo_kad: 'Bilo kad' };
+    var buildingNames = L.buildingNames;
+    var priorityLabels = L.priorityLabels;
+    var contactLabels = L.contactLabels;
+    var timeLabels = L.timeLabels;
+    var purposeLabels = L.purposeLabels;
+    var tLabels = L.timelineLabels;
 
     var items = [];
-    items.push('<h3>Vaša preporuka</h3><ul>');
+    items.push('<h3>' + L.recTitle + '</h3><ul>');
 
     if (a.building) {
-      items.push('<li><strong>Zgrada:</strong> ' + (buildingNames[a.building] || a.building) + '</li>');
+      items.push('<li><strong>' + L.building + ':</strong> ' + (buildingNames[a.building] || a.building) + '</li>');
     }
     if (a.priorities.length) {
       var pLabels = a.priorities.map(function (p) { return priorityLabels[p] || p; });
-      items.push('<li><strong>Prioriteti:</strong> ' + pLabels.join(', ') + '</li>');
+      items.push('<li><strong>' + L.priorities + ':</strong> ' + pLabels.join(', ') + '</li>');
     }
     if (a.budget) {
-      items.push('<li><strong>Budžet:</strong> ' + a.budget.replace(/_/g, ' ') + '</li>');
+      items.push('<li><strong>' + L.budget + ':</strong> ' + a.budget.replace(/_/g, ' ') + '</li>');
     }
     if (a.rooms) {
-      items.push('<li><strong>Sobe:</strong> ' + a.rooms + '</li>');
+      items.push('<li><strong>' + L.rooms + ':</strong> ' + a.rooms + '</li>');
     }
     if (a.purpose) {
-      var purposeLabels = { stanovanje: 'Stanovanje', investicija: 'Investicija', oboje: 'Oboje' };
-      items.push('<li><strong>Svrha:</strong> ' + (purposeLabels[a.purpose] || a.purpose) + '</li>');
+      items.push('<li><strong>' + L.purpose + ':</strong> ' + (purposeLabels[a.purpose] || a.purpose) + '</li>');
     }
     if (a.timeline) {
-      var tLabels = { odmah: 'Odmah', godinu: 'U toku godine', '2_3_godine': '2–3 godine', samo_istrazujem: 'Samo istražujem' };
-      items.push('<li><strong>Vremenski okvir:</strong> ' + (tLabels[a.timeline] || a.timeline) + '</li>');
+      items.push('<li><strong>' + L.timeline + ':</strong> ' + (tLabels[a.timeline] || a.timeline) + '</li>');
     }
     if (a.contact) {
-      items.push('<li><strong>Kontakt:</strong> ' + (contactLabels[a.contact] || a.contact) + '</li>');
+      items.push('<li><strong>' + L.contact + ':</strong> ' + (contactLabels[a.contact] || a.contact) + '</li>');
     }
     if (a.time) {
-      items.push('<li><strong>Vrijeme:</strong> ' + (timeLabels[a.time] || a.time) + '</li>');
+      items.push('<li><strong>' + L.time + ':</strong> ' + (timeLabels[a.time] || a.time) + '</li>');
     }
     items.push('</ul>');
 
@@ -169,25 +273,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var phone = form.querySelector('input[name="telefon"]').value.trim();
     var fullPhone = phone ? ((phoneCode ? phoneCode.value : '') + ' ' + phone) : '';
 
-    var lines = ['Zdravo! Riješio/la sam Arilux kviz.', ''];
-    if (a.building) lines.push('Zgrada: ' + (buildingNames[a.building] || a.building));
-    if (a.priorities.length) lines.push('Prioriteti: ' + a.priorities.map(function (p) { return priorityLabels[p] || p; }).join(', '));
-    if (a.budget) lines.push('Budžet: ' + a.budget.replace(/_/g, ' '));
-    if (a.rooms) lines.push('Sobe: ' + a.rooms);
+    var lines = [L.waIntro, ''];
+    if (a.building) lines.push(L.building + ': ' + (buildingNames[a.building] || a.building));
+    if (a.priorities.length) lines.push(L.priorities + ': ' + a.priorities.map(function (p) { return priorityLabels[p] || p; }).join(', '));
+    if (a.budget) lines.push(L.budget + ': ' + a.budget.replace(/_/g, ' '));
+    if (a.rooms) lines.push(L.rooms + ': ' + a.rooms);
     if (a.purpose) {
-      var pl = { stanovanje: 'Stanovanje', investicija: 'Investicija', oboje: 'Oboje' };
-      lines.push('Svrha: ' + (pl[a.purpose] || a.purpose));
+      lines.push(L.purpose + ': ' + (purposeLabels[a.purpose] || a.purpose));
     }
     if (a.timeline) {
-      var tl = { odmah: 'Odmah', godinu: 'U toku godine', '2_3_godine': '2-3 godine', samo_istrazujem: 'Samo istražujem' };
-      lines.push('Vremenski okvir: ' + (tl[a.timeline] || a.timeline));
+      lines.push(L.timeline + ': ' + (tLabels[a.timeline] || a.timeline));
     }
-    if (a.contact) lines.push('Željeni kontakt: ' + (contactLabels[a.contact] || a.contact));
-    if (a.time) lines.push('Vrijeme za kontakt: ' + (timeLabels[a.time] || a.time));
+    if (a.contact) lines.push(L.waContact + ': ' + (contactLabels[a.contact] || a.contact));
+    if (a.time) lines.push(L.waTime + ': ' + (timeLabels[a.time] || a.time));
     lines.push('');
-    if (name) lines.push('Ime: ' + name);
-    if (email) lines.push('Email: ' + email);
-    if (fullPhone) lines.push('Telefon: ' + fullPhone);
+    if (name) lines.push(L.waName + ': ' + name);
+    if (email) lines.push(L.waEmail + ': ' + email);
+    if (fullPhone) lines.push(L.waPhone + ': ' + fullPhone);
 
     var waBtn = $('#resultsWhatsApp');
     if (waBtn) {
@@ -234,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
     data.append('quiz_odgovori', JSON.stringify(answers));
 
     btnSubmit.disabled = true;
-    btnSubmit.textContent = 'Šalje se...';
+    btnSubmit.textContent = L.sending;
 
     fetch(form.action || 'https://formspree.io/f/YOUR_FORM_ID', {
       method: 'POST',

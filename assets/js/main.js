@@ -75,8 +75,67 @@
       },
       tourNames: ['Wohnzimmer', 'Schlafzimmer', 'Küche', 'Badezimmer', 'Balkon'],
       prefilledMsg: 'Ich interessiere mich für Wohnung {id} ({name}), {m2} m². Bitte um weitere Informationen und einen Termin.',
-      btnReserve: 'Wohnung reservieren \u2192',
-      btnCall: 'Anrufen: +387 37 772 000'
+      btnReserve: 'Wohnung reservieren →',
+      btnCall: 'Anrufen: +387 37 772 000',
+      prox: {
+        one: [
+          { icon: 'school', dist: '350 m', name: 'Grundschule', sub: 'Velika Kladuša Zentrum' },
+          { icon: 'health', dist: '500 m', name: 'Gesundheitszentrum', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '200 m', name: 'Supermärkte', sub: 'Konzum, Bingo, Markt' },
+          { icon: 'park', dist: '400 m', name: 'Stadtpark', sub: 'Erholung und Freizeit' },
+          { icon: 'bus', dist: '150 m', name: 'Bushaltestelle', sub: 'Stadtverkehr' },
+          { icon: 'child', dist: '300 m', name: 'Kindergarten', sub: 'Öffentlich und privat' }
+        ],
+        park: [
+          { icon: 'school', dist: '450 m', name: 'Grundschule', sub: 'Velika Kladuša' },
+          { icon: 'health', dist: '700 m', name: 'Gesundheitszentrum', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '350 m', name: 'Supermärkte', sub: 'Konzum, Bingo' },
+          { icon: 'park', dist: '50 m', name: 'Stadtpark', sub: 'Direkt neben dem Gebäude' },
+          { icon: 'bus', dist: '400 m', name: 'Bushaltestelle', sub: 'Stadtverkehr' },
+          { icon: 'child', dist: '250 m', name: 'Kindergarten', sub: 'Öffentlich und privat' }
+        ],
+        centar: [
+          { icon: 'school', dist: '400 m', name: 'Grundschule', sub: 'Velika Kladuša Zentrum' },
+          { icon: 'health', dist: '450 m', name: 'Gesundheitszentrum', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '100 m', name: 'Supermärkte', sub: 'Trg, Konzum, Markt' },
+          { icon: 'park', dist: '350 m', name: 'Stadtpark', sub: 'Erholung und Freizeit' },
+          { icon: 'bus', dist: '100 m', name: 'Bushaltestelle', sub: 'Stadtverkehr' },
+          { icon: 'child', dist: '350 m', name: 'Kindergarten', sub: 'Öffentlich und privat' }
+        ],
+        panorama: [
+          { icon: 'school', dist: '600 m', name: 'Grundschule', sub: 'Velika Kladuša' },
+          { icon: 'health', dist: '800 m', name: 'Gesundheitszentrum', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '500 m', name: 'Supermärkte', sub: 'Konzum, Bingo' },
+          { icon: 'park', dist: '200 m', name: 'Stadtpark', sub: 'Grabik Promenade' },
+          { icon: 'bus', dist: '550 m', name: 'Bushaltestelle', sub: 'Stadtverkehr' },
+          { icon: 'child', dist: '450 m', name: 'Kindergarten', sub: 'Öffentlich und privat' }
+        ]
+      },
+      timeline: [
+        { phase: 'Phase 01', title: 'Planung und Genehmigungen', desc: 'Erstellung der Pläne, Einholung der Bau- und Nutzungsgenehmigung, technische Dokumentation.' },
+        { phase: 'Phase 02', title: 'Fundamente und Rohbau', desc: 'Aushub, Bewehrung, Betonierung der Fundamente und Errichtung der Betonkonstruktion des Gebäudes.' },
+        { phase: 'Phase 03', title: 'Außenarbeiten', desc: 'Dachkonstruktion, Fassadensystem, Außenfenster und -türen, Abdichtung und Balkone.' },
+        { phase: 'Phase 04', title: 'Innenarbeiten', desc: 'Installationen, Mauern der Trennwände, Verputzen, Fliesen, Parkett, Sanitäranlagen.' },
+        { phase: 'Phase 05', title: 'Endausbau', desc: 'Fassade, Gestaltung der Außenanlagen, Parkplätze, Zufahrtsstraßen, Landschaftsgestaltung.' },
+        { phase: 'Phase 06', title: 'Bezug', desc: 'Technische Abnahme, Schlüsselübergabe, Eintragung des Eigentums und der Beginn des Lebens im neuen Zuhause.' }
+      ],
+      formError: 'Bitte geben Sie Ihren Namen und Ihre Telefonnummer ein, ohne diese können wir Sie nicht kontaktieren.',
+      formSubject: 'Anfrage zur Wohnung',
+      formSuccess: 'Danke, {name}! Ihr E-Mail-Programm öffnet sich gerade mit der vorbereiteten Anfrage. Falls es sich nicht öffnet, rufen Sie uns an unter +387 37 772 000.',
+      formLabels: { name: 'Vor- und Nachname', phone: 'Telefon', email: 'E-Mail', building: 'Gebäude', message: 'Nachricht', sentFrom: '- Gesendet von der Arilux Immobilien Website' },
+      tourFeatures: [
+        { title: '360° Ansicht', desc: 'Drehen Sie sich um die eigene Achse und sehen Sie jeden Winkel der Wohnung' },
+        { title: '3D Modell', desc: 'Betrachten Sie den Raum als dreidimensionales Modell' },
+        { title: 'Maße', desc: 'Jeder Raum mit exakten Maßen in Metern' }
+      ],
+      planLabels: {
+        living: 'Wohnzimmer',
+        livingShort: 'Wohnen',
+        bedroom: 'Schlafen',
+        kitchen: 'Küche',
+        bath: 'Bad',
+        disclaimer: 'GRUNDRISS, NICHT MASSSTÄBLICH'
+      }
     },
     en: {
       roomLabel: { 1: '1-Room', 2: '2-Room', 3: '3-Room', 4: '4-Room' },
@@ -113,8 +172,67 @@
       },
       tourNames: ['Living Room', 'Bedroom', 'Kitchen', 'Bathroom', 'Balcony'],
       prefilledMsg: 'I\'m interested in apartment {id} ({name}), {m2} m². Please send more information and schedule a visit.',
-      btnReserve: 'Reserve Apartment \u2192',
-      btnCall: 'Call: +387 37 772 000'
+      btnReserve: 'Reserve Apartment →',
+      btnCall: 'Call: +387 37 772 000',
+      prox: {
+        one: [
+          { icon: 'school', dist: '350 m', name: 'Elementary School', sub: 'Velika Kladuša Center' },
+          { icon: 'health', dist: '500 m', name: 'Health Center', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '200 m', name: 'Supermarkets', sub: 'Konzum, Bingo, Market' },
+          { icon: 'park', dist: '400 m', name: 'City Park', sub: 'Rest and recreation' },
+          { icon: 'bus', dist: '150 m', name: 'Bus Stop', sub: 'City transport' },
+          { icon: 'child', dist: '300 m', name: 'Kindergarten', sub: 'Public and private' }
+        ],
+        park: [
+          { icon: 'school', dist: '450 m', name: 'Elementary School', sub: 'Velika Kladuša' },
+          { icon: 'health', dist: '700 m', name: 'Health Center', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '350 m', name: 'Supermarkets', sub: 'Konzum, Bingo' },
+          { icon: 'park', dist: '50 m', name: 'City Park', sub: 'Right next to the building' },
+          { icon: 'bus', dist: '400 m', name: 'Bus Stop', sub: 'City transport' },
+          { icon: 'child', dist: '250 m', name: 'Kindergarten', sub: 'Public and private' }
+        ],
+        centar: [
+          { icon: 'school', dist: '400 m', name: 'Elementary School', sub: 'Velika Kladuša Center' },
+          { icon: 'health', dist: '450 m', name: 'Health Center', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '100 m', name: 'Supermarkets', sub: 'Trg, Konzum, Market' },
+          { icon: 'park', dist: '350 m', name: 'City Park', sub: 'Rest and recreation' },
+          { icon: 'bus', dist: '100 m', name: 'Bus Stop', sub: 'City transport' },
+          { icon: 'child', dist: '350 m', name: 'Kindergarten', sub: 'Public and private' }
+        ],
+        panorama: [
+          { icon: 'school', dist: '600 m', name: 'Elementary School', sub: 'Velika Kladuša' },
+          { icon: 'health', dist: '800 m', name: 'Health Center', sub: 'Velika Kladuša' },
+          { icon: 'shop', dist: '500 m', name: 'Supermarkets', sub: 'Konzum, Bingo' },
+          { icon: 'park', dist: '200 m', name: 'City Park', sub: 'Grabik Promenade' },
+          { icon: 'bus', dist: '550 m', name: 'Bus Stop', sub: 'City transport' },
+          { icon: 'child', dist: '450 m', name: 'Kindergarten', sub: 'Public and private' }
+        ]
+      },
+      timeline: [
+        { phase: 'Phase 01', title: 'Planning & Permits', desc: 'Blueprint preparation, obtaining construction and use permits, technical documentation.' },
+        { phase: 'Phase 02', title: 'Foundations & Structure', desc: 'Excavation, reinforcement, concrete pouring for foundations and building concrete structure erection.' },
+        { phase: 'Phase 03', title: 'Exterior Works', desc: 'Roof structure, facade system, exterior windows and doors, waterproofing, and balconies.' },
+        { phase: 'Phase 04', title: 'Interior Works', desc: 'Installations, partition wall masonry, plastering, tiling, parquet flooring, sanitary fittings.' },
+        { phase: 'Phase 05', title: 'Final Completion', desc: 'Facade finishing, outdoor areas, parking spaces, access roads, landscaping.' },
+        { phase: 'Phase 06', title: 'Move-In', desc: 'Technical inspection, key handover, property registration, and the beginning of life in your new home.' }
+      ],
+      formError: 'Please enter your name and phone number, without them we cannot contact you.',
+      formSubject: 'Apartment Inquiry',
+      formSuccess: 'Thank you, {name}! Your email client is opening with the prepared inquiry. If it doesn\'t open, call us at +387 37 772 000.',
+      formLabels: { name: 'Full Name', phone: 'Phone', email: 'Email', building: 'Building', message: 'Message', sentFrom: '- Sent from the Arilux Real Estate website' },
+      tourFeatures: [
+        { title: '360° View', desc: 'Spin around and see every corner of the apartment' },
+        { title: '3D Model', desc: 'View the space as a three-dimensional model' },
+        { title: 'Measurements', desc: 'Every room with exact dimensions in meters' }
+      ],
+      planLabels: {
+        living: 'Living Room',
+        livingShort: 'Living',
+        bedroom: 'Bedroom',
+        kitchen: 'Kitchen',
+        bath: 'Bath',
+        disclaimer: 'FLOOR PLAN, NOT TO SCALE'
+      }
     }
   };
 
@@ -521,7 +639,8 @@
   var STATUS_LABEL = t('statusLabel') || { available: 'Slobodan', reserved: 'Rezervisan', sold: 'Prodan' };
 
   function fmt(n) {
-    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    var sep = LANG === 'en' ? ',' : '.';
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
   }
 
   /* ── Finder ─────────────────────────────────────────────────── */
@@ -709,7 +828,7 @@
     child: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><path d="M12 8v4"/><path d="M8 22l4-10 4 10"/><path d="M9.5 15h5"/></svg>'
   };
 
-  var BUILDING_PROX = {
+  var BUILDING_PROX = t('prox') || {
     one: [
       { icon: 'school', dist: '350 m', name: 'Osnovna škola', sub: 'Velika Kladuša Centar' },
       { icon: 'health', dist: '500 m', name: 'Dom zdravlja', sub: 'Velika Kladuša' },
@@ -799,16 +918,18 @@
     var roomLabel = 'font-family="Archivo,sans-serif" font-weight="700" font-size="12" fill="#3E4A61" text-anchor="middle"';
     var dim = 'font-family="Inter,sans-serif" font-size="9" fill="#B0B8C8" text-anchor="middle"';
 
+    var pl = t('planLabels') || { living: 'Dnevni boravak', livingShort: 'Dnevni', bedroom: 'Spavaća', kitchen: 'Kuhinja', bath: 'Kupatilo', disclaimer: 'TLOCRT, NIJE MJERITVEN' };
+
     var rooms1 =
       '<rect x="' + p + '" y="' + p + '" width="' + (w - p * 2) + '" height="' + (h - p * 2) + '" ' + wall + '/>' +
       '<line x1="' + (w * 0.55) + '" y1="' + p + '" x2="' + (w * 0.55) + '" y2="' + (h - p) + '" ' + thin + '/>' +
       '<line x1="' + p + '" y1="' + (h * 0.52) + '" x2="' + (w * 0.55) + '" y2="' + (h * 0.52) + '" ' + thin + '/>' +
-      '<text x="' + (w * 0.28) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Dnevni boravak</text>' +
+      '<text x="' + (w * 0.28) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>' + pl.living + '</text>' +
       '<text x="' + (w * 0.28) + '" y="' + (h * 0.34) + '" ' + dim + '>' + Math.round(rooms === 1 ? 28 : 32) + ' m²</text>' +
-      '<text x="' + (w * 0.78) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća</text>' +
+      '<text x="' + (w * 0.78) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>' + pl.bedroom + '</text>' +
       '<text x="' + (w * 0.78) + '" y="' + (h * 0.34) + '" ' + dim + '>' + Math.round(rooms === 1 ? 14 : 18) + ' m²</text>' +
-      '<text x="' + (w * 0.28) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
-      '<text x="' + (w * 0.78) + '" y="' + (h * 0.68) + '" ' + roomLabel + '>Kupatilo</text>' +
+      '<text x="' + (w * 0.28) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.kitchen + '</text>' +
+      '<text x="' + (w * 0.78) + '" y="' + (h * 0.68) + '" ' + roomLabel + '>' + pl.bath + '</text>' +
       '<text x="' + (w * 0.78) + '" y="' + (h * 0.74) + '" ' + dim + '>4 m²</text>' +
       '<circle cx="' + (w * 0.55) + '" cy="' + (h * 0.42) + '" r="5" fill="#F26721" opacity=".7"/>' +
       '<line x1="' + (w * 0.53) + '" y1="' + (h * 0.38) + '" x2="' + (w * 0.60) + '" y2="' + (h * 0.46) + '"' + door + '/>';
@@ -819,14 +940,14 @@
       '<line x1="' + p + '" y1="' + (h * 0.52) + '" x2="' + (w * 0.42) + '" y2="' + (h * 0.52) + '" ' + thin + '/>' +
       '<line x1="' + (w * 0.42) + '" y1="' + (h * 0.55) + '" x2="' + (w - p) + '" y2="' + (h * 0.55) + '" ' + thin + '/>' +
       '<line x1="' + (w * 0.72) + '" y1="' + (h * 0.55) + '" x2="' + (w * 0.72) + '" y2="' + (h - p) + '" ' + thin + '/>' +
-      '<text x="' + (w * 0.21) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Dnevni</text>' +
+      '<text x="' + (w * 0.21) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>' + pl.livingShort + '</text>' +
       '<text x="' + (w * 0.21) + '" y="' + (h * 0.34) + '" ' + dim + '>24 m²</text>' +
-      '<text x="' + (w * 0.21) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
-      '<text x="' + (w * 0.57) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća 1</text>' +
+      '<text x="' + (w * 0.21) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.kitchen + '</text>' +
+      '<text x="' + (w * 0.57) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>' + pl.bedroom + ' 1</text>' +
       '<text x="' + (w * 0.57) + '" y="' + (h * 0.34) + '" ' + dim + '>14 m²</text>' +
-      '<text x="' + (w * 0.57) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 2</text>' +
+      '<text x="' + (w * 0.57) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.bedroom + ' 2</text>' +
       '<text x="' + (w * 0.57) + '" y="' + (h * 0.80) + '" ' + dim + '>12 m²</text>' +
-      '<text x="' + (w * 0.87) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kupatilo</text>' +
+      '<text x="' + (w * 0.87) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.bath + '</text>' +
       '<circle cx="' + (w * 0.42) + '" cy="' + (h * 0.52) + '" r="5" fill="#F26721" opacity=".7"/>' +
       '<line x1="' + (w * 0.40) + '" y1="' + (h * 0.48) + '" x2="' + (w * 0.47) + '" y2="' + (h * 0.56) + '"' + door + '/>';
 
@@ -837,17 +958,17 @@
       '<line x1="' + p + '" y1="' + (h * 0.5) + '" x2="' + (w * 0.36) + '" y2="' + (h * 0.5) + '" ' + thin + '/>' +
       '<line x1="' + (w * 0.36) + '" y1="' + (h * 0.52) + '" x2="' + (w - p) + '" y2="' + (h * 0.52) + '" ' + thin + '/>' +
       '<line x1="' + (w * 0.52) + '" y1="' + (h * 0.52) + '" x2="' + (w * 0.52) + '" y2="' + (h - p) + '" ' + thin + '/>' +
-      '<text x="' + (w * 0.18) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Dnevni</text>' +
+      '<text x="' + (w * 0.18) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>' + pl.livingShort + '</text>' +
       '<text x="' + (w * 0.18) + '" y="' + (h * 0.34) + '" ' + dim + '>26 m²</text>' +
-      '<text x="' + (w * 0.18) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
-      '<text x="' + (w * 0.52) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća 1</text>' +
+      '<text x="' + (w * 0.18) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.kitchen + '</text>' +
+      '<text x="' + (w * 0.52) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>' + pl.bedroom + ' 1</text>' +
       '<text x="' + (w * 0.52) + '" y="' + (h * 0.34) + '" ' + dim + '>14 m²</text>' +
-      '<text x="' + (w * 0.52) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo</text>' +
-      '<text x="' + (w * 0.84) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>Spavaća 2</text>' +
+      '<text x="' + (w * 0.52) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>' + pl.bath + '</text>' +
+      '<text x="' + (w * 0.84) + '" y="' + (h * 0.28) + '" ' + roomLabel + '>' + pl.bedroom + ' 2</text>' +
       '<text x="' + (w * 0.84) + '" y="' + (h * 0.34) + '" ' + dim + '>12 m²</text>' +
-      '<text x="' + (w * 0.84) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 3</text>' +
+      '<text x="' + (w * 0.84) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.bedroom + ' 3</text>' +
       '<text x="' + (w * 0.84) + '" y="' + (h * 0.80) + '" ' + dim + '>11 m²</text>' +
-      '<text x="' + (w * 0.66) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo 2</text>' +
+      '<text x="' + (w * 0.66) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>' + pl.bath + ' 2</text>' +
       '<circle cx="' + (w * 0.36) + '" cy="' + (h * 0.50) + '" r="5" fill="#F26721" opacity=".7"/>' +
       '<line x1="' + (w * 0.34) + '" y1="' + (h * 0.46) + '" x2="' + (w * 0.41) + '" y2="' + (h * 0.54) + '"' + door + '/>';
 
@@ -859,19 +980,19 @@
       '<line x1="' + (w * 0.33) + '" y1="' + (h * 0.5) + '" x2="' + (w - p) + '" y2="' + (h * 0.5) + '" ' + thin + '/>' +
       '<line x1="' + (w * 0.48) + '" y1="' + (h * 0.5) + '" x2="' + (w * 0.48) + '" y2="' + (h - p) + '" ' + thin + '/>' +
       '<line x1="' + (w * 0.62) + '" y1="' + (h * 0.5) + '" x2="' + (w * 0.62) + '" y2="' + (h - p) + '" ' + thin + '/>' +
-      '<text x="' + (w * 0.17) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>Dnevni</text>' +
+      '<text x="' + (w * 0.17) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>' + pl.livingShort + '</text>' +
       '<text x="' + (w * 0.17) + '" y="' + (h * 0.32) + '" ' + dim + '>30 m²</text>' +
-      '<text x="' + (w * 0.17) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Kuhinja</text>' +
-      '<text x="' + (w * 0.41) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>Spavaća 1</text>' +
+      '<text x="' + (w * 0.17) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.kitchen + '</text>' +
+      '<text x="' + (w * 0.41) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>' + pl.bedroom + ' 1</text>' +
       '<text x="' + (w * 0.41) + '" y="' + (h * 0.32) + '" ' + dim + '>16 m²</text>' +
-      '<text x="' + (w * 0.41) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo</text>' +
-      '<text x="' + (w * 0.75) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>Spavaća 2</text>' +
+      '<text x="' + (w * 0.41) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>' + pl.bath + '</text>' +
+      '<text x="' + (w * 0.75) + '" y="' + (h * 0.26) + '" ' + roomLabel + '>' + pl.bedroom + ' 2</text>' +
       '<text x="' + (w * 0.75) + '" y="' + (h * 0.32) + '" ' + dim + '>13 m²</text>' +
-      '<text x="' + (w * 0.55) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 3</text>' +
+      '<text x="' + (w * 0.55) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.bedroom + ' 3</text>' +
       '<text x="' + (w * 0.55) + '" y="' + (h * 0.80) + '" ' + dim + '>11 m²</text>' +
-      '<text x="' + (w * 0.81) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>Spavaća 4</text>' +
+      '<text x="' + (w * 0.81) + '" y="' + (h * 0.74) + '" ' + roomLabel + '>' + pl.bedroom + ' 4</text>' +
       '<text x="' + (w * 0.81) + '" y="' + (h * 0.80) + '" ' + dim + '>10 m²</text>' +
-      '<text x="' + (w * 0.73) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>Kupatilo 2</text>' +
+      '<text x="' + (w * 0.73) + '" y="' + (h * 0.78) + '" ' + roomLabel + '>' + pl.bath + ' 2</text>' +
       '<circle cx="' + (w * 0.33) + '" cy="' + (h * 0.48) + '" r="5" fill="#F26721" opacity=".7"/>' +
       '<line x1="' + (w * 0.31) + '" y1="' + (h * 0.44) + '" x2="' + (w * 0.38) + '" y2="' + (h * 0.52) + '"' + door + '/>';
 
@@ -880,7 +1001,7 @@
     return '<svg viewBox="0 0 ' + w + ' ' + h + '" class="fp__svg">' +
       '<rect width="' + w + '" height="' + h + '" fill="#F8F9FB" rx="6"/>' +
       svg +
-      '<text x="' + (w / 2) + '" y="' + (h - 4) + '" ' + dim + ' font-size="8" letter-spacing=".12em">TLOCRT, NIJE MJERITVEN</text>' +
+      '<text x="' + (w / 2) + '" y="' + (h - 4) + '" ' + dim + ' font-size="8" letter-spacing=".12em">' + pl.disclaimer + '</text>' +
       '</svg>';
   }
 
@@ -1193,7 +1314,7 @@
     note.hidden = false;
     if (!ok) {
       note.className = 'formnote formnote--err';
-      note.textContent = 'Molimo upišite ime i broj telefona, bez toga ne možemo stupiti u kontakt.';
+      note.textContent = t('formError') || 'Molimo upišite ime i broj telefona, bez toga ne možemo stupiti u kontakt.';
       return;
     }
 
@@ -1204,14 +1325,15 @@
     var sEmail = sanitize(email.value.trim());
     var sMsg = sanitize(msg.value.trim());
 
-      var subject = 'Upit za stan: ' + building.value + ' (' + sName + ')';
+    var fl = t('formLabels') || { name: 'Ime i prezime', phone: 'Telefon', email: 'E-mail', building: 'Zgrada', message: 'Poruka', sentFrom: '- Poslano sa stranice Arilux Nekretnine' };
+    var subject = (t('formSubject') || 'Upit za stan') + ': ' + building.value + ' (' + sName + ')';
     var body =
-      'Ime i prezime: ' + sName + '\n' +
-      'Telefon: ' + sPhone + '\n' +
-      'E-mail: ' + (sEmail || '-') + '\n' +
-      'Zgrada: ' + building.value + '\n\n' +
-      'Poruka:\n' + (sMsg || '-') + '\n\n' +
-      '- Poslano sa stranice Arilux Nekretnine';
+      fl.name + ': ' + sName + '\n' +
+      fl.phone + ': ' + sPhone + '\n' +
+      fl.email + ': ' + (sEmail || '-') + '\n' +
+      fl.building + ': ' + building.value + '\n\n' +
+      fl.message + ':\n' + (sMsg || '-') + '\n\n' +
+      fl.sentFrom;
 
     window.location.href = 'mailto:info@arilux.ba?subject=' +
       encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
@@ -1221,7 +1343,8 @@
     }
 
     note.className = 'formnote formnote--ok';
-    note.textContent = 'Hvala, ' + sName.split(' ')[0] + '! Vaš e-mail klijent se upravo otvara sa pripremljenim upitom. Ako se ne otvori, nazovite nas na +387 37 772 000.';
+    var successMsg = t('formSuccess');
+    note.textContent = successMsg ? successMsg.replace('{name}', sName.split(' ')[0]) : 'Hvala, ' + sName.split(' ')[0] + '! Vaš e-mail klijent se upravo otvara sa pripremljenim upitom. Ako se ne otvori, nazovite nas na +387 37 772 000.';
     form.reset();
   });
 
@@ -1229,40 +1352,26 @@
 
   /* ─────── Per-building Timeline ─────── */
   var TL_COLORS = { one:'#0041B1', park:'#2FB57E', centar:'#F26721', panorama:'#7B61FF' };
-  var TL_DATA = {
-    one: [
-      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
-      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:100, state:'done' },
-      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:65, state:'active' },
-      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
-      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
-      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
-    ],
-    park: [
-      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
-      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:70, state:'active' },
-      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:0, state:'' },
-      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
-      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
-      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
-    ],
-    centar: [
-      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
-      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:50, state:'active' },
-      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:0, state:'' },
-      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
-      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
-      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
-    ],
-    panorama: [
-      { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.', pct:100, state:'done' },
-      { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.', pct:25, state:'active' },
-      { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.', pct:0, state:'' },
-      { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.', pct:0, state:'' },
-      { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.', pct:0, state:'' },
-      { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.', pct:0, state:'' }
-    ]
+  var TL_TITLES = tArr('timeline') || [
+    { phase:'Faza 01', title:'Projektovanje i dozvole', desc:'Izrada projekata, ishođenje građevinske i upotrebne dozvole, tehnička dokumentacija.' },
+    { phase:'Faza 02', title:'Temelji i konstrukcija', desc:'Iskop, armiranje, betoniranje temelja i izgradnja betonske konstrukcije objekta.' },
+    { phase:'Faza 03', title:'Vanjski radovi', desc:'Krovna konstrukcija, fasadni sistem, vanjska stolarija, hidroizolacija i balkoni.' },
+    { phase:'Faza 04', title:'Unutrašnji radovi', desc:'Instalacije, zidanje pregradnih zidova, gletanje, keramika, parket, sanitarije.' },
+    { phase:'Faza 05', title:'Završna obrada', desc:'Fasada, uređenje okoliša, parking, pristupne saobraćajnice, pejzažno uređenje.' },
+    { phase:'Faza 06', title:'Useljenje', desc:'Tehnički pregled, primopredaja ključeva, upis vlasništva i početak života u novom domu.' }
+  ];
+  var TL_PCT = {
+    one:      [{p:100,s:'done'},{p:100,s:'done'},{p:65,s:'active'},{p:0,s:''},{p:0,s:''},{p:0,s:''}],
+    park:     [{p:100,s:'done'},{p:70,s:'active'},{p:0,s:''},{p:0,s:''},{p:0,s:''},{p:0,s:''}],
+    centar:   [{p:100,s:'done'},{p:50,s:'active'},{p:0,s:''},{p:0,s:''},{p:0,s:''},{p:0,s:''}],
+    panorama: [{p:100,s:'done'},{p:25,s:'active'},{p:0,s:''},{p:0,s:''},{p:0,s:''},{p:0,s:''}]
   };
+  var TL_DATA = {};
+  Object.keys(TL_PCT).forEach(function (b) {
+    TL_DATA[b] = TL_PCT[b].map(function (cfg, i) {
+      return { phase: TL_TITLES[i].phase, title: TL_TITLES[i].title, desc: TL_TITLES[i].desc, pct: cfg.p, state: cfg.s };
+    });
+  });
 
   function getTL(bid) {
     if (window.__ARILUX_JSON && window.__ARILUX_JSON.buildings[bid] && window.__ARILUX_JSON.buildings[bid].phases) {
@@ -1538,16 +1647,19 @@
   ];
 
   function getTourFeatureContent() {
-    var defaultContent = [
-      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[0] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">360° Pogled</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Okrenite se oko osi i pogledajte svaki kutak stana</p></div>',
-      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[1] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">3D Model</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Izgradite trodimenzionalni model prostora</p></div>',
-      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[2] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">Mjerne dimenzije</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">Svaka prostorija sa tačnim dimenzijama u metrima</p></div>'
+    var feats = tArr('tourFeatures') || [
+      { title: '360° Pogled', desc: 'Okrenite se oko osi i pogledajte svaki kutak stana' },
+      { title: '3D Model', desc: 'Izgradite trodimenzionalni model prostora' },
+      { title: 'Mjerne dimenzije', desc: 'Svaka prostorija sa tačnim dimenzijama u metrima' }
     ];
+    var defaultContent = feats.map(function (f, i) {
+      return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + SVG_ICONS[i % SVG_ICONS.length] + '<p style="font-size:20px;font-weight:700;margin-top:24px;">' + f.title + '</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">' + f.desc + '</p></div>';
+    });
 
     if (window.__ARILUX_JSON && window.__ARILUX_JSON.tour3d && window.__ARILUX_JSON.tour3d.features) {
-      var feats = window.__ARILUX_JSON.tour3d.features;
+      var jfeats = window.__ARILUX_JSON.tour3d.features;
       var iconMap = { '360': 0, '3dmodel': 1, 'dimensions': 2 };
-      return feats.map(function (f, i) {
+      return jfeats.map(function (f, i) {
         var iconIdx = iconMap[f.id] !== undefined ? iconMap[f.id] : i;
         var icon = SVG_ICONS[iconIdx % SVG_ICONS.length];
         return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background:#041742;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;">' + icon + '<p style="font-size:20px;font-weight:700;margin-top:24px;">' + f.title + '</p><p style="color:rgba(255,255,255,.6);margin-top:8px;max-width:360px;">' + f.desc + '</p></div>';

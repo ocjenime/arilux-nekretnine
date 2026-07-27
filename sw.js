@@ -2,7 +2,7 @@
    ARILUX NEKRETNINE - Service Worker v1
    Cache-first for static assets, network-first for HTML
    ═══════════════════════════════════════════════════════════════ */
-var CACHE_NAME = 'arilux-v19';
+var CACHE_NAME = 'arilux-v20';
 var PRECACHE_URLS = [
   '/',
   '/index.html',

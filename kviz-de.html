@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arilux Quiz | Finden Sie Ihre ideale Wohnung</title>
+  <meta name="description" content="Entdecken Sie, welche Arilux Wohnung zu Ihren Bedürfnissen passt. Ein kurzes Quiz, das Ihnen hilft, die ideale Immobilie in Velika Kladuša zu finden.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Arilux Quiz | Finden Sie Ihre ideale Wohnung in 60 Sekunden">
+  <meta property="og:description" content="Neun kurze Fragen und eine persönliche Empfehlung, nur für Sie erstellt. Kostenlos und unverbindlich.">
+  <meta property="og:image" content="https://ocjenime.github.io/arilux-nekretnine/assets/img/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/kviz.css">
+</head>
+<body>
+
+<div id="quiz-app">
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <svg viewBox="0 0 133.2 79.4" width="64"><path fill-rule="evenodd" fill="#F26721" d="M0,79.4h133.2V25.3L66.6,0L0,25.4V79.4z M13.4,53.1v16H7.1V33.8c0-0.9,0.6-1.9,1.4-2.3l4.8-1.7l6.5-2.3l4.1-1.4c0.9-0.3,1.8,0.8,1.8,1.7v9.8V69h-5.9V52.1L13.4,53.1z M19.8,46.2V34.5c0-0.6-0.5-0.9-1-0.8L14.4,35c-0.6,0.2-1,0.8-1,1.4v11L19.8,46.2z M30.3,69V23.8l9.4-3.3c0.4-0.1,0.8-0.3,1.2-0.4l2.9-1c2.8-1,5.2,0.7,5.2,3.7v15.1c0,2.5-1.6,5.2-3.8,6.6c4,1.8,3.8,8.1,3.8,11.9v12.6h-6.3V55c0-4.6-1.2-6.1-4.1-5.7l-2.2,0.3v19.3L30.3,69z M36.5,28.3v14.6l3.9-0.9c1-0.2,2.3-1.9,2.3-2.8v-11c0-1-0.8-1.6-1.7-1.3L36.5,28.3z M53.3,68.9V15.6l6.3-2.2v55.4L53.3,68.9z M73.7,13.4v55.5H87v-6.4h-7.3V15.6L73.7,13.4z M89,36.3v20v8.1c0,2.8,2.1,5.1,4.8,5.1h6.6c2.6,0,4.8-2.3,4.8-5.1V24.8L100,23v37.8c0,0.9-0.7,1.7-1.6,1.7h-0.6c-0.2,0-0.4,0-0.6,0c-0.2,0-0.4,0-0.5,0h-0.7c-0.9,0-1.6-0.8-1.6-1.7V21L89,19V36.3z M113.4,48L106.3,69l4.7,0l4.6-13l3.7,13l5.3,0l-6.2-20.8l5.9-16.4l-4.8-1.7l-3.5,10.2l-3.8-12.8l-5.1-1.9L113.4,48z"/></svg>
+    <p class="preloader-text">Quiz wird vorbereitet...</p>
+  </div>
+
+  <!-- Top bar -->
+  <header class="qz-topbar">
+    <a href="de.html" class="qz-logo">
+      <svg viewBox="0 0 133.2 79.4" width="36"><path fill-rule="evenodd" fill="#F26721" d="M0,79.4h133.2V25.3L66.6,0L0,25.4V79.4z M13.4,53.1v16H7.1V33.8c0-0.9,0.6-1.9,1.4-2.3l4.8-1.7l6.5-2.3l4.1-1.4c0.9-0.3,1.8,0.8,1.8,1.7v9.8V69h-5.9V52.1L13.4,53.1z M19.8,46.2V34.5c0-0.6-0.5-0.9-1-0.8L14.4,35c-0.6,0.2-1,0.8-1,1.4v11L19.8,46.2z M30.3,69V23.8l9.4-3.3c0.4-0.1,0.8-0.3,1.2-0.4l2.9-1c2.8-1,5.2,0.7,5.2,3.7v15.1c0,2.5-1.6,5.2-3.8,6.6c4,1.8,3.8,8.1,3.8,11.9v12.6h-6.3V55c0-4.6-1.2-6.1-4.1-5.7l-2.2,0.3v19.3L30.3,69z M36.5,28.3v14.6l3.9-0.9c1-0.2,2.3-1.9,2.3-2.8v-11c0-1-0.8-1.6-1.7-1.3L36.5,28.3z M53.3,68.9V15.6l6.3-2.2v55.4L53.3,68.9z M73.7,13.4v55.5H87v-6.4h-7.3V15.6L73.7,13.4z M89,36.3v20v8.1c0,2.8,2.1,5.1,4.8,5.1h6.6c2.6,0,4.8-2.3,4.8-5.1V24.8L100,23v37.8c0,0.9-0.7,1.7-1.6,1.7h-0.6c-0.2,0-0.4,0-0.6,0c-0.2,0-0.4,0-0.5,0h-0.7c-0.9,0-1.6-0.8-1.6-1.7V21L89,19V36.3z M113.4,48L106.3,69l4.7,0l4.6-13l3.7,13l5.3,0l-6.2-20.8l5.9-16.4l-4.8-1.7l-3.5,10.2l-3.8-12.8l-5.1-1.9L113.4,48z"/></svg>
+      <span>Kviz</span>
+    </a>
+    <div class="qz-progress">
+      <span class="qz-progress__label"><span id="step-current">1</span>/<span id="step-total">8</span></span>
+      <div class="qz-progress__bar"><div class="qz-progress__fill" id="progress-fill"></div></div>
+    </div>
+  </header>
+
+  <!-- Wizard -->
+  <div class="qz-wizard" id="wizard">
+
+    <!-- STEP 1: Zgrada -->
+    <div class="qz-step active" data-step="1">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Welches Gebäude gefällt Ihnen am besten?</h2>
+        <p class="qz-step__sub">Wählen Sie das Gebäude, das Sie anspricht, oder überspringen Sie, wenn Sie unsicher sind.</p>
+        <div class="qz-cards qz-cards--buildings">
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="amor">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop&crop=center" alt="Arilux Amor" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#0041B1"></span> Amor</span>
+                <span class="qz-card__meta">Zentrum · P+6 · 28 Wohnungen</span>
+                <span class="qz-card__price">4.500 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="park">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=400&fit=crop&crop=center" alt="Arilux Park" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#2FB57E"></span> Park</span>
+                <span class="qz-card__meta">Am Park · P+5 · 22 Wohnungen</span>
+                <span class="qz-card__price">3.500 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="centar">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop&crop=center" alt="Arilux Centar" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#F26721"></span> Centar</span>
+                <span class="qz-card__meta">Geschäfts- und Wohnplatz · P+8 · 36 Wohnungen</span>
+                <span class="qz-card__price">4.000 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card">
+            <input type="radio" name="q1_building" value="panorama">
+            <span class="qz-card__body">
+              <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=600&h=400&fit=crop&crop=center" alt="Arilux Panorama" loading="lazy">
+              <span class="qz-card__info">
+                <span class="qz-card__name"><span class="qz-dot" style="background:#7B61FF"></span> Panorama</span>
+                <span class="qz-card__meta">Grabik · P+4 · 16 Wohnungen</span>
+                <span class="qz-card__price">4.500 KM/m²</span>
+              </span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--text">
+            <input type="radio" name="q1_building" value="ne_znam">
+            <span class="qz-card__body qz-card__body--text">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+              <span class="qz-card__name">Ich weiß nicht, helfen Sie mir</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Lokacija / Prioritet -->
+    <div class="qz-step" data-step="2">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Was ist Ihnen bei der Auswahl am wichtigsten?</h2>
+        <p class="qz-step__sub">Wählen Sie einen oder mehrere Faktoren, die Ihnen wichtig sind.</p>
+        <div class="qz-cards qz-cards--priorities">
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="blizina_centra">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span class="qz-card__name">Nähe zum Zentrum</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="park">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 14V2"/><path d="M9 18.12L10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76"/><path d="M21 12h-4l-3 8H3"/></svg>
+              <span class="qz-card__name">Nähe zum Park</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="skola">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span class="qz-card__name">Nähe zur Schule</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="pogled">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="qz-card__name">Schöne Aussicht</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="investicija">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span class="qz-card__name">Gute Investition</span>
+            </span>
+          </label>
+          <label class="qz-card qz-card--icon">
+            <input type="checkbox" name="q2_priority" value="tišina">
+            <span class="qz-card__body qz-card__body--icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+              <span class="qz-card__name">Ruhe und Frieden</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Budžet -->
+    <div class="qz-step" data-step="3">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Wie hoch ist Ihr Budget?</h2>
+        <p class="qz-step__sub">Wählen Sie die Preisspanne, die zu Ihnen passt.</p>
+        <div class="qz-options qz-options--budget">
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="do_50000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Bis 50.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="50000_80000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">50.000 – 80.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="80000_120000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">80.000 – 120.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="120000_180000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">120.000 – 180.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="preko_180000">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Über 180.000 KM</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q3_budget" value="flexibilno">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Flexibles Budget</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: Broj soba -->
+    <div class="qz-step" data-step="4">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Wie viele Zimmer brauchen Sie?</h2>
+        <p class="qz-step__sub">Wählen Sie die gewünschte Zimmerzahl.</p>
+        <div class="qz-options qz-options--rooms">
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="studio">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Studio</span>
+              <span class="qz-opt__hint">Einzimmerwohnung</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="1">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">1 Zimmer</span>
+              <span class="qz-opt__hint">Wohn- und Schlafzimmer</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="2">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">2 Zimmer</span>
+              <span class="qz-opt__hint">Zwei Schlafzimmer</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="3">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">3 Zimmer</span>
+              <span class="qz-opt__hint">Dreizimmerwohnung</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q4_rooms" value="flexibilno">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Flexibel</span>
+              <span class="qz-opt__hint">Zeigen Sie mir alle Optionen</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: Prethodno iskustvo -->
+    <div class="qz-step" data-step="5">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Haben Sie schon einmal Immobilien gekauft?</h2>
+        <p class="qz-step__sub">Das hilft uns, die Empfehlungen auf Sie zuzuschneiden.</p>
+        <div class="qz-options qz-options--simple">
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q5_experience" value="da">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="qz-opt__text">Ja, wir haben gekauft</span>
+            </span>
+          </label>
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q5_experience" value="ne">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <span class="qz-opt__text">Nein, ich kaufe zum ersten Mal</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: Vremenski okvir -->
+    <div class="qz-step" data-step="6">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Wann planen Sie den Kauf?</h2>
+        <p class="qz-step__sub">Geben Sie an, wann Sie einziehen möchten.</p>
+        <div class="qz-options qz-options--timeline">
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="odmah">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Sofort</span>
+              <span class="qz-opt__hint">So schnell wie möglich</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="godinu">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Innerhalb eines Jahres</span>
+              <span class="qz-opt__hint">Nächste 12 Monate</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="2_3_godine">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">In den nächsten 2–3 Jahren</span>
+              <span class="qz-opt__hint">Ich plane langfristig</span>
+            </span>
+          </label>
+          <label class="qz-opt">
+            <input type="radio" name="q6_timeline" value="samo_istrazujem">
+            <span class="qz-opt__body">
+              <span class="qz-opt__text">Ich schaue mich nur um</span>
+              <span class="qz-opt__hint">Noch nicht sicher</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7: Svrha -->
+    <div class="qz-step" data-step="7">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Was ist der Zweck des Kaufs?</h2>
+        <p class="qz-step__sub">Warum möchten Sie eine Wohnung kaufen?</p>
+        <div class="qz-options qz-options--purpose">
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q7_purpose" value="stanovanje">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span class="qz-opt__text">Eigennutzung</span>
+              <span class="qz-opt__hint">Für mich und meine Familie</span>
+            </span>
+          </label>
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q7_purpose" value="investicija">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span class="qz-opt__text">Investition</span>
+              <span class="qz-opt__hint">Vermietung oder Wiederverkauf</span>
+            </span>
+          </label>
+          <label class="qz-opt qz-opt--large">
+            <input type="radio" name="q7_purpose" value="oboje">
+            <span class="qz-opt__body qz-opt__body--large">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              <span class="qz-opt__text">Beides</span>
+              <span class="qz-opt__hint">Erst selbst nutzen, dann vermieten</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8: Kontakt preferencija -->
+    <div class="qz-step" data-step="8">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Wie sollen wir Sie kontaktieren?</h2>
+        <p class="qz-step__sub">Wählen Sie die Art und Zeit, die Ihnen am besten passt.</p>
+        <div class="qz-contact-pref">
+          <div class="qz-contact-pref__method">
+            <p class="qz-contact-pref__label">Kontaktart</p>
+            <div class="qz-options">
+              <label class="qz-opt qz-opt--contact">
+                <input type="radio" name="q8_contact" value="email">
+                <span class="qz-opt__body qz-opt__body--contact">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <span class="qz-opt__text">E-Mail</span>
+                  <span class="qz-opt__hint">Antwort an Ihre E-Mail-Adresse</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--contact">
+                <input type="radio" name="q8_contact" value="telefon">
+                <span class="qz-opt__body qz-opt__body--contact">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <span class="qz-opt__text">Telefon</span>
+                  <span class="qz-opt__hint">Anruf auf Ihre Nummer</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--contact">
+                <input type="radio" name="q8_contact" value="whatsapp">
+                <span class="qz-opt__body qz-opt__body--contact">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  <span class="qz-opt__text">WhatsApp</span>
+                  <span class="qz-opt__hint">Nachricht auf WhatsApp</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="qz-contact-pref__time" id="time-pref" style="display:none">
+            <p class="qz-contact-pref__label">Wann passt es Ihnen am besten?</p>
+            <div class="qz-options qz-options--time">
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="jutro">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                  <span class="qz-opt__text">Morgens</span>
+                  <span class="qz-opt__hint">8:00 – 12:00</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="podne">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                  <span class="qz-opt__text">Mittags</span>
+                  <span class="qz-opt__hint">12:00 – 17:00</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="vecer">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                  <span class="qz-opt__text">Abends</span>
+                  <span class="qz-opt__hint">17:00 – 20:00</span>
+                </span>
+              </label>
+              <label class="qz-opt qz-opt--time">
+                <input type="radio" name="q8_time" value="bilo_kad">
+                <span class="qz-opt__body qz-opt__body--time">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span class="qz-opt__text">Jederzeit</span>
+                  <span class="qz-opt__hint">Nicht wichtig</span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 9: Kontakt podaci -->
+    <div class="qz-step" data-step="9">
+      <div class="qz-step__inner">
+        <h2 class="qz-step__title">Ihre Daten</h2>
+        <p class="qz-step__sub">Hinterlassen Sie Ihre Daten und wir senden Ihnen ein personalisiertes Angebot.</p>
+        <form class="qz-form" id="quiz-form">
+          <div class="qz-form__group">
+            <label class="qz-form__label">Vor- und Nachname *</label>
+            <input type="text" name="ime" required placeholder="Ihr Vor- und Nachname" class="qz-form__input">
+          </div>
+          <div class="qz-form__group">
+            <label class="qz-form__label">E-Mail-Adresse *</label>
+            <input type="email" name="email" required placeholder="ihre@email.com" class="qz-form__input">
+          </div>
+          <div class="qz-form__group">
+            <label class="qz-form__label">Telefon</label>
+            <div class="qz-phone">
+              <div class="qz-phone__select-wrap">
+                <select name="phone_code" class="qz-phone__select" id="phone-code">
+                  <optgroup label="Am häufigsten">
+                    <option value="+387" selected>🇧🇦 BiH (+387)</option>
+                    <option value="+385">🇭🇷 Kroatien (+385)</option>
+                    <option value="+381">🇷🇸 Serbien (+381)</option>
+                    <option value="+382">🇲🇪 Montenegro (+382)</option>
+                    <option value="+386">🇸🇮 Slowenien (+386)</option>
+                    <option value="+389">🇲🇰 Nordmazedonien (+389)</option>
+                    <option value="+49">🇩🇪 Deutschland (+49)</option>
+                    <option value="+43">🇦🇹 Österreich (+43)</option>
+                    <option value="+41">🇨🇭 Schweiz (+41)</option>
+                    <option value="+46">🇸🇪 Schweden (+46)</option>
+                  </optgroup>
+                  <optgroup label="Alle Länder">
+                    <option value="+93">🇦🇫 Afghanistan (+93)</option>
+                    <option value="+355">🇦🇱 Albanien (+355)</option>
+                    <option value="+213">🇩🇿 Algerien (+213)</option>
+                    <option value="+376">🇦🇩 Andorra (+376)</option>
+                    <option value="+244">🇦🇴 Angola (+244)</option>
+                    <option value="+1268">🇦🇬 Antigua und Barbuda (+1268)</option>
+                    <option value="+54">🇦🇷 Argentinien (+54)</option>
+                    <option value="+374">🇦🇲 Armenien (+374)</option>
+                    <option value="+61">🇦🇺 Australien (+61)</option>
+                    <option value="+43">🇦🇹 Österreich (+43)</option>
+                    <option value="+994">🇦🇿 Aserbaidschan (+994)</option>
+                    <option value="+1242">🇧🇸 Bahamas (+1242)</option>
+                    <option value="+973">🇧🇭 Bahrain (+973)</option>
+                    <option value="+880">🇧🇩 Bangladesch (+880)</option>
+                    <option value="+1246">🇧🇧 Barbados (+1246)</option>
+                    <option value="+375">🇧🇾 Belarus (+375)</option>
+                    <option value="+32">🇧🇪 Belgien (+32)</option>
+                    <option value="+501">🇧🇿 Belize (+501)</option>
+                    <option value="+229">🇧🇯 Benin (+229)</option>
+                    <option value="+975">🇧🇹 Bhutan (+975)</option>
+                    <option value="+591">🇧🇴 Bolivien (+591)</option>
+                    <option value="+387">🇧🇦 Bosnien und Herzegowina (+387)</option>
+                    <option value="+267">🇧🇼 Botswana (+267)</option>
+                    <option value="+55">🇧🇷 Brasilien (+55)</option>
+                    <option value="+673">🇧🇳 Brunei (+673)</option>
+                    <option value="+359">🇧🇬 Bulgarien (+359)</option>
+                    <option value="+226">🇧🇫 Burkina Faso (+226)</option>
+                    <option value="+257">🇧🇮 Burundi (+257)</option>
+                    <option value="+855">🇰🇭 Kambodscha (+855)</option>
+                    <option value="+237">🇨🇲 Kamerun (+237)</option>
+                    <option value="+1">🇨🇦 Kanada (+1)</option>
+                    <option value="+238">🇨🇻 Kap Verde (+238)</option>
+                    <option value="+236">🇨🇫 Zentralafrikanische Rep. (+236)</option>
+                    <option value="+235">🇹🇩 Tschad (+235)</option>
+                    <option value="+56">🇨🇱 Chile (+56)</option>
+                    <option value="+86">🇨🇳 China (+86)</option>
+                    <option value="+57">🇨🇴 Kolumbien (+57)</option>
+                    <option value="+269">🇰🇲 Komoren (+269)</option>
+                    <option value="+242">🇨🇬 Kongo (+242)</option>
+                    <option value="+243">🇨🇩 DR Kongo (+243)</option>
+                    <option value="+506">🇨🇷 Costa Rica (+506)</option>
+                    <option value="+385">🇭🇷 Kroatien (+385)</option>
+                    <option value="+53">🇨🇺 Kuba (+53)</option>
+                    <option value="+357">🇨🇾 Zypern (+357)</option>
+                    <option value="+420">🇨🇿 Tschechien (+420)</option>
+                    <option value="+45">🇩🇰 Dänemark (+45)</option>
+                    <option value="+253">🇩🇯 Dschibuti (+253)</option>
+                    <option value="+1767">🇩🇲 Dominica (+1767)</option>
+                    <option value="+1809">🇩🇴 Dominikanische Rep. (+1809)</option>
+                    <option value="+593">🇪🇨 Ecuador (+593)</option>
+                    <option value="+20">🇪🇬 Ägypten (+20)</option>
+                    <option value="+503">🇸🇻 El Salvador (+503)</option>
+                    <option value="+240">🇬🇶 Äquatorialguinea (+240)</option>
+                    <option value="+291">🇪🇷 Eritrea (+291)</option>
+                    <option value="+372">🇪🇪 Estland (+372)</option>
+                    <option value="+268">🇸🇿 Eswatini (+268)</option>
+                    <option value="+251">🇪🇹 Äthiopien (+251)</option>
+                    <option value="+679">🇫🇯 Fidschi (+679)</option>
+                    <option value="+358">🇫🇮 Finnland (+358)</option>
+                    <option value="+33">🇫🇷 Frankreich (+33)</option>
+                    <option value="+241">🇬🇦 Gabun (+241)</option>
+                    <option value="+220">🇬🇲 Gambia (+220)</option>
+                    <option value="+995">🇬🇪 Georgien (+995)</option>
+                    <option value="+49">🇩🇪 Deutschland (+49)</option>
+                    <option value="+233">🇬🇭 Ghana (+233)</option>
+                    <option value="+30">🇬🇷 Griechenland (+30)</option>
+                    <option value="+1473">🇬🇩 Grenada (+1473)</option>
+                    <option value="+502">🇬🇹 Guatemala (+502)</option>
+                    <option value="+224">🇬🇳 Guinea (+224)</option>
+                    <option value="+245">🇬🇼 Guinea-Bissau (+245)</option>
+                    <option value="+592">🇬🇾 Guyana (+592)</option>
+                    <option value="+509">🇭🇹 Haiti (+509)</option>
+                    <option value="+504">🇭🇳 Honduras (+504)</option>
+                    <option value="+36">🇭🇺 Ungarn (+36)</option>
+                    <option value="+354">🇮🇸 Island (+354)</option>
+                    <option value="+91">🇮🇳 Indien (+91)</option>
+                    <option value="+62">🇮🇩 Indonesien (+62)</option>
+                    <option value="+98">🇮🇷 Iran (+98)</option>
+                    <option value="+964">🇮🇶 Irak (+964)</option>
+                    <option value="+353">🇮🇪 Irland (+353)</option>
+                    <option value="+972">🇮🇱 Israel (+972)</option>
+                    <option value="+39">🇮🇹 Italien (+39)</option>
+                    <option value="+225">🇨🇮 Elfenbeinküste (+225)</option>
+                    <option value="+1876">🇯🇲 Jamaika (+1876)</option>
+                    <option value="+81">🇯🇵 Japan (+81)</option>
+                    <option value="+962">🇯🇴 Jordanien (+962)</option>
+                    <option value="+7">🇰🇿 Kasachstan (+7)</option>
+                    <option value="+254">🇰🇪 Kenia (+254)</option>
+                    <option value="+686">🇰🇮 Kiribati (+686)</option>
+                    <option value="+965">🇰🇼 Kuwait (+965)</option>
+                    <option value="+996">🇰🇬 Kirgisistan (+996)</option>
+                    <option value="+856">🇱🇦 Laos (+856)</option>
+                    <option value="+371">🇱🇻 Lettland (+371)</option>
+                    <option value="+961">🇱🇧 Libanon (+961)</option>
+                    <option value="+266">🇱🇸 Lesotho (+266)</option>
+                    <option value="+231">🇱🇷 Liberia (+231)</option>
+                    <option value="+218">🇱🇾 Libyen (+218)</option>
+                    <option value="+423">🇱🇮 Liechtenstein (+423)</option>
+                    <option value="+370">🇱🇹 Litauen (+370)</option>
+                    <option value="+352">🇱🇺 Luxemburg (+352)</option>
+                    <option value="+261">🇲🇬 Madagaskar (+261)</option>
+                    <option value="+265">🇲🇼 Malawi (+265)</option>
+                    <option value="+60">🇲🇾 Malaysia (+60)</option>
+                    <option value="+960">🇲🇻 Malediven (+960)</option>
+                    <option value="+223">🇲🇱 Mali (+223)</option>
+                    <option value="+356">🇲🇹 Malta (+356)</option>
+                    <option value="+692">🇲🇭 Marshallinseln (+692)</option>
+                    <option value="+222">🇲🇷 Mauretanien (+222)</option>
+                    <option value="+230">🇲🇺 Mauritius (+230)</option>
+                    <option value="+52">🇲🇽 Mexiko (+52)</option>
+                    <option value="+691">🇫🇲 Mikronesien (+691)</option>
+                    <option value="+373">🇲🇩 Moldau (+373)</option>
+                    <option value="+377">🇲🇨 Monaco (+377)</option>
+                    <option value="+976">🇲🇳 Mongolei (+976)</option>
+                    <option value="+382">🇲🇪 Montenegro (+382)</option>
+                    <option value="+212">🇲🇦 Marokko (+212)</option>
+                    <option value="+258">🇲🇿 Mosambik (+258)</option>
+                    <option value="+95">🇲🇲 Myanmar (+95)</option>
+                    <option value="+264">🇳🇦 Namibia (+264)</option>
+                    <option value="+674">🇳🇷 Nauru (+674)</option>
+                    <option value="+977">🇳🇵 Nepal (+977)</option>
+                    <option value="+31">🇳🇱 Niederlande (+31)</option>
+                    <option value="+64">🇳🇿 Neuseeland (+64)</option>
+                    <option value="+505">🇳🇮 Nicaragua (+505)</option>
+                    <option value="+227">🇳🇪 Niger (+227)</option>
+                    <option value="+234">🇳🇬 Nigeria (+234)</option>
+                    <option value="+850">🇰🇵 Nordkorea (+850)</option>
+                    <option value="+389">🇲🇰 Nordmazedonien (+389)</option>
+                    <option value="+47">🇳🇴 Norwegen (+47)</option>
+                    <option value="+968">🇴🇲 Oman (+968)</option>
+                    <option value="+92">🇵🇰 Pakistan (+92)</option>
+                    <option value="+680">🇵🇼 Palau (+680)</option>
+                    <option value="+970">🇵🇸 Palästina (+970)</option>
+                    <option value="+507">🇵🇦 Panama (+507)</option>
+                    <option value="+675">🇵🇬 Papua-Neuguinea (+675)</option>
+                    <option value="+595">🇵🇾 Paraguay (+595)</option>
+                    <option value="+51">🇵🇪 Peru (+51)</option>
+                    <option value="+63">🇵🇭 Philippinen (+63)</option>
+                    <option value="+48">🇵🇱 Polen (+48)</option>
+                    <option value="+351">🇵🇹 Portugal (+351)</option>
+                    <option value="+974">🇶🇦 Katar (+974)</option>
+                    <option value="+40">🇷🇴 Rumänien (+40)</option>
+                    <option value="+7">🇷🇺 Russland (+7)</option>
+                    <option value="+250">🇷🇼 Ruanda (+250)</option>
+                    <option value="+1869">🇰🇳 St. Kitts und Nevis (+1869)</option>
+                    <option value="+1758">🇱🇨 St. Lucia (+1758)</option>
+                    <option value="+1784">🇻🇨 St. Vincent (+1784)</option>
+                    <option value="+685">🇼🇸 Samoa (+685)</option>
+                    <option value="+378">🇸🇲 San Marino (+378)</option>
+                    <option value="+239">🇸🇹 São Tomé und Príncipe (+239)</option>
+                    <option value="+966">🇸🇦 Saudi-Arabien (+966)</option>
+                    <option value="+221">🇸🇳 Senegal (+221)</option>
+                    <option value="+381">🇷🇸 Serbien (+381)</option>
+                    <option value="+248">🇸🇨 Seychellen (+248)</option>
+                    <option value="+232">🇸🇱 Sierra Leone (+232)</option>
+                    <option value="+65">🇸🇬 Singapur (+65)</option>
+                    <option value="+421">🇸🇰 Slowakei (+421)</option>
+                    <option value="+386">🇸🇮 Slowenien (+386)</option>
+                    <option value="+677">🇸🇧 Salomonen (+677)</option>
+                    <option value="+252">🇸🇴 Somalia (+252)</option>
+                    <option value="+27">🇿🇦 Südafrika (+27)</option>
+                    <option value="+82">🇰🇷 Südkorea (+82)</option>
+                    <option value="+211">🇸🇸 Südsudan (+211)</option>
+                    <option value="+34">🇪🇸 Spanien (+34)</option>
+                    <option value="+94">🇱🇰 Sri Lanka (+94)</option>
+                    <option value="+249">🇸🇩 Sudan (+249)</option>
+                    <option value="+597">🇸🇷 Suriname (+597)</option>
+                    <option value="+46">🇸🇪 Schweden (+46)</option>
+                    <option value="+41">🇨🇭 Schweiz (+41)</option>
+                    <option value="+963">🇸🇾 Syrien (+963)</option>
+                    <option value="+886">🇹🇼 Taiwan (+886)</option>
+                    <option value="+992">🇹🇯 Tadschikistan (+992)</option>
+                    <option value="+255">🇹🇿 Tansania (+255)</option>
+                    <option value="+66">🇹🇭 Thailand (+66)</option>
+                    <option value="+670">🇹🇱 Osttimor (+670)</option>
+                    <option value="+228">🇹🇬 Togo (+228)</option>
+                    <option value="+676">🇹🇴 Tonga (+676)</option>
+                    <option value="+1868">🇹🇹 Trinidad und Tobago (+1868)</option>
+                    <option value="+216">🇹🇳 Tunesien (+216)</option>
+                    <option value="+90">🇹🇷 Türkei (+90)</option>
+                    <option value="+993">🇹🇲 Turkmenistan (+993)</option>
+                    <option value="+688">🇹🇻 Tuvalu (+688)</option>
+                    <option value="+256">🇺🇬 Uganda (+256)</option>
+                    <option value="+380">🇺🇦 Ukraine (+380)</option>
+                    <option value="+971">🇦🇪 VAE (+971)</option>
+                    <option value="+44">🇬🇧 Großbritannien (+44)</option>
+                    <option value="+1">🇺🇸 USA (+1)</option>
+                    <option value="+598">🇺🇾 Uruguay (+598)</option>
+                    <option value="+998">🇺🇿 Usbekistan (+998)</option>
+                    <option value="+678">🇻🇺 Vanuatu (+678)</option>
+                    <option value="+379">🇻🇦 Vatikan (+379)</option>
+                    <option value="+58">🇻🇪 Venezuela (+58)</option>
+                    <option value="+84">🇻🇳 Vietnam (+84)</option>
+                    <option value="+967">🇾🇪 Jemen (+967)</option>
+                    <option value="+260">🇿🇲 Sambia (+260)</option>
+                    <option value="+263">🇿🇼 Simbabwe (+263)</option>
+                  </optgroup>
+                </select>
+              </div>
+              <input type="tel" name="telefon" placeholder="61 000 000" class="qz-phone__input">
+            </div>
+          </div>
+          <div class="qz-form__group" id="msg-field">
+            <label class="qz-form__label">Nachricht (optional)</label>
+            <textarea name="poruka" rows="3" placeholder="Haben Sie weitere Fragen?" class="qz-form__input qz-form__textarea"></textarea>
+          </div>
+          <input type="hidden" name="quiz_odgovori" id="quiz-answers-field" value="">
+        </form>
+      </div>
+    </div>
+
+    <!-- RESULTS: Rezultat -->
+    <div class="qz-step" data-step="results">
+      <div class="qz-step__inner qz-results">
+        <div class="qz-results__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2FB57E" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2 class="qz-step__title">Ihre Empfehlung ist fertig.</h2>
+        <p class="qz-step__sub">Senden Sie sie uns mit einem Klick auf WhatsApp und unser Berater meldet sich in Kürze bei Ihnen.</p>
+        <div class="qz-results__match" id="results-match"></div>
+        <a href="#" class="qz-results__wa" id="resultsWhatsApp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Auf WhatsApp senden
+        </a>
+        <a href="de.html" class="qz-results__back">Zurück zur Startseite</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation -->
+  <div class="qz-nav" id="qz-nav">
+    <button type="button" class="qz-nav__btn qz-nav__btn--back" id="btn-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Zurück
+    </button>
+    <button type="button" class="qz-nav__btn qz-nav__btn--next" id="btn-next">
+      Weiter
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <button type="button" class="qz-nav__btn qz-nav__btn--submit" id="btn-submit" style="display:none">
+      Anfrage senden
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+
+</div>
+
+<script src="assets/js/kviz.js"></script>
+</body>
+</html>
