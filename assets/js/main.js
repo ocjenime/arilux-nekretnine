@@ -36,6 +36,65 @@
     ]
   };
 
+  /* ── i18n: detect language and provide translations ─────────── */
+  var LANG = document.documentElement.lang === 'de' ? 'de' : 'bs';
+
+  var I18N = {
+    de: {
+      roomLabel: { 1: '1-Zimmer', 2: '2-Zimmer', 3: '3-Zimmer', 4: '4-Zimmer' },
+      floorLabel: { 1: 'Erdgeschoss', 2: '1. OG', 3: '2. OG', 4: '3. OG', 5: '4. OG', 6: '5. OG', 7: '6. OG', 8: '7. OG', 9: '8. OG' },
+      statusLabel: { available: 'Verfügbar', reserved: 'Reserviert', sold: 'Verkauft' },
+      floor: 'Stockwerk',
+      floors: 'Etagen',
+      totalFloors: 'Etagen gesamt',
+      penthouse: 'Penthouse',
+      penthouseUnit: 'Penthouse-Wohnung',
+      found: 'Wohnungen gefunden',
+      available: 'verfügbar',
+      reserve: 'Reservieren',
+      reserveApt: 'Wohnung reservieren',
+      call: 'Anrufen',
+      sendInquiry: 'Wartelisten-Anfrage senden',
+      callSimilar: 'Anrufen für ähnliche Wohnungen',
+      showPlan: 'Grundriss anzeigen',
+      hidePlan: 'Grundriss ausblenden',
+      floorSpec: 'Etage',
+      areaSpec: 'Wohnfläche',
+      roomsSpec: 'Zimmer',
+      bathroomsSpec: 'Badezimmer',
+      balconySpec: 'Balkon',
+      balconyYes: 'Ja',
+      balconyNo: 'Nein',
+      orientationSpec: 'Ausrichtung',
+      orientation: ['Süd', 'Nord', 'Ost', 'West'],
+      features: {
+        one: ['Fußbodenheizung', 'Wärmepumpe', 'Energiestandard A+', 'Balkon', 'Tiefgarage', 'Gewerbeflächen im EG'],
+        park: ['Fußbodenheizung', 'Wärmepumpe', 'Energiestandard A+', 'Privater Parkplatz', 'Spielplatz', 'Terrassen mit Parkblick'],
+        centar: ['Fußbodenheizung', 'Wärmepumpe', 'Energiestandard A+', 'Aufzug', 'Gewerbeflächen', 'Garage im Untergeschoss'],
+        panorama: ['Fußbodenheizung', 'Wärmepumpe', 'Energiestandard A+', 'Terrassen', 'Dachterrassen (PH)', 'Panoramablick']
+      },
+      tourNames: ['Wohnzimmer', 'Schlafzimmer', 'Küche', 'Badezimmer', 'Balkon'],
+      prefilledMsg: 'Ich interessiere mich für Wohnung {id} ({name}), {m2} m². Bitte um weitere Informationen und einen Termin.',
+      btnReserve: 'Wohnung reservieren \u2192',
+      btnCall: 'Anrufen: +387 37 772 000'
+    }
+  };
+
+  function t(key) {
+    if (LANG === 'de' && I18N.de[key] !== undefined) return I18N.de[key];
+    return null;
+  }
+  function tArr(key) {
+    if (LANG === 'de' && I18N.de[key]) return I18N.de[key];
+    return null;
+  }
+
+  /* Apply i18n overrides to label objects */
+  (function () {
+    var rl = tArr('roomLabel'); if (rl) Object.keys(rl).forEach(function (k) { ROOM_LABEL[k] = rl[k]; });
+    var fl = tArr('floorLabel'); if (fl) Object.keys(fl).forEach(function (k) { FLOOR_LABEL[k] = fl[k]; });
+  })();
+
   /* ── Try loading from site.json ──────────────────────────────── */
   var JSON_LOADED = false;
 
@@ -268,7 +327,7 @@
     var names = { one: 'Arilux Amor', park: 'Arilux Park', centar: 'Arilux Centar', panorama: 'Arilux Panorama' };
     Object.keys(MAP_COORDS).forEach(function (bid) {
       var marker = L.marker(MAP_COORDS[bid], { icon: buildingIcon(bid) }).addTo(lmap);
-      marker.bindPopup('<b style="color:' + MAP_COLORS[bid] + '">' + names[bid] + '</b><br><small>' + MAP_LABELS[bid] + ' · ' + MAP_FLOORS[bid] + ' spratova</small>');
+      marker.bindPopup('<b style="color:' + MAP_COLORS[bid] + '">' + names[bid] + '</b><br><small>' + MAP_LABELS[bid] + ' · ' + MAP_FLOORS[bid] + ' ' + (t('floors') || 'spratova') + '</small>');
       marker.on('click', function () { setLocMapBuilding(bid); });
       lmarkers[bid] = marker;
     });
@@ -421,7 +480,7 @@
 
   var APARTMENTS = generateApartments();
 
-  var STATUS_LABEL = { available: 'Slobodan', reserved: 'Rezervisan', sold: 'Prodan' };
+  var STATUS_LABEL = t('statusLabel') || { available: 'Slobodan', reserved: 'Rezervisan', sold: 'Prodan' };
 
   function fmt(n) {
     return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -467,7 +526,7 @@
 
     var cta;
     if (a.status === 'available') {
-      cta = '<a href="#kontakt" class="apt__cta" data-apt="' + a.id + '" data-building="' + a.building + '">Rezerviši <span aria-hidden="true">→</span></a>';
+      cta = '<a href="#kontakt" class="apt__cta" data-apt="' + a.id + '" data-building="' + a.building + '">' + (t('reserve') || 'Rezerviši') + ' <span aria-hidden="true">\u2192</span></a>';
     } else {
       cta = '<span class="apt__cta is-disabled">' + STATUS_LABEL[a.status] + '</span>';
     }
@@ -479,7 +538,7 @@
       '<div class="apt__specs">' +
         '<span><b>' + ROOM_LABEL[a.rooms] + '</b></span>' +
         '<span><b>' + a.area + '</b> m²</span>' +
-        '<span><b>' + a.floor + '.</b> sprat</span>' +
+        '<span><b>' + a.floor + '.</b> ' + (t('floor') || 'sprat') + '</span>' +
       '</div>' +
       '<div class="apt__foot">' +
         '<div class="apt__price"><small>' + fmt(a.m2) + ' KM/m²</small><b>' + fmt(a.price) + ' KM</b></div>' +
@@ -495,7 +554,7 @@
     visible.forEach(function (a, i) { grid.appendChild(aptCard(a, i)); });
 
     var avail = all.filter(function (a) { return a.status === 'available'; }).length;
-    countEl.innerHTML = 'Pronađeno <b>' + all.length + '</b> stanova · <b>' + avail + '</b> slobodnih';
+    countEl.innerHTML = (LANG === 'de' ? 'Gefunden: <b>' + all.length + '</b> Wohnungen · <b>' + avail + '</b> verfügbar' : 'Pronađeno <b>' + all.length + '</b> stanova · <b>' + avail + '</b> slobodnih');
 
     emptyEl.hidden = all.length !== 0;
     grid.style.display = all.length === 0 ? 'none' : '';
@@ -589,7 +648,7 @@
   var modalOverlay = document.getElementById('modalOverlay');
   var modalClose = document.getElementById('modalClose');
 
-  var BUILDING_INC = {
+  var BUILDING_INC = tArr('features') || {
     one: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Balkon', 'Podzemna garaža', 'Poslovni prostori u prizemlju'],
     park: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Privatni parking', 'Dječije igralište', 'Terase sa pogledom na park'],
     centar: ['Podno grijanje', 'Toplotna pumpa', 'A+ energetski razred', 'Lift', 'Poslovni prostori', 'Garaža u podnožju'],
@@ -822,12 +881,13 @@
 
   function openModal(apt) {
     var totalFloors = getBuildingTotalFloors(apt.building);
-    var floorLabel = apt.floor === 1 ? 'Prizemlje' : (FLOOR_LABEL[apt.floor] || apt.floor + '.') + ' sprat';
+    var floorLabel = apt.floor === 1 ? (tArr('floorLabel') || {})['1'] || 'Prizemlje' : ((tArr('floorLabel') || FLOOR_LABEL)[apt.floor] || apt.floor + '.') + ' ' + (t('floor') || 'sprat');
     var baths = apt.rooms <= 2 ? 1 : 2;
-    var balcony = apt.rooms >= 2 ? 'Da' : 'Ne';
-    var orient = ['Jug', 'Sjever', 'Istok', 'Zapad'][(apt.floor + apt.rooms) % 4];
+    var balcony = apt.rooms >= 2 ? (t('balconyYes') || 'Da') : (t('balconyNo') || 'Ne');
+    var orientArr = tArr('orientation') || ['Jug', 'Sjever', 'Istok', 'Zapad'];
+    var orient = orientArr[(apt.floor + apt.rooms) % 4];
 
-    document.getElementById('modalId').textContent = apt.id + (apt.penthouse ? ' · Penthouse' : '');
+    document.getElementById('modalId').textContent = apt.id + (apt.penthouse ? ' · ' + (t('penthouse') || 'Penthouse') : '');
     var badge = document.getElementById('modalBadge');
     badge.textContent = STATUS_LABEL[apt.status];
     badge.className = 'modal__badge modal__badge--' + apt.status;
@@ -835,22 +895,22 @@
 
     var titleLine = ROOM_LABEL[apt.rooms];
     document.getElementById('modalTitle').innerHTML = titleLine + '<br><em>' + apt.area + ' m²</em>';
-    document.getElementById('modalSub').textContent = floorLabel + ' · ' + totalFloors + ' spratova ukupno' + (apt.penthouse ? ' · Penthouse stan' : '');
+    document.getElementById('modalSub').textContent = floorLabel + ' · ' + totalFloors + ' ' + (t('totalFloors') || 'spratova ukupno') + (apt.penthouse ? ' · ' + (t('penthouseUnit') || 'Penthouse stan') : '');
 
     document.getElementById('modalFloorplan').innerHTML = generateFloorplan(apt.rooms);
     document.getElementById('modalFloorplan').classList.add('fp--hidden');
     document.getElementById('fpToggle').classList.remove('is-open');
-    document.getElementById('fpToggle').querySelector('span').textContent = 'Prikaži tlocrt stana';
+    document.getElementById('fpToggle').querySelector('span').textContent = t('showPlan') || 'Prikaži tlocrt stana';
 
     renderGallery(apt.building);
 
     document.getElementById('modalSpecs').innerHTML =
-      '<div class="modal__spec"><dt>Sprat</dt><dd>' + apt.floor + '. <small>/ ' + totalFloors + '</small></dd></div>' +
-      '<div class="modal__spec"><dt>Kvadratura</dt><dd>' + apt.area + ' <small>m²</small></dd></div>' +
-      '<div class="modal__spec"><dt>Sobe</dt><dd>' + apt.rooms + ' <small>' + (apt.rooms === 1 ? 'soba' : 'sobe') + '</small></dd></div>' +
-      '<div class="modal__spec"><dt>Kupatila</dt><dd>' + baths + ' <small>' + (baths === 1 ? 'kupatilo' : 'kupatila') + '</small></dd></div>' +
-      '<div class="modal__spec"><dt>Balkon</dt><dd>' + balcony + '</dd></div>' +
-      '<div class="modal__spec"><dt>Orijentacija</dt><dd style="font-size:clamp(18px,2vw,24px)">' + orient + '</dd></div>';
+      '<div class="modal__spec"><dt>' + (t('floorSpec') || 'Sprat') + '</dt><dd>' + apt.floor + '. <small>/ ' + totalFloors + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>' + (t('areaSpec') || 'Kvadratura') + '</dt><dd>' + apt.area + ' <small>m\u00B2</small></dd></div>' +
+      '<div class="modal__spec"><dt>' + (t('roomsSpec') || 'Sobe') + '</dt><dd>' + apt.rooms + ' <small>' + (apt.rooms === 1 ? (LANG === 'de' ? 'Zimmer' : 'soba') : (LANG === 'de' ? 'Zimmer' : 'sobe')) + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>' + (t('bathroomsSpec') || 'Kupatila') + '</dt><dd>' + baths + ' <small>' + (baths === 1 ? (LANG === 'de' ? 'Badezimmer' : 'kupatilo') : (LANG === 'de' ? 'Badezimmer' : 'kupatila')) + '</small></dd></div>' +
+      '<div class="modal__spec"><dt>' + (t('balconySpec') || 'Balkon') + '</dt><dd>' + balcony + '</dd></div>' +
+      '<div class="modal__spec"><dt>' + (t('orientationSpec') || 'Orijentacija') + '</dt><dd style="font-size:clamp(18px,2vw,24px)">' + orient + '</dd></div>';
 
     document.getElementById('modalPrice').innerHTML =
       '<span class="modal__priceval">' + fmt(apt.price) + ' KM</span>' +
@@ -876,8 +936,8 @@
     var footer = document.getElementById('modalFooter');
     if (apt.status === 'available') {
       footer.innerHTML =
-        '<a href="#kontakt" class="btn btn--orange" id="modalReserve">Rezerviši stan <span aria-hidden="true">→</span></a>' +
-        '<a href="tel:+38737772000" class="btn btn--blue">Pozovi: +387 37 772 000</a>';
+        '<a href="#kontakt" class="btn btn--orange" id="modalReserve">' + (t('btnReserve') || 'Rezerviši stan \u2192') + '</a>' +
+        '<a href="tel:+38737772000" class="btn btn--blue">' + (t('btnCall') || 'Pozovi: +387 37 772 000') + '</a>';
       document.getElementById('modalReserve').addEventListener('click', function () {
         closeModal();
         var sel = document.getElementById('fBuilding');
@@ -885,16 +945,22 @@
         for (var i = 0; i < sel.options.length; i++) {
           if (sel.options[i].value === bName) { sel.selectedIndex = i; break; }
         }
-        document.getElementById('fMsg').value = 'Zanima me stan ' + apt.id + ' (' + bName + '), ' + apt.area + ' m². Molim vas za više informacija i termin razgovora.';
+        var msg = t('prefilledMsg');
+        if (msg) {
+          msg = msg.replace('{id}', apt.id).replace('{name}', bName).replace('{m2}', apt.area);
+        } else {
+          msg = 'Zanima me stan ' + apt.id + ' (' + bName + '), ' + apt.area + ' m². Molim vas za više informacija i termin razgovora.';
+        }
+        document.getElementById('fMsg').value = msg;
         document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
       });
     } else if (apt.status === 'reserved') {
       footer.innerHTML =
-        '<a href="tel:+38737772000" class="btn btn--blue">Pozovi: +387 37 772 000</a>' +
-        '<a href="mailto:info@arilux.ba" class="btn btn--ghost-blue">Pošalji upit za listu čekanja</a>';
+        '<a href="tel:+38737772000" class="btn btn--blue">' + (t('btnCall') || 'Pozovi: +387 37 772 000') + '</a>' +
+        '<a href="mailto:info@arilux.ba" class="btn btn--ghost-blue">' + (t('sendInquiry') || 'Pošalji upit za listu čekanja') + '</a>';
     } else {
       footer.innerHTML =
-        '<a href="tel:+38737772000" class="btn btn--ghost-blue">Pozovi za slične stanove</a>';
+        '<a href="tel:+38737772000" class="btn btn--ghost-blue">' + (t('callSimilar') || 'Pozovi za slične stanove') + '</a>';
     }
 
     modalOverlay.classList.add('is-open');
@@ -912,7 +978,7 @@
     var fp = document.getElementById('modalFloorplan');
     var open = fp.classList.toggle('fp--hidden');
     this.classList.toggle('is-open', !open);
-    this.querySelector('span').textContent = open ? 'Prikaži tlocrt stana' : 'Sakrij tlocrt';
+    this.querySelector('span').textContent = open ? (t('showPlan') || 'Prikaži tlocrt stana') : (t('hidePlan') || 'Sakrij tlocrt');
   });
 
   modalClose.addEventListener('click', closeModal);
@@ -1112,6 +1178,10 @@
     window.location.href = 'mailto:info@arilux.ba?subject=' +
       encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_submit', { event_category: 'conversion', event_label: building.value });
+    }
+
     note.className = 'formnote formnote--ok';
     note.textContent = 'Hvala, ' + sName.split(' ')[0] + '! Vaš e-mail klijent se upravo otvara sa pripremljenim upitom. Ako se ne otvori, nazovite nas na +387 37 772 000.';
     form.reset();
@@ -1231,15 +1301,22 @@
      Trg mladih (centar): ~45.1842,15.8052
      Trgovine (centar): ~45.1842,15.8048
      Gradski park: ~45.1852,15.8028 */
+  var WALK_SUB = LANG === 'de' ? 'Min. zu Fuß' : 'min pješke';
+
   var LOC_DATA = {
-    one:      { school: '200 m', schoolSub: '3 min pješke', health: '350 m', healthSub: '5 min pješke', center: '50 m', centerSub: '1 min pješke', shop: '100 m', shopSub: '2 min pješke', park: '400 m', parkSub: '5 min pješke' },
-    park:     { school: '500 m', schoolSub: '6 min pješke', health: '600 m', healthSub: '8 min pješke', center: '450 m', centerSub: '6 min pješke', shop: '400 m', shopSub: '5 min pješke', park: '150 m', parkSub: '2 min pješke' },
-    centar:   { school: '150 m', schoolSub: '2 min pješke', health: '400 m', healthSub: '5 min pješke', center: '100 m', centerSub: '2 min pješke', shop: '150 m', shopSub: '2 min pješke', park: '500 m', parkSub: '6 min pješke' },
-    panorama: { school: '1.2 km', schoolSub: '15 min pješke', health: '1.1 km', healthSub: '14 min pješke', center: '1.0 km', centerSub: '13 min pješke', shop: '900 m', shopSub: '11 min pješke', park: '800 m', parkSub: '10 min pješke' }
+    one:      { school: '200 m', schoolSub: '3 ' + WALK_SUB, health: '350 m', healthSub: '5 ' + WALK_SUB, center: '50 m', centerSub: '1 ' + WALK_SUB, shop: '100 m', shopSub: '2 ' + WALK_SUB, park: '400 m', parkSub: '5 ' + WALK_SUB },
+    park:     { school: '500 m', schoolSub: '6 ' + WALK_SUB, health: '600 m', healthSub: '8 ' + WALK_SUB, center: '450 m', centerSub: '6 ' + WALK_SUB, shop: '400 m', shopSub: '5 ' + WALK_SUB, park: '150 m', parkSub: '2 ' + WALK_SUB },
+    centar:   { school: '150 m', schoolSub: '2 ' + WALK_SUB, health: '400 m', healthSub: '5 ' + WALK_SUB, center: '100 m', centerSub: '2 ' + WALK_SUB, shop: '150 m', shopSub: '2 ' + WALK_SUB, park: '500 m', parkSub: '6 ' + WALK_SUB },
+    panorama: { school: '1.2 km', schoolSub: '15 ' + WALK_SUB, health: '1.1 km', healthSub: '14 ' + WALK_SUB, center: '1.0 km', centerSub: '13 ' + WALK_SUB, shop: '900 m', shopSub: '11 ' + WALK_SUB, park: '800 m', parkSub: '10 ' + WALK_SUB }
   };
 
-  var LOC_META = {
-    one:      { name: 'Arilux Amor', addr: 'Centar · Trg mladih', color: '#0041B1' },
+  var LOC_META = LANG === 'de' ? {
+    one:      { name: 'Arilux Amor', addr: 'Zentrum \u00B7 Trg mladih', color: '#0041B1' },
+    park:     { name: 'Arilux Park', addr: 'Am Stadtpark', color: '#2FB57E' },
+    centar:   { name: 'Arilux Centar', addr: 'Gesch\u00E4fts- und Wohnplatz', color: '#F26721' },
+    panorama: { name: 'Arilux Panorama', addr: 'Grabik-H\u00FCgel', color: '#7B61FF' }
+  } : {
+    one:      { name: 'Arilux Amor', addr: 'Centar \u00B7 Trg mladih', color: '#0041B1' },
     park:     { name: 'Arilux Park', addr: 'Uz gradski park', color: '#2FB57E' },
     centar:   { name: 'Arilux Centar', addr: 'Poslovno-stambeni trg', color: '#F26721' },
     panorama: { name: 'Arilux Panorama', addr: 'Brdo Grabik', color: '#7B61FF' }
@@ -1293,7 +1370,7 @@
   });
 
   /* 3D Tour nav buttons */
-  var DEFAULT_TOUR_NAMES = ['Dnevni boravak', 'Spavaća soba', 'Kuhinja', 'Kupatilo', 'Balkon'];
+  var DEFAULT_TOUR_NAMES = tArr('tourNames') || ['Dnevni boravak', 'Spavaća soba', 'Kuhinja', 'Kupatilo', 'Balkon'];
 
   function getTourNames() {
     if (window.__ARILUX_JSON && window.__ARILUX_JSON.tour3d && window.__ARILUX_JSON.tour3d.rooms) {
@@ -1632,6 +1709,27 @@
       xhr.send(new FormData(catalogForm));
     });
   }
+
+  /* ── GA4 conversion tracking (delegated, href-pattern based) ────────
+     Mjeri: quiz_start, whatsapp/viber/phone/email klikovi.
+     Aktivno tek kad se u HTML unese pravi Measurement ID. */
+  document.addEventListener('click', function (e) {
+    if (typeof gtag !== 'function') return;
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('kviz.html') !== -1) {
+      gtag('event', 'quiz_start', { event_category: 'conversion', event_label: a.className || 'link' });
+    } else if (href.indexOf('wa.me') !== -1) {
+      gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: a.className || 'link' });
+    } else if (href.indexOf('viber://') !== -1) {
+      gtag('event', 'viber_click', { event_category: 'contact' });
+    } else if (href.indexOf('tel:') === 0) {
+      gtag('event', 'phone_click', { event_category: 'contact', event_label: href.replace('tel:', '') });
+    } else if (href.indexOf('mailto:') === 0) {
+      gtag('event', 'email_click', { event_category: 'contact' });
+    }
+  });
 
   /* ── Quiz concierge card ──────────────────────────────────────
      Appears only after genuine engagement: 45% scroll depth AND
